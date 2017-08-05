@@ -192,10 +192,6 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
-
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
         
         哈哈哈
 
