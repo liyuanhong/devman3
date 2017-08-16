@@ -21,15 +21,8 @@
 <div class="wrapper">
 <?php $this->load->view('header');?>
 <?php $this->load->view('aside');?>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <section class="content-header">
-    
-    </section>
-    <section class="content container-fluid my-css-section">
-        哈哈哈<br>
-    </section>
+  <div class="content-wrapper" style="background-color: yellow;flex:1;">
+    <?php $this->load->view('viewDev/show_devs');?>
   </div>
 <?php $this->load->view('footer');?>
 </div>
