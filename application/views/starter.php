@@ -21,7 +21,7 @@
 <div class="wrapper">
 <?php $this->load->view('header');?>
 <?php $this->load->view('aside');?>
-  <div class="content-wrapper" style="background-color: yellow;flex:1;">
+  <div style="background-color: yellow;">
     <?php $this->load->view('viewDev/show_devs');?>
   </div>
 <?php $this->load->view('footer');?>

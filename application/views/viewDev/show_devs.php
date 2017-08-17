@@ -1,78 +1,10 @@
 <link rel="stylesheet" href="static/devman3/css/viewDev/show_devs.css">
-<div id="dev_containt_view">
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhahammm<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhahavvv<br/>
-ahhaha<br/>
-ahhaha<br/>
-ahhaha<br/>
+<div id="show_devs_containt_view" class="content-wrapper">
+  <div id="show_devs_top_control">
 
-
+  </div>
+  <div id="show_devs_show_devs">
+  
+  </div>
 
 </div>
