@@ -1,5 +1,4 @@
 #show_devs_containt_view{
-	background-color:yellow;
 	height: 250px;
 	margin-right: auto;
 	margin-left: auto;
@@ -32,5 +31,4 @@
 	margin-top:5px;
 	margin-bottom:5px;
 	background-color: grey;
-	overflow-y: scroll;
 }
