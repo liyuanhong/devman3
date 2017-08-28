@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="static/dist/css/skins/skin-blue.min.css">
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        
+  <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="static/dist/js/adminlte.min.js"></script>
   <!-- 我的资源 -->
   <link rel="stylesheet" href="static/devman3/css/starter.css">
         
@@ -26,8 +30,5 @@
   </div>
 <?php $this->load->view('footer');?>
 </div>
-<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="static/dist/js/adminlte.min.js"></script>
 </body>
 </html>
