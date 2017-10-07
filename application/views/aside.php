@@ -47,6 +47,19 @@
             <li><a href="#"><i class="fa fa-circle-o"></i>我的页面</a></li>
           </ul>
         </li>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-chevron-circle-right"></i> <span>系统设置</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i>编辑设备</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i>添加设备</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i>盘点设备</a></li>
+          </ul>
+        </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-chevron-circle-right"></i> <span>关于系统</span>
             <span class="pull-right-container">

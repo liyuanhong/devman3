@@ -4,20 +4,41 @@
 <script src="static/bower_components/select2/dist/js/select2.full.min.js"></script>
 <div id="show_devs_containt_view" class="content-wrapper">
   <div id="show_devs_top_control">
-	<label>平台:</label>
-	<select class="form-control" style="width:100px;">
-        <option>option 1</option>
-        <option>option 2</option>
-        <option>option 3</option>
-        <option>option 4</option>
-        <option>option 5</option>
-      </select>
-      
+    <div id="classification">
+        	<label>类型:</label>
+        	<select class="form-control" style="width:100px;height:30px;display: inline;margin-left: 10px;">
+            <option>手机平板</option>
+            <option>电脑</option>
+            <option>显示器</option>
+            <option>办公用品</option>
+            <option>桌椅</option>
+        </select>
+    </div>
+    <div style="width: 84%;height: 200px;background-color:pink;float:right;display:inline;padding-top: 10px;">
+      <div class="col-md-3 col-sm-4">平台：
+        <select class="form-control" style="width:100px;height:30px;display: inline;">
+            <option>android</option>
+            <option>ios</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-sm-4">品牌：
+        <select class="form-control" style="width:100px;height:30px;display: inline;">
+            <option>华为</option>
+            <option>小米</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-sm-4">系统：
+        <select class="form-control" style="width:100px;height:30px;display: inline;">
+            <option>5.0</option>
+            <option>4.4.4</option>
+        </select>
+      </div>
+    </div>
   </div>
   <div id="show_devs_show_devs">
     <div class="box" style="border-top: 0px;">
         <!-- /.box-header -->
-        <div class="box-body">
+        <div class="box-body" style="padding-bottom: 0px;">
           <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
               <div class="col-sm-6">
@@ -36,10 +57,10 @@
             <!-- 表格列控制start -->
            <div class="dropdown user user-menu" style="display:inline;float:right;margin-right: 295px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-fw fa-cog hidden-xs" style="font-size: medium;margin-top:8px;"></i>
+              <i class="fa fa-fw fa-cog hidden-xs" style="font-size: medium;margin-top:8px;"></i>显示列
             </a>
             <ul class="dropdown-menu" style="padding:0px;">
-             <div style="width: 200px;height: 200px;background-color: pink;padding:0px;"></div>
+             <div style="width: 300px;height: 200px;background-color: pink;padding:5px;">哈哈</div>
           </div>
           <!-- 表格列控制end -->
         
@@ -92,6 +113,97 @@
                   <td></td>
                   <td>2017-08-17 10:00</td>
                 </tr>
+                <tr role="row" class="odd">
+                  <td>2</td>
+                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
+                  <td class="sorting_1">Gecko</td>
+                  <td>HUAWEI</td>
+                  <td>03-0011</td>
+                  <td>android</td>
+                  <td>5.1</td>
+                  <td>淇淇</td>
+                  <td>远洪</td>
+                  <td></td>
+                  <td>2017-08-17 10:00</td>
+                </tr>
+                <tr role="row" class="odd">
+                  <td>1</td>
+                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
+                  <td class="sorting_1">Gecko</td>
+                  <td>HUAWEI</td>
+                  <td>03-0012</td>
+                  <td>android</td>
+                  <td>6.0.1</td>
+                  <td>刘超</td>
+                  <td>远洪</td>
+                  <td></td>
+                  <td>2017-08-17 11:00</td>
+                </tr>
+                <tr role="row" class="odd">
+                  <td>2</td>
+                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
+                  <td class="sorting_1">Gecko</td>
+                  <td>HUAWEI</td>
+                  <td>03-0011</td>
+                  <td>android</td>
+                  <td>5.1</td>
+                  <td>淇淇</td>
+                  <td>远洪</td>
+                  <td></td>
+                  <td>2017-08-17 10:00</td>
+                </tr>
+                <tr role="row" class="odd">
+                  <td>2</td>
+                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
+                  <td class="sorting_1">Gecko</td>
+                  <td>HUAWEI</td>
+                  <td>03-0011</td>
+                  <td>android</td>
+                  <td>5.1</td>
+                  <td>淇淇</td>
+                  <td>远洪</td>
+                  <td></td>
+                  <td>2017-08-17 10:00</td>
+                </tr>
+                <tr role="row" class="odd">
+                  <td>1</td>
+                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
+                  <td class="sorting_1">Gecko</td>
+                  <td>HUAWEI</td>
+                  <td>03-0012</td>
+                  <td>android</td>
+                  <td>6.0.1</td>
+                  <td>刘超</td>
+                  <td>远洪</td>
+                  <td></td>
+                  <td>2017-08-17 11:00</td>
+                </tr>
+                <tr role="row" class="odd">
+                  <td>2</td>
+                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
+                  <td class="sorting_1">Gecko</td>
+                  <td>HUAWEI</td>
+                  <td>03-0011</td>
+                  <td>android</td>
+                  <td>5.1</td>
+                  <td>淇淇</td>
+                  <td>远洪</td>
+                  <td></td>
+                  <td>2017-08-17 10:00</td>
+                </tr>
+                <tr role="row" class="odd">
+                  <td>2</td>
+                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
+                  <td class="sorting_1">Gecko</td>
+                  <td>HUAWEI</td>
+                  <td>03-0011</td>
+                  <td>android</td>
+                  <td>5.1</td>
+                  <td>淇淇</td>
+                  <td>远洪</td>
+                  <td></td>
+                  <td>2017-08-17 10:00</td>
+                </tr>
                 </tbody>
               </table>  
             </div>
@@ -130,12 +242,13 @@
       'autoWidth'   : false
     })
   })
-  
+  //控制页面加载后设备列表图片不显示排序图标
   $(function(){
 	$("th.noafter").removeClass("sorting");
 	$("th.noafter").removeClass("after");
+	$("th.noafter").removeClass("sorting_asc");
   })
-
+  
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()

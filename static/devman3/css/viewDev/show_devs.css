@@ -21,8 +21,17 @@
 #show_devs_top_control{
 	width: 100%;
 	height: 200px;
-	background-color: pink;
+	/*background-color: pink;*/
+	background:transparent;
 	overflow-y: scroll;
+}
+#classification{
+	/*background-color: white; */
+	background:transparent;
+	width: 16%;
+	height: 200px;
+	padding: 10px;
+	display: inline-block;
 }
 
 #show_devs_show_devs{
