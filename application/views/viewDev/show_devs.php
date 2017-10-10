@@ -1,3 +1,10 @@
+<?php 
+$result = $this->SearchDev_Mod->getAllDevs();
+$devs = $result;
+$devNum = count($devs);
+$rowNumber = 1;
+
+?>
 <link rel="stylesheet" href="static/devman3/css/viewDev/show_devs.css">
 <link rel="stylesheet" href="static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="static/bower_components/select2/dist/css/select2.min.css">
@@ -74,136 +81,34 @@
                 <thead>
                 <tr role="row" style="height:30px;">
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 20px;">#</th>
-                  <th class="noafter sorting"><label style="width: 30px;margin-bottom: 0px;">图片</label></th>
+                  <th class="noafter sorting"><label style="width: 70px;margin-bottom: 0px;">图片</label></th>
                   <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 201px;">设备名</th>
                   <th class="sorting" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 246px;">型号</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 219px;">编号</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 172px;">平台</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">版本</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 165px;">平台</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 119px;">版本</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">签借人</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">所属</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">申请</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">借出时间</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">所属</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 155px;">借出时间</th>
                   </tr>
                 </thead>
                 <tbody>
+                <?php foreach($devs as $dev){?>
                 <tr role="row" class="odd">
-                  <td>1</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0012</td>
-                  <td>android</td>
-                  <td>6.0.1</td>
-                  <td>刘超</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 11:00</td>
+                  <td><?php echo $rowNumber++;?></td>
+                  <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://localhost/devman3/files/thumbnail/'.$dev->path;?>"/></div></td>
+                  <td class="sorting_1"><?php echo $dev->device_name;?></td>
+                  <td><?php echo $dev->model;?></td>
+                  <td><?php echo $dev->theNum;?></td>
+                  <td><?php echo $dev->plateform;?></td>
+                  <td><?php echo $dev->version;?></td>
+                  <td><?php echo $dev->borrower;?></td>
+                  <td><?php ?></td>
+                  <td><?php echo $dev->owner;?></td>
+                  <td><?php echo $dev->borrow_time;?></td>
                 </tr>
-                <tr role="row" class="odd">
-                  <td>2</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0011</td>
-                  <td>android</td>
-                  <td>5.1</td>
-                  <td>淇淇</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 10:00</td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td>2</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0011</td>
-                  <td>android</td>
-                  <td>5.1</td>
-                  <td>淇淇</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 10:00</td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td>1</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0012</td>
-                  <td>android</td>
-                  <td>6.0.1</td>
-                  <td>刘超</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 11:00</td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td>2</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0011</td>
-                  <td>android</td>
-                  <td>5.1</td>
-                  <td>淇淇</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 10:00</td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td>2</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0011</td>
-                  <td>android</td>
-                  <td>5.1</td>
-                  <td>淇淇</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 10:00</td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td>1</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0012</td>
-                  <td>android</td>
-                  <td>6.0.1</td>
-                  <td>刘超</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 11:00</td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td>2</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0011</td>
-                  <td>android</td>
-                  <td>5.1</td>
-                  <td>淇淇</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 10:00</td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td>2</td>
-                  <td style="padding:1px;"><img style="height:63px;width:63px;"></img></td>
-                  <td class="sorting_1">Gecko</td>
-                  <td>HUAWEI</td>
-                  <td>03-0011</td>
-                  <td>android</td>
-                  <td>5.1</td>
-                  <td>淇淇</td>
-                  <td>远洪</td>
-                  <td></td>
-                  <td>2017-08-17 10:00</td>
-                </tr>
+                <?php }?>
                 </tbody>
               </table>  
             </div>

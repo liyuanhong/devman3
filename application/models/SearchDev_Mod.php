@@ -7,12 +7,9 @@ class SearchDev_Mod extends CI_Model{
     }
     
     public function getAllDevs(){
-        $devs = array();
-        $devs['status'] = '200';
-        $sql = "select * from devices";
-        $query = $this->db->query($sql);
-        $devs['devices'] = $query;
-        return $devs;
+        $sql = "select devices.*,dev_imgs.path FROM devices LEFT JOIN dev_imgs ON devices.id = dev_imgs.device_id GROUP BY devices.id";
+        $query = $this->db->query($sql)->result();
+        return $query;
     }
 }
 
