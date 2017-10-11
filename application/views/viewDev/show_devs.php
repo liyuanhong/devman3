@@ -9,42 +9,94 @@ $rowNumber = 1;
 <link rel="stylesheet" href="static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="static/bower_components/select2/dist/css/select2.min.css">
 <script src="static/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="static/devman3/js/viewDev/show_devs.js"></script>
+
+
 <div id="show_devs_containt_view" class="content-wrapper">
   <div id="show_devs_top_control">
     <div id="classification">
         	<label>类型:</label>
-        	<select class="form-control" style="width:100px;height:30px;display: inline;margin-left: 10px;">
-            <option>手机平板</option>
-            <option>电脑</option>
-            <option>显示器</option>
-            <option>办公用品</option>
-            <option>桌椅</option>
+        	<select class="form-control" id="classification_ctrl" style="width:100px;height:30px;display: inline;margin-left: 10px;" onchange="switchDevType()">
+            <option value="1">手机平板</option>
+            <option value="2">电脑</option>
+            <option value="3">显示器</option>
+            <option value="4">办公用品</option>
+            <option value="5">桌椅</option>
         </select>
     </div>
-    <div style="width: 84%;height: 200px;background-color:pink;float:right;display:inline;padding-top: 10px;">
-      <div class="col-md-3 col-sm-4">平台：
+    <div id="show_devs_phones_control" style="width: 84%;height: 200px;background:transparent;float:right;display:inline;">
+      <div class="col-md-3 col-sm-4 search-item">平台：
         <select class="form-control" style="width:100px;height:30px;display: inline;">
             <option>android</option>
             <option>ios</option>
         </select>
       </div>
-      <div class="col-md-3 col-sm-4">品牌：
+      <div class="col-md-3 col-sm-4 search-item">品牌：
         <select class="form-control" style="width:100px;height:30px;display: inline;">
             <option>华为</option>
             <option>小米</option>
         </select>
       </div>
-      <div class="col-md-3 col-sm-4">系统：
+      <div class="col-md-3 col-sm-4 search-item">系统：
         <select class="form-control" style="width:100px;height:30px;display: inline;">
             <option>5.0</option>
             <option>4.4.4</option>
         </select>
       </div>
+      <div class="col-md-3 col-sm-4 search-item">状态：
+        <select class="form-control" style="width:100px;height:30px;display: inline;">
+            <option>5.0</option>
+            <option>4.4.4</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-sm-4 search-item">分类：
+        <select class="form-control" style="width:100px;height:30px;display: inline;">
+            <option>5.0</option>
+            <option>4.4.4</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-sm-4 search-item">盘点：
+        <select class="form-control" style="width:100px;height:30px;display: inline;">
+            <option>5.0</option>
+            <option>4.4.4</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-sm-4 search-item">
+        <button type="button" class="btn btn-block btn-primary btn-sm" style="width:145px;">查询</button>
+      </div>
+      <div class="input-group input-group-sm" style="margin-left: 10px;padding-top: 15px;">
+        <input type="text" class="form-control" style="width: 310px;">
+            <span class="input-group-btn" style="display: block;float: left;">
+              <button type="button" class="btn btn-info btn-flat">关键字搜索</button>
+            </span> 
+      </div>
+      <div style="margin-left: 10px;padding-top: 15px;">单项搜索：
+        <select class="form-control" style="width:100px;height:30px;display: inline;">
+            <option>设备名</option>
+            <option>型号</option>
+            <option>编号</option>
+            <option>平台</option>
+            <option>版本</option>
+            <option>签借人</option>
+            <option>所属</option>
+        </select>
+        <select class="form-control" style="width:100px;height:30px;display: inline;">
+            <option>等于</option>
+            <option>包含</option>
+            <option>介于</option>
+            <option>大于</option>
+            <option>小于</option>
+            <option>不等于</option>
+            <option>不包含</option>
+        </select>
+        <input class="form-control select_style" placeholder="搜索词" style="width:200px;display:inline;height: 30px;">
+        <button type="button" class="btn btn-primary btn-sm" style="width:60px;margin-bottom: 4px;">搜索</button>
+      </div>
     </div>
   </div>
   <div id="show_devs_show_devs">
     <div class="box" style="border-top: 0px;">
-        <!-- /.box-header -->
+        <!-- /.box-header --> 
         <div class="box-body" style="padding-bottom: 0px;">
           <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">

@@ -45,3 +45,7 @@
 .noafter::after {
 	display: none;
 }
+
+.search-item{
+	margin-top: 10px;
+}
