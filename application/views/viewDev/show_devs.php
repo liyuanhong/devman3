@@ -12,6 +12,10 @@ $rowNumber = 1;
 <script src="static/devman3/js/viewDev/show_devs.js"></script>
 
 
+
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="static/plugins/iCheck/all.css">
+
 <div id="show_devs_containt_view" class="content-wrapper">
   <div id="show_devs_top_control">
     <div id="classification">
@@ -94,6 +98,7 @@ $rowNumber = 1;
       </div>
     </div>
   </div>
+<!-- 设备显示区域 -->
   <div id="show_devs_show_devs">
     <div class="box" style="border-top: 0px;">
         <!-- /.box-header --> 
@@ -112,14 +117,30 @@ $rowNumber = 1;
                   </select> 行</label>
                 </div>
               </div>
-            
+  
             <!-- 表格列控制start -->
-           <div class="dropdown user user-menu" style="display:inline;float:right;margin-right: 295px;">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-fw fa-cog hidden-xs" style="font-size: medium;margin-top:8px;"></i>显示列
+           <div style="display:inline;float:right;margin-right: 295px;">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="showListCtrl()">
+              <i class="fa fa-fw fa-cog" style="font-size: medium;margin-top:8px;"></i>显示列
             </a>
-            <ul class="dropdown-menu" style="padding:0px;">
-             <div style="width: 300px;height: 200px;background-color: pink;padding:5px;">哈哈</div>
+            <ul class="list-ctrl" style="padding:0px;position: absolute;z-index: 99;display: none;">
+             <div style="width: 300px;height: 200px;background-color: pink;padding:5px;">
+            <!--    表格控制内容 -->
+            <div class="form-group">
+                <label class="">
+                  <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                  哟哟
+                </label>
+                <label class="">
+                  <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                  哈哈
+                </label>
+                <label>
+                  <div class="icheckbox_flat-green disabled" aria-checked="false" aria-disabled="true" style="position: relative;"><input type="checkbox" class="flat-red" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                  Flat 
+                </label>
+              </div>
+             </div>
           </div>
           <!-- 表格列控制end -->
         
@@ -127,6 +148,7 @@ $rowNumber = 1;
         </div>
     </div>
   </div>
+<!-- 设备表格区域start -->
         <div class="row" style="margin-left: 0px;margin-right: 0px;">
           <div class="col-sm-12">
             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
@@ -163,6 +185,7 @@ $rowNumber = 1;
                 <?php }?>
                 </tbody>
               </table>  
+<!-- 设备表格区域end -->
             </div>
           </div>
           <ul class="pagination" style="float:right;margin-top: 15px;margin-right: 15px;">
@@ -188,6 +211,7 @@ $rowNumber = 1;
   </div>
 </div>
 <script src="static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="static/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('#example1').DataTable({
@@ -210,4 +234,20 @@ $rowNumber = 1;
     //Initialize Select2 Elements
     $('.select2').select2()
   })
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
 </script>

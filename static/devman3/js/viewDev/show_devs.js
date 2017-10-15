@@ -7,3 +7,12 @@ function switchDevType(){
 		$("#show_devs_phones_control").css("display","inline");
 	}
 }
+
+//"显示列控制面板"的显示与隐藏
+function showListCtrl(){
+	if($(".list-ctrl").css("display") == "block"){
+		$(".list-ctrl").css("display","none");
+	}else if($(".list-ctrl").css("display") == "none"){
+		$(".list-ctrl").css("display","block");
+	}
+}
