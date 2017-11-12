@@ -16,3 +16,11 @@ function showListCtrl(){
 		$(".list-ctrl").css("display","block");
 	}
 }
+
+//点击确认收起列显示面板
+
+function confirmColumn(){
+	if($(".list-ctrl").css("display") == "block"){
+		$(".list-ctrl").css("display","none");
+	}
+}

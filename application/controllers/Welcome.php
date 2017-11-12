@@ -15,4 +15,9 @@ class Welcome extends CI_Controller{
 		$this->load->view('starter');
 
 	}
+	
+	#显示查看设备页面（与首页同为同一个页面）
+	public function showDevs(){
+	    $this->load->view('starter');
+	}
 }
