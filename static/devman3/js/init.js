@@ -2,7 +2,8 @@
 function setDefaultDevColumn(){
 	devColumn = $.cookie('devColumn');
 	if(typeof(devColumn) == "undefined"){
-		var temp = new Array("aaa","bbb","ccc");
+		//do_someThing代表申请操作列
+		var temp = new Array("model","theNum","plateform","version","borrower","do_something","owner","borrow_time");
 		$.cookie('devColumn', temp);
 	}else{
 		

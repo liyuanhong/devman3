@@ -2,8 +2,8 @@
 $result = $this->SearchDev_Mod->getAllDevs();
 $devs = $result;
 $devNum = count($devs);
+//显示列的行号
 $rowNumber = 1;
-
 
 
 ?>

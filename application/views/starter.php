@@ -20,8 +20,11 @@
   <script src="<?php echo  'http://'.$rootUrl ?>static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="<?php echo  'http://'.$rootUrl ?>static/dist/js/adminlte.min.js"></script>
   <script src="<?php echo  'http://'.$rootUrl ?>static/devman3/js/init.js"></script>
+  <script src="<?php echo  'http://'.$rootUrl ?>static/devman3/js/index.js"></script>
+  <script src="<?php echo  'http://'.$rootUrl ?>static/devman3/js/params.js"></script>
 
   <script type="text/javascript">
+    //设置设备列表默认显示的列的cookie值
     setDefaultDevColumn();    //init.js
   </script>
   <!-- 我的资源 -->

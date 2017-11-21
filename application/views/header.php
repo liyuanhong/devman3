@@ -1,5 +1,5 @@
   <header class="main-header">
-    <a href="index2.html" class="logo">
+    <a href="<?php echo "http://".$rootUrl;?>" class="logo">
       <span class="logo-mini"><b>V</b>3</span>
       <span class="logo-lg"><b>设备管理系统</b>V3</span>
     </a>
