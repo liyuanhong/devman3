@@ -233,7 +233,7 @@ $rowNumber = 1;
                 <?php foreach($devs as $dev){?>
                 <tr role="row" class="odd">
                   <td><?php echo $rowNumber++;?></td>
-                  <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://localhost/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
+                  <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.$host.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
                   <td class="sorting_1"><?php echo $dev->device_name;?></td>
                   <td><?php echo $dev->model;?></td>
                   <td><?php echo $dev->theNum;?></td>
