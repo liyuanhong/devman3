@@ -14,19 +14,14 @@
 <!--   <link rel="stylesheet" -->
 <!--         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
         
-
   <script src="<?php echo  'http://'.$rootUrl ?>static/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="<?php echo  'http://'.$rootUrl ?>static/jquery_cookie/jquery.cookie.js"></script>
   <script src="<?php echo  'http://'.$rootUrl ?>static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="<?php echo  'http://'.$rootUrl ?>static/dist/js/adminlte.min.js"></script>
+  <script src="<?php echo  'http://'.$rootUrl ?>static/devman3/js/params.js"></script>
   <script src="<?php echo  'http://'.$rootUrl ?>static/devman3/js/init.js"></script>
   <script src="<?php echo  'http://'.$rootUrl ?>static/devman3/js/index.js"></script>
-  <script src="<?php echo  'http://'.$rootUrl ?>static/devman3/js/params.js"></script>
 
-  <script type="text/javascript">
-    //设置设备列表默认显示的列的cookie值
-    setDefaultDevColumn();    //init.js
-  </script>
   <!-- 我的资源 -->
   <link rel="stylesheet" href="<?php echo  'http://'.$rootUrl ?>static/devman3/css/starter.css">
         

@@ -126,71 +126,87 @@ $rowNumber = 1;
               <i class="fa fa-fw fa-cog" style="font-size: medium;margin-top:8px;"></i>显示列
             </a>
             <ul class="list-ctrl" style="padding:0px;position: absolute;z-index: 99;display: none;">
-             <div style="width: 300px;height: 150px;background-color:#eef7ff;padding:5px;">
+             <div style="width: 300px;height: 170px;background-color:#eef7ff;padding:5px;border-radius:8px;">
             <!--    表格控制内容 -->
             
             <style type="text/css">
-                td label {width: 32%;height:28px;}
+                .list-ctrl  td {width: 32%;height:28px;}
+                .icheckbox_flat-green {vertical-align:bottom;}
             </style>
             <div class="form-group">
             	    <table style="width: 290px;"> 
             	    	    <tr>
             	    	        <td>
-            	    	    	        <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                型号
-                            </label>
-                                        	    	    	        <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                 编号
-                            </label>
-                                        	    	    	        <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                 版本
-                            </label>
-                        </td>
-            	    	    </tr>
-            	    	    <tr>
-            	    	        <td>
-            	    	    	        <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                 平台
-                            </label>
-                                        	    	    	        <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                 签借人
-                            </label>
-                                        	    	    	        <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                 申请
-                            </label>
-                        </td>
-            	    	    </tr>
-            	    	    <tr>
-            	    	        <td>
-            	    	    	        <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                 所属
-                            </label>
-                            <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                 借出时间
-                            </label>
-                            <label class="">
-                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="flat-red" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                                 状态
-                            </label>
+            	    	    	        <label class="" onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut1" value="model" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                </ins></div>型号</label>
+                        </td><td>
+                            <label class=""  onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut2" value="theNum" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>编号</label>
+                        </td><td onclick="dealColumnClick(event)">
+                            <label class=""  onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut3" value="version" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>版本</label>
+                        </td></tr>
+            		    	    <tr><td>
+            	    	    	        <label class=""  onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut4" value="plateform" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>平台</label>
+                        </td><td>
+                            <label class="" onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut5" value="borrower" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>签借人</label>
+                        </td><td>
+                            <label class=""  onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut6" value="applyFor" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>申请</label>
+                        </td></tr>
+            	    	        <tr><td>
+            	    	    	        <label class=""  onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut7" value="owner" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>所属</label>
+                        </td><td>
+                            <label class="" onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut8" value="borrow_time" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>借出时间</label>
+                        </td><td>
+                            <label class="" onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut9" value="status" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>状态</label>
+                        </td></tr>
+            	    	        <tr><td>
+            	    	    	        <label class="" onclick="dealColumnClick(this)">
+                                <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" id="checkBut10" value="comments" class="flat-red" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>备注</label>
                         </td>
             	    	    </tr>
             	    </table>
                 <button type="button" class="btn btn-block btn-primary btn-sm" style="width:60px;margin-top: 10px;" onclick="confirmColumn()">确定</button>
-                
               </div>
              </div>
           </div>
           <!-- 表格列控制end -->
-        
-        
         </div>
     </div>
   </div>
