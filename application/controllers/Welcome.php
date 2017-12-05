@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require dirname(__FILE__)."/../libraries/Util.php";
 
 class Welcome extends CI_Controller{
     public function __construct(){

@@ -4,7 +4,17 @@ $devs = $result;
 $devNum = count($devs);
 //显示列的行号
 $rowNumber = 1;
-
+$showColumn = "";
+//用于控制要显示的设备信息列
+$columnCtr = [];
+if(hasThisGetParam("showColumn")){
+    $showColumn = $_GET["showColumn"];
+}else{
+    $showColumn = "abcdefgh";
+}
+//token用于判断用户是否登录
+$token = "";
+$columnCtr = strToArray($showColumn);
 
 ?>
 <link rel="stylesheet" href="<?php echo  'http://'.$rootUrl ?>static/devman3/css/viewDev/show_devs.css">
@@ -219,14 +229,23 @@ $rowNumber = 1;
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 20px;">#</th>
                   <th class="noafter sorting"><label style="width: 70px;margin-bottom: 0px;">图片</label></th>
                   <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 201px;">设备名</th>
+                  <?php if(hasArrValue($columnCtr,"a")){echo '
                   <th class="sorting" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 246px;">型号</th>
+                  ';}if(hasArrValue($columnCtr,"b")){echo '
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 219px;">编号</th>
+                  ';}if(hasArrValue($columnCtr,"c")){echo '
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 165px;">平台</th>
+                  ';}if(hasArrValue($columnCtr,"d")){echo '
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 119px;">版本</th>
+                  ';}if(hasArrValue($columnCtr,"e")){echo '
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">签借人</th>
+                  ';}if(hasArrValue($columnCtr,"f")){echo '
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">申请</th>
+                  ';}if(hasArrValue($columnCtr,"g")){echo '
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">所属</th>
+                  ';}if(hasArrValue($columnCtr,"h")){echo '
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 155px;">借出时间</th>
+                  ';} ?>
                   </tr>
                 </thead>
                 <tbody>
@@ -235,14 +254,23 @@ $rowNumber = 1;
                   <td><?php echo $rowNumber++;?></td>
                   <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.$host.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
                   <td class="sorting_1"><?php echo $dev->device_name;?></td>
-                  <td><?php echo $dev->model;?></td>
-                  <td><?php echo $dev->theNum;?></td>
-                  <td><?php echo $dev->plateform;?></td>
-                  <td><?php echo $dev->version;?></td>
-                  <td><?php echo $dev->borrower;?></td>
-                  <td><?php ?></td>
-                  <td><?php echo $dev->owner;?></td>
-                  <td><?php echo $dev->borrow_time;?></td>
+                  <?php if(hasArrValue($columnCtr,"a")){echo '
+                  <td>'.$dev->model.'</td>
+                  ';}if(hasArrValue($columnCtr,"b")){echo '
+                  <td>'.$dev->theNum.'</td>
+                  ';}if(hasArrValue($columnCtr,"c")){echo '
+                  <td>'.$dev->plateform.'</td>
+                  ';}if(hasArrValue($columnCtr,"d")){echo '
+                  <td>'.$dev->version.'</td>
+                  ';}if(hasArrValue($columnCtr,"e")){echo '
+                  <td>'.$dev->borrower.'</td>
+                  ';}if(hasArrValue($columnCtr,"f")){echo '
+                  <td></td>
+                  ';}if(hasArrValue($columnCtr,"g")){echo '
+                  <td>'.$dev->owner.'</td>
+                  ';}if(hasArrValue($columnCtr,"h")){echo '
+                  <td>'.$dev->borrow_time.'</td>
+                  ';} ?>
                 </tr>
                 <?php }?>
                 </tbody>

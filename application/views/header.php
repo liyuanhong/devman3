@@ -1,5 +1,5 @@
   <header class="main-header">
-    <a href="<?php echo "http://".$rootUrl;?>" class="logo">
+    <a href="javascript:void(0);"class="logo" onclick="backToHomePage()">
       <span class="logo-mini"><b>V</b>3</span>
       <span class="logo-lg"><b>设备管理系统</b>V3</span>
     </a>

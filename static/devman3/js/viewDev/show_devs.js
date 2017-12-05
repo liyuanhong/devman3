@@ -23,4 +23,5 @@ function confirmColumn(){
 	if($(".list-ctrl").css("display") == "block"){
 		$(".list-ctrl").css("display","none");
 	}
+	toShowDevsPage();
 }
