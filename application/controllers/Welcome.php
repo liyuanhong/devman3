@@ -21,4 +21,13 @@ class Welcome extends CI_Controller{
 	public function showDevs(){
 	    $this->load->view('starter');
 	}
+	
+	//注册页面
+	public function registAnUser(){
+	    $this->load->view('userCenter/register');
+	}
+	//登陆页面
+	public function login(){
+	    $this->load->view('userCenter/login');
+	}
 }
