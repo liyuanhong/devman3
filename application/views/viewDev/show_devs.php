@@ -17,16 +17,16 @@ $token = "";
 $columnCtr = strToArray($showColumn);
 
 ?>
-<link rel="stylesheet" href="<?php echo  'http://'.$rootUrl ?>static/devman3/css/viewDev/show_devs.css">
-<link rel="stylesheet" href="<?php echo  'http://'.$rootUrl ?>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="<?php echo  'http://'.$rootUrl ?>static/bower_components/select2/dist/css/select2.min.css">
-<script src="<?php echo  'http://'.$rootUrl ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="<?php echo  'http://'.$rootUrl ?>static/devman3/js/viewDev/show_devs.js"></script>
+<link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/devman3/css/viewDev/show_devs.css">
+<link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/bower_components/select2/dist/css/select2.min.css">
+<script src="<?php echo  'http://'.rootUrl ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/viewDev/show_devs.js"></script>
 
 
 
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="<?php echo  'http://'.$rootUrl ?>static/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/plugins/iCheck/all.css">
 
 <div id="show_devs_containt_view" class="content-wrapper">
   <div id="show_devs_top_control">
@@ -252,7 +252,7 @@ $columnCtr = strToArray($showColumn);
                 <?php foreach($devs as $dev){?>
                 <tr role="row" class="odd">
                   <td><?php echo $rowNumber++;?></td>
-                  <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.$host.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
+                  <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.host.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
                   <td class="sorting_1"><?php echo $dev->device_name;?></td>
                   <?php if(hasArrValue($columnCtr,"a")){echo '
                   <td>'.$dev->model.'</td>
@@ -300,8 +300,8 @@ $columnCtr = strToArray($showColumn);
           </div>
   </div>
 </div>
-<script src="<?php echo  'http://'.$rootUrl ?>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo  'http://'.$rootUrl ?>static/plugins/iCheck/icheck.min.js"></script>
+<script src="<?php echo  'http://'.rootUrl ?>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo  'http://'.rootUrl ?>static/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('#example1').DataTable({

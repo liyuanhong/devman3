@@ -19,7 +19,6 @@ function changeMenu(){
 	});
 }
 
-
 //以get方式请求新的页面
 function getAnPage(pageUrl,params){
 	//url变量定义在parqms.js文件里面
@@ -70,7 +69,3 @@ function getMapLength(map){
 	}
 	return i;
 }
-
-
-
-

@@ -14,7 +14,6 @@ class Welcome extends CI_Controller{
 	{
 		#$this->load->view('welcome_message');
 		$this->load->view('starter');
-
 	}
 	
 	#显示查看设备页面（与首页同为同一个页面）
@@ -29,5 +28,9 @@ class Welcome extends CI_Controller{
 	//登陆页面
 	public function login(){
 	    $this->load->view('userCenter/login');
+	}
+	//注册后的跳转页面
+	public function jumpToLogin(){
+	    $this->load->view('userCenter/jumpToLogin');
 	}
 }
