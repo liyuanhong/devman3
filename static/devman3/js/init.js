@@ -202,4 +202,19 @@ function operateDevColumn(col){
 	}
 }
 
+//初始化侧边栏的展开或收起
+function initLeftMenuShow(){
+	var isLeftItemOpen = $.cookie('isLeftItemOpen');
+	if(typeof(isLeftItemOpen)  == "undefined"){
+		isLeftItemOpen = true;
+		$.cookie('isLeftItemOpen', isLeftItemOpen,{path:cookiePath,expires:7});
+		$("#syno-nsc-ext-gen3").attr("class","skin-blue sidebar-mini ext-webkit ext-chrome ext-mac");
+	}else{
+		if(isLeftItemOpen == "true"){
+			$("#syno-nsc-ext-gen3").attr("class","skin-blue sidebar-mini ext-webkit ext-chrome ext-mac");
+		}else{
+			$("#syno-nsc-ext-gen3").attr("class","skin-blue sidebar-mini ext-webkit ext-chrome ext-mac sidebar-collapse");
+		}
+	}
+}
 

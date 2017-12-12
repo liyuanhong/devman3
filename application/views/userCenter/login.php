@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>登录</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/plugins/iCheck/square/blue.css">
@@ -18,13 +18,13 @@
 <body class="hold-transition login-page" style="background-color:#d5e2fe;">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>登录</b></a>
+    <a><b>登录</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">请登录后使用设备管理系统</p>
 
-    <form action="../../index2.html" method="post" id="submitData" onsubmit="return submitInfo();">
+    <form action="<?php echo  'http://'.rootUrl?>" method="post" id="submitData" onsubmit="return submitInfo();">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="用户名或邮箱" name="username" id="username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -48,6 +48,7 @@
         <!-- /.col -->
       </div>
       <a href="<?php echo  'http://'.rootUrl?>index.php/welcome/registAnUser" class="text-center">注册一个新用户</a>
+      <a href="<?php echo  'http://'.rootUrl?>" class="text-center" style="float:right;">回到首页</a>
     </form>
   </div>
   <!-- /.login-box-body -->
@@ -58,6 +59,7 @@
 <script src="<?php echo  'http://'.rootUrl ?>static/plugins/iCheck/icheck.min.js"></script>
 <script src="<?php echo  'http://'.rootUrl ?>static/plugins/encrypted/md5.js"></script>
 <script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/params.js"></script>
+<script src="<?php echo  'http://'.rootUrl ?>static/jquery_cookie/jquery.cookie.js"></script>
 <script>
   $(function () {
     $('input').iCheck({

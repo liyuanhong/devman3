@@ -27,7 +27,7 @@
         
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" id="syno-nsc-ext-gen3">
 <div class="wrapper">
 <?php $this->load->view('header');?>
 <?php $this->load->view('aside');?>

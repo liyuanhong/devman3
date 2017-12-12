@@ -53,6 +53,7 @@
               <input type="checkbox" id="protocol"> 我同意 <a href="#">用户使用协议</a>
             </label>
           </div>
+          <a href="<?php echo  'http://'.rootUrl?>" class="text-center">回到首页</a>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">

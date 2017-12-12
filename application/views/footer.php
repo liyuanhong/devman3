@@ -8,4 +8,6 @@
   <script type="text/javascript">
     //设置设备列表默认显示的列的cookie值
     initDefaultDevColumn();    //init.js
+    //设置侧边栏的展开与否
+    initLeftMenuShow();
   </script>
