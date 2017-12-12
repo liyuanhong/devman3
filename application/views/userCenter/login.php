@@ -24,20 +24,20 @@
   <div class="login-box-body">
     <p class="login-box-msg">请登录后使用设备管理系统</p>
 
-    <form action="../../index2.html" method="post">
+    <form action="../../index2.html" method="post" id="submitData" onsubmit="return submitInfo();">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="用户名或邮箱" name="username">
+        <input type="text" class="form-control" placeholder="用户名或邮箱" name="username" id="username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="密码" name="password">
+        <input type="password" class="form-control" placeholder="密码" name="password" id="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox">记住登陆状态
+              <input type="checkbox">记住登录状态
             </label>
           </div>
         </div>
@@ -56,6 +56,8 @@
 <script src="<?php echo  'http://'.rootUrl ?>static/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="<?php echo  'http://'.rootUrl ?>static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="<?php echo  'http://'.rootUrl ?>static/plugins/iCheck/icheck.min.js"></script>
+<script src="<?php echo  'http://'.rootUrl ?>static/plugins/encrypted/md5.js"></script>
+<script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/params.js"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -64,6 +66,28 @@
       increaseArea: '20%' // optional
     });
   });
+
+//提交登录信息
+function submitInfo(){
+	var loginName = $("#username").val();
+	var password = $("#password").val();
+	if(password == "" || loginName == ""){
+		alert("用户名或密码不能为空");
+		return false;
+	}else{
+		password = md5(password);
+		$.ajax({
+			url:"http://" + host + path + "index.php/UserCenter/loginReq",
+			type:"post",
+			data:{loginName:loginName,password:password},
+			success:function(result){
+	        		alert(result);
+	        		return true;
+	    		}
+	    });
+		return false;
+	}
+}
 </script>
 </body>
 </html>

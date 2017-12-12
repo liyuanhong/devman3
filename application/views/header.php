@@ -20,7 +20,7 @@
               <!-- The user image in the navbar-->
               <img src="<?php echo  'http://'.rootUrl ?>static/dist/img/user2-160x160-2.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Hi~,快来登陆吧~</span>
+              <span class="hidden-xs">Hi~,快来登录吧~</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -28,8 +28,8 @@
                 <img src="<?php echo  'http://'.rootUrl ?>static/dist/img/user2-160x160-2.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  你还没有登陆哦
-                  <small>欢迎登陆~</small>
+                  你还没有登录哦
+                  <small>欢迎登录~</small>
                 </p>
               </li>
               <!-- Menu Footer-->

@@ -18,4 +18,29 @@ class UserCenter_Mod extends CI_Model{
         );
         $query = $this->db->insert('users', $data);
     }
+    
+    //获取已经注册用户的登录名
+    function getLoginNames(){
+        $sql = "select login_name from users";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        $users = array();
+        for($i = 0;$i < count($result);$i++){
+            $users[$i] = $result[$i]->login_name;
+        }
+        return $users;
+    }
+    
+    //根据登录名获取密码
+    function getLoginPassword($loginName){
+        $sql = "select password from users where login_name="."'".$loginName."'";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        if(count($result) == 0){
+            return "";
+        }else{
+            $password = $result[0]->password;
+            return $password;
+        }
+    }
 }
