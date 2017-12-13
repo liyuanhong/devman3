@@ -59,7 +59,19 @@ class UserCenter extends CI_Controller{
                 $result["message"] = "数据库密码异常！";
                 echo json_encode($result);
             }else{
-                echo $thePassword;
+                if($password == $thePassword){
+                    $session = time();
+                    $token = md5($session);
+                    $this->UserCenter_Mod->storeAnToken($loginName,$session,$token);
+                    $result["status"] = 200;
+                    $result["message"] = "sucess";
+                    $result["token"] = $token;
+                    echo json_encode($result);
+                }else{
+                    $result["status"] = 400;
+                    $result["message"] = "用户名或密码不正确！";
+                    echo json_encode($result);
+                }
             }
         }
     }

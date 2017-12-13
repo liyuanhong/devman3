@@ -43,4 +43,11 @@ class UserCenter_Mod extends CI_Model{
             return $password;
         }
     }
+    
+    //存入对应用户的token
+    function storeAnToken($loginName,$session,$token){
+        $curTime = date("Y-m-d H:i:s");
+        $sql = "update users set token='".$token."',login_time='".$curTime."' where login_name='".$loginName."'";
+        $query = $this->db->query($sql);
+    }
 }

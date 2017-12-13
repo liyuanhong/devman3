@@ -83,8 +83,16 @@ function submitInfo(){
 			type:"post",
 			data:{loginName:loginName,password:password},
 			success:function(result){
-	        		alert(result);
-	        		return true;
+				var obj = JSON.parse(result);
+				var status = obj.status;
+				var token = obj.token;
+	        		if(status == 200){
+	        			$.cookie('token', token,{path:cookiePath,expires:1});
+	        			window.location.href=url;    //url 来自param.js 文件
+		        	}else{
+			        	alert("用户名或密码错误！");
+		        		return true;
+			    }
 	    		}
 	    });
 		return false;

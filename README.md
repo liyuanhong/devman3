@@ -7,4 +7,4 @@ define('rootUrl',host."/");
 
 
 二、新版设备管理系统数据库的变动
-user表增加的字段：{email，}
+user表增加的字段：{email，token}
