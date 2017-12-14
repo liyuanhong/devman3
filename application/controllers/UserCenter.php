@@ -1,11 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require dirname(__FILE__)."/../libraries/Util.php";
+require dirname(__FILE__)."/../libraries/Logs.php";
 
 class UserCenter extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('UserCenter_Mod');
+        $this->load->model('Logs_Mod');
     }
     
     //注册一个新用户
@@ -33,6 +35,8 @@ class UserCenter extends CI_Controller{
                 //             $result["status"] = 200;
                 //             $result["message"] = "注册成功！";
                 //             echo json_encode($result);
+                
+                writeLog($this,$loginName,"成功注册了一个用户！");
                 header("location: http://".rootUrl."index.php/welcome/jumpToLogin");
             }
         }

@@ -91,7 +91,7 @@ function submitInfo(){
 	        			window.location.href=url;    //url 来自param.js 文件
 		        	}else{
 			        	alert("用户名或密码错误！");
-		        		return true;
+		        		return false;
 			    }
 	    		}
 	    });

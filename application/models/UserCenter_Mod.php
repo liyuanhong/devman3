@@ -9,12 +9,14 @@ class UserCenter_Mod extends CI_Model{
     //处理注册用户的事件
     function createAnUserToDatabase($loginName,$userName,$email,$password){
         $curTime = date("Y-m-d H:i:s");
+        $role = 2;
         $data = array(
             'login_name' => $loginName,
             'user_name' => $userName,
             'email' => $email,
             'password' => $password,
-            'registe_time' => $curTime
+            'registe_time' => $curTime,
+            'role' => $role
         );
         $query = $this->db->insert('users', $data);
     }
@@ -50,4 +52,28 @@ class UserCenter_Mod extends CI_Model{
         $sql = "update users set token='".$token."',login_time='".$curTime."' where login_name='".$loginName."'";
         $query = $this->db->query($sql);
     }
+    
+    //通过token获取用户信息
+    function getUserInfoByToken($token){
+        $sql = "select id,user_name,role from users where token='".$token."'";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
+    
+    //通过登陆名获取用户信息
+    function getUserInfoByLoginName($login_name){
+        $sql = "select id,user_name,role from users where login_name='".$login_name."'";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -8,3 +8,8 @@ define('rootUrl',host."/");
 
 二、新版设备管理系统数据库的变动
 user表增加的字段：{email，token}
+
+三、增加了logs数据表
+
+
+四、增加了rights_pages数据表
