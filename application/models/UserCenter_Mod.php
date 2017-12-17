@@ -57,7 +57,7 @@ class UserCenter_Mod extends CI_Model{
     function getUserInfoByToken($token){
         $sql = "select id,user_name,role from users where token='".$token."'";
         $query = $this->db->query($sql);
-        $result = $query->result();
+        $result = $query->result_array();
         return $result;
     }
     
@@ -67,6 +67,12 @@ class UserCenter_Mod extends CI_Model{
         $query = $this->db->query($sql);
         $result = $query->result_array();
         return $result;
+    }
+    
+    //处理退出登陆用户的清除token操作
+    function clearToken($token){
+        $sql = "update users set token='0' where token='".$token."'";
+        $query = $this->db->query($sql);
     }
     
     

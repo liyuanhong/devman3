@@ -12,11 +12,56 @@ function changeMenu(){
 		var id = $(this).attr("id");
 		if(id == "show_dev"){
 			var showColumnStr = getSelectColCheckButAsStr();
-			var showColumn = new Array();
-			showColumn["showColumn"] = showColumnStr;
-			getAnPage("index.php/welcome/showDevs",showColumn);
+			var params = new Array();
+			params["showColumn"] = showColumnStr;
+			params["token"] = $.cookie('token')
+			getAnPage("index.php/welcome/showDevs",params);
 		}
 	});
+}
+
+//跳转到指定页面
+function gotoPage(pageUrl){
+	var showColumnStr = getSelectColCheckButAsStr();
+	var params = new Array();
+	params["showColumn"] = showColumnStr;
+	params["token"] = $.cookie('token')
+	getAnPage(pageUrl,params);
+}
+
+//获取要跳转的url
+function getPageUrl(pageUrl){
+	//var showColumnStr = getSelectColCheckButAsStr();
+	var devColumn = getColFromCookie();
+	if(typeof(devColumn) == "undefined"){
+		devColumn = "abcdefgh"
+	}else{
+		
+	}
+	var showColumnStr = devColumn;
+	var params = new Array();
+	params["showColumn"] = showColumnStr;
+	params["token"] = $.cookie('token');
+	
+	//url变量定义在parqms.js文件里面
+	var app_url = url + pageUrl;
+	if(getMapLength(params) == 0){
+		return app_url;
+	}else{
+		var paramStr = "?";
+		var i = 0;
+		for(var key in params){
+			if(i == 0){
+				paramStr = paramStr + key + "=" + params[key];
+			}else{
+				paramStr = paramStr + "&" + key + "=" + params[key];
+			}
+			i++;
+		}
+		app_url = app_url + paramStr;
+		return app_url;
+	}
+	
 }
 
 //以get方式请求新的页面
@@ -27,8 +72,14 @@ function getAnPage(pageUrl,params){
 		window.location.href=app_url;
 	}else{
 		var paramStr = "?";
+		var i = 0;
 		for(var key in params){
-			paramStr = paramStr + key + "=" + params[key];
+			if(i == 0){
+				paramStr = paramStr + key + "=" + params[key];
+			}else{
+				paramStr = paramStr + "&" + key + "=" + params[key];
+			}
+			i++;
 		}
 		app_url = app_url + paramStr;
 		window.location.href=app_url;
@@ -56,9 +107,10 @@ function post(URL, PARAMS) {
 //回到首页的请求操作
 function backToHomePage(){
 	var showColumnStr = getSelectColCheckButAsStr();
-	var showColumn = new Array();
-	showColumn["showColumn"] = showColumnStr;
-	getAnPage("",showColumn);
+	var params = new Array();
+	params["showColumn"] = showColumnStr;
+	params["token"] = $.cookie('token');
+	getAnPage("",params);
 }
 
 //获取map的长度
@@ -68,4 +120,26 @@ function getMapLength(map){
 		i++;
 	}
 	return i;
+}
+
+//退出登陆
+function logout(){
+	var token = $.cookie('token');
+	$.ajax({
+		url:"http://" + host + path + "index.php/UserCenter/logoutReq",
+		type:"post",
+		data:{logout:true,token:token},
+		success:function(result){
+			var obj = JSON.parse(result);
+			var status = obj.status;
+			var token = obj.token;
+        		if(status == 200){
+        			$.removeCookie('token',{path:cookiePath});
+        			gotoPage("index.php/welcome/showDevs");
+	        	}else{
+		        	alert("后端处理退出登陆失败：" + result);
+		        	
+		    }
+    		}
+    });
 }

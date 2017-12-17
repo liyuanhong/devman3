@@ -36,7 +36,7 @@ class UserCenter extends CI_Controller{
                 //             $result["message"] = "注册成功！";
                 //             echo json_encode($result);
                 
-                writeLog($this,$loginName,"成功注册了一个用户！");
+                writeLog($this,$loginName,"成功注册了一个用户！","loginName");
                 header("location: http://".rootUrl."index.php/welcome/jumpToLogin");
             }
         }
@@ -70,6 +70,7 @@ class UserCenter extends CI_Controller{
                     $result["status"] = 200;
                     $result["message"] = "sucess";
                     $result["token"] = $token;
+                    writeLog($this,$loginName,"登录了设备管理系统！","loginName");
                     echo json_encode($result);
                 }else{
                     $result["status"] = 400;
@@ -77,6 +78,29 @@ class UserCenter extends CI_Controller{
                     echo json_encode($result);
                 }
             }
+        }
+    }
+    
+    //处理登录请求
+    function logoutReq(){
+        $logout = $_POST["logout"];
+        $token = $_POST["token"];
+        $this->UserCenter_Mod->clearToken($token);
+        $result = Array();
+        $result["status"] = 200;
+        $result["message"] = "退出登陆成功！";
+        echo json_encode($result);
+    }
+    
+    //获取登录状态
+    function getLoginStatus(){
+        $token = $_GET("token");
+        $result = $this->UserCenter_Mod->getUserInfoByToken($token);
+        $con = conut($result);
+        if($con == 0){
+            return false;
+        }else{
+            return true;
         }
     }
 }

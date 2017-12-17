@@ -38,7 +38,8 @@ function initDefaultDevColumn(){
 	}else{
 		var devColumn = $.cookie('devColumn').split(",");
 		var temp = "";
-		for(i = 0;i < devColumn.length;i++){
+		var i = 0;
+		for(i;i < devColumn.length;i++){
 			temp = devColumn[i];
 			switch(temp){
 			case "model":
@@ -107,7 +108,8 @@ function clearDefaultDevColumn(){
 function getDefaultDevColumn(){
 	var devColumn = $.cookie('devColumn').split(",");
 	var temp = "";
-	for(i = 0;i < devColumn.length;i++){
+	var i = 0
+	for(i;i < devColumn.length;i++){
 		temp = temp + devColumn[i];
 	}
 	alert(temp);
@@ -189,6 +191,36 @@ function dealColumnClick(e){
 	}
 }
 
+function getColFromCookie(){
+	var devColumn = $.cookie('devColumn').split(",");
+	var col = "";
+	var i = 0;
+	for(i;i < devColumn.length;i++){
+		if("model" == devColumn[i]){
+			col = col + "a";
+		}else if("theNum" == devColumn[i]){
+			col = col + "b";
+		}else if("plateform" == devColumn[i]){
+			col = col + "c";
+		}else if("version" == devColumn[i]){
+			col = col + "d";
+		}else if("borrower" == devColumn[i]){
+			col = col + "e";
+		}else if("applyFor" == devColumn[i]){
+			col = col + "f";
+		}else if("owner" == devColumn[i]){
+			col = col + "g";
+		}else if("borrow_time" == devColumn[i]){
+			col = col + "h";
+		}else if("status" == devColumn[i]){
+			col = col + "i";
+		}else if("comments" == devColumn[i]){
+			col = col + "j";
+		}
+	}
+	return col;
+}
+
 //判断 devColumn中是否有某一个cookie值，有则删除，没有则添加
 function operateDevColumn(col){
 	var devColumn = $.cookie('devColumn').split(",");
@@ -217,4 +249,5 @@ function initLeftMenuShow(){
 		}
 	}
 }
+
 

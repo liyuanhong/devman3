@@ -60,6 +60,8 @@
 <script src="<?php echo  'http://'.rootUrl ?>static/plugins/encrypted/md5.js"></script>
 <script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/params.js"></script>
 <script src="<?php echo  'http://'.rootUrl ?>static/jquery_cookie/jquery.cookie.js"></script>
+<script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/init.js"></script>
+<script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/index.js"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -88,7 +90,8 @@ function submitInfo(){
 				var token = obj.token;
 	        		if(status == 200){
 	        			$.cookie('token', token,{path:cookiePath,expires:1});
-	        			window.location.href=url;    //url 来自param.js 文件
+	        			var gotoUrl = getPageUrl("index.php/welcome/showDevs");
+	        			window.location.href=gotoUrl;
 		        	}else{
 			        	alert("用户名或密码错误！");
 		        		return false;

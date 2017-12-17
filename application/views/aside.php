@@ -1,6 +1,8 @@
   <?php 
   //控制左侧选项卡显示状态的变量
   $item = getIndexOfUrl($this,2);
+  $isLogin = $params['isLogin'];
+  
   
   ?>
   

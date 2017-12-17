@@ -29,10 +29,27 @@
 
 <body class="hold-transition skin-blue sidebar-mini" id="syno-nsc-ext-gen3">
 <div class="wrapper">
-<?php $this->load->view('header');?>
-<?php $this->load->view('aside');?>
+<?php 
+$arr = array();
+$arr['params'] = $params;
+
+
+
+?><?php 
+$this->load->view('header',$arr);?>
+<?php $this->load->view('aside',$arr);?>
   <div style="background-color: yellow;">
-    <?php $this->load->view('viewDev/show_devs');?>
+    <?php 
+    $thePage = getIndexOfUrl($this,2);
+//     print_r('-----'.$thePage.'-----');
+//     exit;
+    //查看设备页面
+    if($thePage == '' || $thePage == "showDevs"){
+        $this->load->view('viewDev/show_devs',$arr);
+    }else{
+        echo "没有页面！";
+    }
+    ?>
   </div>
 <?php $this->load->view('footer');?>
 </div>

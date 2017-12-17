@@ -1,19 +1,12 @@
 <?php 
-$result = $this->SearchDev_Mod->getAllDevs();
+$result = $params['devs'];
 $devs = $result;
 $devNum = count($devs);
 //显示列的行号
 $rowNumber = 1;
 $showColumn = "";
 //用于控制要显示的设备信息列
-$columnCtr = [];
-if(hasThisGetParam("showColumn")){
-    $showColumn = $_GET["showColumn"];
-}else{
-    $showColumn = "abcdefgh";
-}
-//token用于判断用户是否登录
-$token = "";
+$showColumn = $params['columnCtr'];
 $columnCtr = strToArray($showColumn);
 
 ?>
