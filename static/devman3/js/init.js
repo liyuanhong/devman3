@@ -191,6 +191,7 @@ function dealColumnClick(e){
 	}
 }
 
+//获取cookie里面保存的还要显示的列信息
 function getColFromCookie(){
 	var devColumn = $.cookie('devColumn').split(",");
 	var col = "";
@@ -241,6 +242,7 @@ function initLeftMenuShow(){
 		isLeftItemOpen = true;
 		$.cookie('isLeftItemOpen', isLeftItemOpen,{path:cookiePath,expires:7});
 		$("#syno-nsc-ext-gen3").attr("class","skin-blue sidebar-mini ext-webkit ext-chrome ext-mac");
+		$("#show_devs_containt_view").css("margin-left","230px");
 	}else{
 		if(isLeftItemOpen == "true"){
 			$("#syno-nsc-ext-gen3").attr("class","skin-blue sidebar-mini ext-webkit ext-chrome ext-mac");
@@ -250,4 +252,49 @@ function initLeftMenuShow(){
 	}
 }
 
+//如果访问系统以没有带参数的网址，则自动跳转带参数的网址
+function redirectParamsPage(){
+	var host = window.location.host;
+	var curUrl = window.location.href;
+	var openedUrl = "http://" + host + path;
+	var openedUrl1 = "http://" + host + cookiePath;
+	if(curUrl == openedUrl || curUrl == openedUrl1){
+		var params = getParams();
+		gotoPage("",params);
+	}
+}
+
+//页面按钮点击的方法
+function changePage(){
+	$("#pageButtonContent").find("a").click(function(){
+		var curPage = parseInt($("#pageButtonContent").find(".active").find("a")[0].text);
+		var page = this.text;
+		var pageUrl = getPageUrl() + "&page=" + 1;
+		if(page == "<<"){
+			if(curPage == 1){
+				pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=1";
+			}else{
+				page = curPage - 1;
+				pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+			}
+			window.location.href = pageUrl;
+		}else if(page == ">>"){
+			if(curPage == 1){
+				pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=2";
+			}else{
+				page = curPage + 1;
+				pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+			}
+			window.location.href = pageUrl;
+		}else{
+			pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+			window.location.href = pageUrl;
+		}
+	});
+}
+
+//给翻页按钮添加事件
+function addPageButtonEvent(){
+	changePage();
+}
 

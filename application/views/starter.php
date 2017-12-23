@@ -38,11 +38,9 @@ $arr['params'] = $params;
 ?><?php 
 $this->load->view('header',$arr);?>
 <?php $this->load->view('aside',$arr);?>
-  <div style="background-color: yellow;">
+  <div>
     <?php 
     $thePage = getIndexOfUrl($this,2);
-//     print_r('-----'.$thePage.'-----');
-//     exit;
     //查看设备页面
     if($thePage == '' || $thePage == "showDevs"){
         $this->load->view('viewDev/show_devs',$arr);

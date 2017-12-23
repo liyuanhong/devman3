@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+require dirname(__FILE__)."/../libraries/Util.php";
 
 class SearchDev_Ctr extends CI_Controller{
     
@@ -9,7 +11,9 @@ class SearchDev_Ctr extends CI_Controller{
     
     //获取要查询的设备信息
     function getDevices(){
-        $result = $this->SearchDev_Mod->getAllDevs();
+        $rowCount = get("rowCount",50);
+        $page = get("page",1);
+        $result = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
         $devs = json_encode($result);
         echo $devs;
     }

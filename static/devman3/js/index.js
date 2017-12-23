@@ -1,9 +1,7 @@
 //跳转到设备查询页面
 function toShowDevsPage(){
-	var showColumnStr = getSelectColCheckButAsStr();
-	var showColumn = new Array();
-	showColumn["showColumn"] = showColumnStr;
-	getAnPage("",showColumn);
+	var params = getParams();
+	getAnPage("",params);
 }
 
 //点击左侧栏目切换页面
@@ -11,21 +9,25 @@ function changeMenu(){
 	$(".menu").click(function(){
 		var id = $(this).attr("id");
 		if(id == "show_dev"){
-			var showColumnStr = getSelectColCheckButAsStr();
-			var params = new Array();
-			params["showColumn"] = showColumnStr;
-			params["token"] = $.cookie('token')
+			var params = getParams();
 			getAnPage("index.php/welcome/showDevs",params);
 		}
 	});
 }
 
-//跳转到指定页面
-function gotoPage(pageUrl){
-	var showColumnStr = getSelectColCheckButAsStr();
+//获取要请求url的参数
+function getParams(){
+	var showColumnStr = getColFromCookie();
 	var params = new Array();
 	params["showColumn"] = showColumnStr;
 	params["token"] = $.cookie('token')
+	params["rowCount"] = $.cookie('rouCount');
+	return params;
+}
+
+//跳转到指定页面
+function gotoPage(pageUrl){
+	var params = getParams();
 	getAnPage(pageUrl,params);
 }
 
@@ -38,10 +40,7 @@ function getPageUrl(pageUrl){
 	}else{
 		
 	}
-	var showColumnStr = devColumn;
-	var params = new Array();
-	params["showColumn"] = showColumnStr;
-	params["token"] = $.cookie('token');
+	var params = getParams();
 	
 	//url变量定义在parqms.js文件里面
 	var app_url = url + pageUrl;
@@ -106,10 +105,7 @@ function post(URL, PARAMS) {
 
 //回到首页的请求操作
 function backToHomePage(){
-	var showColumnStr = getSelectColCheckButAsStr();
-	var params = new Array();
-	params["showColumn"] = showColumnStr;
-	params["token"] = $.cookie('token');
+	var params = getParams();
 	getAnPage("",params);
 }
 

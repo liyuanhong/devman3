@@ -88,5 +88,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 //以下是我定义的常量
 define('host',$_SERVER['HTTP_HOST']);
 define('rootUrl',host."/devman3/");
+define('devices_table_name',"devices");
 
 

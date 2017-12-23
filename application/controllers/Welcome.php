@@ -13,35 +13,43 @@ class Welcome extends CI_Controller{
     
     public function __construct(){
         parent::__construct();
-      
         $this->load->model('SearchDev_Mod');
         $this->load->model('UserCenter_Mod');
-        $this->token = get('token','notoken');
+        
         $this->params = array();
+        $header = getallheaders();
+        $this->userAgent = $header["User-Agent"];
+        $this->token = get('token','notoken');
         $this->base_url = $this->config->base_url();
         $this->site_url = $this->config->site_url();
         $this->userInfo = $this->UserCenter_Mod->getUserInfoByToken($this->token);
+        $this->devDataTotal = $this->SearchDev_Mod->getDataConFromTable(devices_table_name)[0]["total"];
         $this->isLogin = isUserLogin($this->userInfo);
+        $this->params['userAgent'] = $this->userAgent;
         $this->params['base_url'] = $this->base_url;
         $this->params['site_url'] = $this->site_url;
         $this->params['userInfo'] = $this->userInfo;
         $this->params['isLogin'] = $this->isLogin;
+        $this->params['devDataTotal'] = $this->devDataTotal;
     }
     
-
     #加载首页
 	public function index()
 	{
 		//用于控制要显示的设备信息列
 		$columnCtr = get('showColumn','abcdefgh');
-		$devs = $this->SearchDev_Mod->getAllDevs();
+		$rowCount = get("rowCount",50);
+		if(is_numeric($rowCount)){}else{$rowCount = 50;}
+		$page = get("page",1);
+		if(is_numeric($page)){}else{$page = 1;}
+		$devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
 		$this->params['columnCtr'] = $columnCtr;
 		$this->params['devs'] = $devs;
+		$this->params['page'] = $page;
+		$this->params['rowCount'] = $rowCount;
 		$arr = array();
 		$arr['params'] = $this->params;
 		
-// 		print_r($this->params['userInfo']);
-// 		exit;
 		$this->load->view('starter',$arr);
 	}
 	
@@ -49,9 +57,15 @@ class Welcome extends CI_Controller{
 	public function showDevs(){
 	    //用于控制要显示的设备信息列
 	    $columnCtr = get('showColumn','abcdefgh');
-	    $devs = $this->SearchDev_Mod->getAllDevs();
+	    $rowCount = get("rowCount",50);
+	    if(is_numeric($rowCount)){}else{$rowCount = 50;}
+	    $page = get("page",1);
+	    if(is_numeric($page)){}else{$page = 1;}
+	    $devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
 	    $this->params['columnCtr'] = $columnCtr;
 	    $this->params['devs'] = $devs;
+	    $this->params['page'] = $page;
+	    $this->params['rowCount'] = $rowCount;
 	    $arr = array();
 	    $arr['params'] = $this->params;
 	    $this->load->view('starter',$arr);

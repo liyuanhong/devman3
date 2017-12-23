@@ -1,20 +1,35 @@
 <?php 
+//返回的设备信息
 $result = $params['devs'];
 $devs = $result;
-$devNum = count($devs);
+// $devNum = count($devs);
 //显示列的行号
 $rowNumber = 1;
-$showColumn = "";
 //用于控制要显示的设备信息列
 $showColumn = $params['columnCtr'];
 $columnCtr = strToArray($showColumn);
+//总共的设备数
+$devDataTotal = $params['devDataTotal'];
+//第几页
+$page = $params['page'];
+//每页显示的行数
+$rowCount = $params['rowCount'];
+$totalPage = intval($devDataTotal / $rowCount) + 1;
 
 ?>
+
+<?php if(strpos($params["userAgent"],"Mobile") === false){?>
 <link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/devman3/css/viewDev/show_devs.css">
+<?php }else{?>
+<!-- 如果是手机用户，则返回手机端的css -->
+<link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/devman3/css/viewDev/show_devs_mobile.css">
+<?php }?>
+
 <link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/bower_components/select2/dist/css/select2.min.css">
 <script src="<?php echo  'http://'.rootUrl ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/viewDev/show_devs.js"></script>
+
 
 
 
@@ -112,7 +127,7 @@ $columnCtr = strToArray($showColumn);
             <div class="row">
               <div class="col-sm-6">
                 <div class="dataTables_length" id="example1_length" style="display:inline;margin-bottom: 0px;">
-                  <label style="margin-bottom: 0px;">展示 <select name="example1_length" aria-controls="example1" class="form-control input-sm">
+                  <label style="margin-bottom: 0px;">展示 <select name="example1_length" aria-controls="example1" id="dataCtr" class="form-control input-sm">
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
@@ -268,29 +283,52 @@ $columnCtr = strToArray($showColumn);
                 <?php }?>
                 </tbody>
               </table>  
-<!-- 设备表格区域end -->
             </div>
           </div>
-          <ul class="pagination" style="float:right;margin-top: 15px;margin-right: 15px;">
+          <!-- 设备表格区域end -->
+          <ul class="pagination" style="float:right;margin-top: 15px;margin-right: 15px;" id="pageButtonContent">
             <li class="paginate_button previous disabled" id="example1_previous">
               <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0"><<</a>
             </li>
-            <li class="paginate_button active">
-              <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
-            </li>
-            <li class="paginate_button ">
-              <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
-            </li>
-            <li class="paginate_button ">
-              <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
-            </li>
-            <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
-            <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
+            <?php if($totalPage <= 5 && $page <= $totalPage){for($i = 1;$i <= $totalPage;$i++){?>
+            <li class="<?php if($page == $i){echo 'paginate_button active';}else{echo 'paginate_button';}?>"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
+            <?php }}else if($page == 1){?>
+            <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page + 1;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page + 2;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page + 3;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $totalPage;?></a></li>
+            <?php }else if($page == $totalPage){?>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page - 3;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page - 2;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page - 1;?></a></li>
+            <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page;?></a></li>
+            <?php }else if($page == $totalPage - 1){?>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page - 2;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page - 1;?></a></li>
+            <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $totalPage;?></a></li>
+            <?php }else if($page == $totalPage - 2){?>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page - 1;?></a></li>
+            <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page + 1;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $totalPage;?></a></li>
+            <?php }else if($page < $totalPage - 2){?>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+            <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page + 1;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page + 2;?></a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $totalPage;?></a></li>
+            <?php }else if($page > $totalPage){?>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+            <li class="paginate_button"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $totalPage;?></a></li>
+            <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page;?></a></li>
+            <?php }?>
             <li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">>></a></li>
-            </ul></div></div></div></div>
-            </div>
-            <!-- /.box-body -->
-          </div>
+            </ul>
   </div>
 </div>
 <script src="<?php echo  'http://'.rootUrl ?>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -332,5 +370,6 @@ $columnCtr = strToArray($showColumn);
       checkboxClass: 'icheckbox_flat-green',
       radioClass   : 'iradio_flat-green'
     })
-
+    setRowCount();  //show_devs.js
+    initRowCount();  //show_devs.js
 </script>

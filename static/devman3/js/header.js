@@ -14,6 +14,7 @@ function openLoginPage(){
 function setLeftItemStatus(){
 	var classVal = $("#syno-nsc-ext-gen3").attr("class");
 	if(classVal == "skin-blue sidebar-mini ext-webkit ext-chrome ext-mac"){
+		
 		//$("#syno-nsc-ext-gen3").attr("class","skin-blue sidebar-mini ext-webkit ext-chrome ext-mac sidebar-collapse");
 		$.cookie('isLeftItemOpen', false,{path:cookiePath,expires:7});
 	}else if(classVal == "skin-blue sidebar-mini ext-webkit ext-chrome ext-mac sidebar-collapse"){

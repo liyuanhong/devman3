@@ -85,6 +85,11 @@ class UserCenter extends CI_Controller{
     function logoutReq(){
         $logout = $_POST["logout"];
         $token = $_POST["token"];
+        $userInfo = $this->UserCenter_Mod->getUserInfoByToken($token);
+        $loginName = $userInfo[0]['user_name'];
+        writeLog($this,$loginName,"登出系统！","loginName");
+        
+        
         $this->UserCenter_Mod->clearToken($token);
         $result = Array();
         $result["status"] = 200;
