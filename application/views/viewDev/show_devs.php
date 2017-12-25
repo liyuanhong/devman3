@@ -19,22 +19,22 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
 ?>
 
 <?php if(strpos($params["userAgent"],"Mobile") === false){?>
-<link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/devman3/css/viewDev/show_devs.css">
+<link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/devman3/css/viewDev/show_devs.css">
 <?php }else{?>
 <!-- 如果是手机用户，则返回手机端的css -->
-<link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/devman3/css/viewDev/show_devs_mobile.css">
+<link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/devman3/css/viewDev/show_devs_mobile.css">
 <?php }?>
 
-<link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/bower_components/select2/dist/css/select2.min.css">
-<script src="<?php echo  'http://'.rootUrl ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/viewDev/show_devs.js"></script>
+<link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/bower_components/select2/dist/css/select2.min.css">
+<script src="<?php echo  'http://'.ROOT_URL ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="<?php echo  'http://'.ROOT_URL ?>static/devman3/js/viewDev/show_devs.js"></script>
 
 
 
 
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="<?php echo  'http://'.rootUrl ?>static/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/plugins/iCheck/all.css">
 
 <div id="show_devs_containt_view" class="content-wrapper">
   <div id="show_devs_top_control">
@@ -119,8 +119,8 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
     </div>
   </div>
 <!-- 设备显示区域 -->
-  <div id="show_devs_show_devs">
-    <div class="box" style="border-top: 0px;">
+    <div id="show_devs_show_devs">
+        <div class="box" style="border-top: 0px;">
         <!-- /.box-header --> 
         <div class="box-body" style="padding-bottom: 0px;">
           <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -139,7 +139,7 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
               </div>
 
             <!-- 表格列控制start -->
-           <div style="display:inline;float:right;margin-right: 295px;">
+            <div style="display:inline;float:right;margin-right: 295px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="showListCtrl()">
               <i class="fa fa-fw fa-cog" style="font-size: medium;margin-top:8px;"></i>显示列
             </a>
@@ -152,7 +152,7 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
                 .icheckbox_flat-green {vertical-align:bottom;}
             </style>
             <div class="form-group">
-            	    <table style="width: 290px;"> 
+                <table style="width: 290px;">
             	    	    <tr>
             	    	        <td>
             	    	    	        <label class="" onclick="dealColumnClick(this)">
@@ -217,17 +217,14 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
                                 <input type="checkbox" id="checkBut10" value="comments" class="flat-red" style="position: absolute; opacity: 0;">
                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                 </div>备注</label>
-                        </td>
-            	    	    </tr>
+                        </td></tr>
             	    </table>
                 <button type="button" class="btn btn-block btn-primary btn-sm" style="width:60px;margin-top: 10px;" onclick="confirmColumn()">确定</button>
-              </div>
-             </div>
-          </div>
+            </div>
           <!-- 表格列控制end -->
-        </div>
+             </div>
     </div>
-  </div>
+            </div>
 <!-- 设备表格区域start -->
         <div class="row" style="margin-left: 0px;margin-right: 0px;">
           <div class="col-sm-12">
@@ -260,7 +257,7 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
                 <?php foreach($devs as $dev){?>
                 <tr role="row" class="odd">
                   <td><?php echo $rowNumber++;?></td>
-                  <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.host.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
+                  <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.HOST.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
                   <td class="sorting_1"><?php echo $dev->device_name;?></td>
                   <?php if(hasArrValue($columnCtr,"a")){echo '
                   <td>'.$dev->model.'</td>
@@ -286,9 +283,9 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
             </div>
           </div>
           <!-- 设备表格区域end -->
-          <ul class="pagination" style="float:right;margin-top: 15px;margin-right: 15px;" id="pageButtonContent">
+        <ul class="pagination" style="float:right;margin-top: 15px;margin-right: 15px;" id="pageButtonContent">
             <li class="paginate_button previous disabled" id="example1_previous">
-              <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0"><<</a>
+              <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" style="cursor:pointer;"><<</a>
             </li>
             <?php if($totalPage <= 5 && $page <= $totalPage){for($i = 1;$i <= $totalPage;$i++){?>
             <li class="<?php if($page == $i){echo 'paginate_button active';}else{echo 'paginate_button';}?>"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
@@ -328,11 +325,13 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
             <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"><?php echo $page;?></a></li>
             <?php }?>
             <li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">>></a></li>
-            </ul>
-  </div>
+        </ul>
+        </div>
+        </div>
+    </div>
 </div>
-<script src="<?php echo  'http://'.rootUrl ?>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo  'http://'.rootUrl ?>static/plugins/iCheck/icheck.min.js"></script>
+<script src="<?php echo  'http://'.ROOT_URL ?>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo  'http://'.ROOT_URL ?>static/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('#example1').DataTable({

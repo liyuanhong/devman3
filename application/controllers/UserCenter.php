@@ -37,7 +37,7 @@ class UserCenter extends CI_Controller{
                 //             echo json_encode($result);
                 
                 writeLog($this,$loginName,"成功注册了一个用户！","loginName");
-                header("location: http://".rootUrl."index.php/welcome/jumpToLogin");
+                header("location: http://".ROOT_URL."index.php/welcome/jumpToLogin");
             }
         }
     }
@@ -86,7 +86,7 @@ class UserCenter extends CI_Controller{
         $logout = $_POST["logout"];
         $token = $_POST["token"];
         $userInfo = $this->UserCenter_Mod->getUserInfoByToken($token);
-        $loginName = $userInfo[0]['user_name'];
+        $loginName = $userInfo[0]['login_name'];
         writeLog($this,$loginName,"登出系统！","loginName");
         
         

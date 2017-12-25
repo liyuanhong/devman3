@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>跳转登陆</title>
-<script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/params.js"></script>
+<script src="<?php echo  'http://'.ROOT_URL ?>static/devman3/js/params.js"></script>
 <style type="text/css">
   h3 {padding: auto;text-align: center;margin-top: 200px;}
 </style>
 
 </head>
 <body class="hold-transition login-page" style="background-color:#d5e2fe;">
-  <a href="<?php echo  'http://'.rootUrl.'index.php/welcome/login';?>"><h3 id= "info">3秒后跳转登陆界面...</h3></a>
+  <a href="<?php echo  'http://'.ROOT_URL.'index.php/welcome/login';?>"><h3 id= "info">3秒后跳转登陆界面...</h3></a>
 </body>
 
 

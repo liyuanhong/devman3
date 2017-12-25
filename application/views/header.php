@@ -2,7 +2,7 @@
 $isLogin = $params['isLogin'];
 
 ?>
-  <script src="<?php echo  'http://'.rootUrl ?>static/devman3/js/header.js"></script>
+  <script src="<?php echo  'http://'.ROOT_URL ?>static/devman3/js/header.js"></script>
   <header class="main-header">
     <a href="javascript:void(0);"class="logo" onclick="backToHomePage()">
       <span class="logo-mini"><b>V</b>3</span>
@@ -19,7 +19,7 @@ $isLogin = $params['isLogin'];
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo  'http://'.rootUrl ?>static/dist/img/user2-160x160-2.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo  'http://'.ROOT_URL ?>static/dist/img/user2-160x160-2.jpg" class="user-image" alt="User Image">
               <?php if($isLogin){?>
               <span class="hidden-xs"><?php echo $params['userInfo'][0]['user_name'];?>~</span>
               <?php }else{?>
@@ -29,7 +29,7 @@ $isLogin = $params['isLogin'];
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="<?php echo  'http://'.rootUrl ?>static/dist/img/user2-160x160-2.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo  'http://'.ROOT_URL ?>static/dist/img/user2-160x160-2.jpg" class="img-circle" alt="User Image">
                 <?php if($isLogin){?>
                 <p>你好：<?php echo $params['userInfo'][0]['user_name'];?>~</p>
                 <?php }else{?>

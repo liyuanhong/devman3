@@ -85,9 +85,39 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-//以下是我定义的常量
-define('host',$_SERVER['HTTP_HOST']);
-define('rootUrl',host."/devman3/");
-define('devices_table_name',"devices");
+/*
+|--------------------------------------------------------------------------
+| 基本常量
+|--------------------------------------------------------------------------
+*/
+define('HOST',$_SERVER['HTTP_HOST']);
+define('ROOT_URL',HOST."/devman3/");
+define('DEVICES_TABLE_NAME',"devices");
 
 
+/*
+|--------------------------------------------------------------------------
+| 权限常量
+|--------------------------------------------------------------------------
+*/
+
+//权限类型
+//定义访问页面的权限
+define('RIGHTS_PAGE','rights_page');
+//定义用户操作权限
+define('RIGHTS_USER','rights_user');
+//定义设备管理的权限
+define('RIGHTS_DEV','rights_dev');
+
+
+
+//访问页面权限
+define('HOME_PAGE','home_page');
+define('SHOW_DEV_PAGE','show_dev_page');
+
+
+//用户管理权限
+
+
+
+//设备管理权限

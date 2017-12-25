@@ -15,6 +15,7 @@ class Welcome extends CI_Controller{
         parent::__construct();
         $this->load->model('SearchDev_Mod');
         $this->load->model('UserCenter_Mod');
+        $this->load->model('Rights_Mod');
         
         $this->params = array();
         $header = getallheaders();
@@ -22,15 +23,18 @@ class Welcome extends CI_Controller{
         $this->token = get('token','notoken');
         $this->base_url = $this->config->base_url();
         $this->site_url = $this->config->site_url();
-        $this->userInfo = $this->UserCenter_Mod->getUserInfoByToken($this->token);
-        $this->devDataTotal = $this->SearchDev_Mod->getDataConFromTable(devices_table_name)[0]["total"];
-        $this->isLogin = isUserLogin($this->userInfo);
+        $this->userInfo = $this->UserCenter_Mod->getUserInfoByTokenDefaultAnymous($this->token);
+        $this->devDataTotal = $this->SearchDev_Mod->getDataConFromTable(DEVICES_TABLE_NAME)[0]["total"];
+        $this->isLogin = isUserLogin($this->UserCenter_Mod->getUserInfoByToken($this->token));
         $this->params['userAgent'] = $this->userAgent;
         $this->params['base_url'] = $this->base_url;
         $this->params['site_url'] = $this->site_url;
         $this->params['userInfo'] = $this->userInfo;
         $this->params['isLogin'] = $this->isLogin;
         $this->params['devDataTotal'] = $this->devDataTotal;
+
+//		echo json_encode(params);
+//		exit;
     }
     
     #加载首页
@@ -43,6 +47,9 @@ class Welcome extends CI_Controller{
 		$page = get("page",1);
 		if(is_numeric($page)){}else{$page = 1;}
 		$devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
+        $this->params['pageName'] = HOME_PAGE;
+        //获取是否有该页面的操作权限
+        $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE)[0][SHOW_DEV_PAGE];
 		$this->params['columnCtr'] = $columnCtr;
 		$this->params['devs'] = $devs;
 		$this->params['page'] = $page;
@@ -51,6 +58,8 @@ class Welcome extends CI_Controller{
 		$arr['params'] = $this->params;
 		
 		$this->load->view('starter',$arr);
+//		echo json_encode($arr);
+//		exit;
 	}
 	
 	#显示查看设备页面（与首页同为同一个页面）
@@ -62,7 +71,10 @@ class Welcome extends CI_Controller{
 	    $page = get("page",1);
 	    if(is_numeric($page)){}else{$page = 1;}
 	    $devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
-	    $this->params['columnCtr'] = $columnCtr;
+        $this->params['pageName'] = SHOW_DEV_PAGE;
+        //获取是否有该页面的操作权限
+        $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE)[0][SHOW_DEV_PAGE];
+        $this->params['columnCtr'] = $columnCtr;
 	    $this->params['devs'] = $devs;
 	    $this->params['page'] = $page;
 	    $this->params['rowCount'] = $rowCount;

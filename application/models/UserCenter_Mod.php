@@ -55,12 +55,28 @@ class UserCenter_Mod extends CI_Model{
     
     //通过token获取用户信息
     function getUserInfoByToken($token){
-        $sql = "select id,user_name,role from users where token='".$token."'";
+        $sql = "select id,user_name,login_name,role from users where token='".$token."'";
         $query = $this->db->query($sql);
         $result = $query->result_array();
         return $result;
     }
-    
+
+    //通过token获取用户信息，如果没有获取到，自动去anymous的用户信息
+    function getUserInfoByTokenDefaultAnymous($token){
+        $sql = "select id,user_name,login_name,role from users where token='".$token."'";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        $con = count($result);
+        if($con == 0){
+            $sql = "select id,user_name,login_name,role from users where login_name='anymous'";
+            $query = $this->db->query($sql);
+            $result = $query->result_array();
+            return $result;
+        }else{
+            return $result;
+        }
+    }
+
     //通过登陆名获取用户信息
     function getUserInfoByLoginName($login_name){
         $sql = "select id,user_name,role from users where login_name='".$login_name."'";
