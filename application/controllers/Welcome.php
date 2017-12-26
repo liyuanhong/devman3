@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require dirname(__FILE__)."/../libraries/Util.php";
 require dirname(__FILE__)."/../libraries/UserCenter_Util.php";
+require dirname(__FILE__)."/../libraries/Logs.php";
 
 class Welcome extends CI_Controller{
     public $token;
@@ -16,6 +17,8 @@ class Welcome extends CI_Controller{
         $this->load->model('SearchDev_Mod');
         $this->load->model('UserCenter_Mod');
         $this->load->model('Rights_Mod');
+        $this->load->model('Logs_Mod');
+        $this->load->model('Statistic_Mod');
         
         $this->params = array();
         $header = getallheaders();
@@ -49,14 +52,18 @@ class Welcome extends CI_Controller{
 		$devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
         $this->params['pageName'] = HOME_PAGE;
         //获取是否有该页面的操作权限
-        $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE)[0][SHOW_DEV_PAGE];
+        $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE);
 		$this->params['columnCtr'] = $columnCtr;
 		$this->params['devs'] = $devs;
 		$this->params['page'] = $page;
 		$this->params['rowCount'] = $rowCount;
 		$arr = array();
 		$arr['params'] = $this->params;
-		
+
+		//写入日志
+        writeLog($this,$this->userInfo[0]['login_name'],"访问了首页！","loginName",1);
+        //进行页面访问统计
+        $this->Statistic_Mod->insertStatisticInfo($this->userInfo,HOME_PAGE);
 		$this->load->view('starter',$arr);
 //		echo json_encode($arr);
 //		exit;
@@ -73,13 +80,17 @@ class Welcome extends CI_Controller{
 	    $devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
         $this->params['pageName'] = SHOW_DEV_PAGE;
         //获取是否有该页面的操作权限
-        $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE)[0][SHOW_DEV_PAGE];
+        $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE);
         $this->params['columnCtr'] = $columnCtr;
 	    $this->params['devs'] = $devs;
 	    $this->params['page'] = $page;
 	    $this->params['rowCount'] = $rowCount;
 	    $arr = array();
 	    $arr['params'] = $this->params;
+
+        writeLog($this,$this->userInfo[0]['login_name'],"访问了查看设备页面！","loginName",1);
+        $this->Statistic_Mod->insertStatisticInfo($this->userInfo,SHOW_DEV_PAGE);
+
 	    $this->load->view('starter',$arr);
 	}
 	

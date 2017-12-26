@@ -111,7 +111,7 @@ define('RIGHTS_DEV','rights_dev');
 
 
 
-//访问页面权限
+//访问页面
 define('HOME_PAGE','home_page');
 define('SHOW_DEV_PAGE','show_dev_page');
 

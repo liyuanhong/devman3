@@ -11,12 +11,19 @@ class Rights_Mod extends CI_Model{
      * $rights：权限名
      * $rightsType 权限类型，及权限对应的数据库表名
     */
-    function getRightsByUid($userInfo,$rights,$rightsType){
+    function getRightsByUid($userInfo,$rights,$rightsType)
+    {
         $uid = $userInfo[0]['id'];
-        $sql = "select ".$rights." from ".$rightsType." where uid='".$uid."'";
+        $sql = "select " . $rights . " from " . $rightsType . " where uid='" . $uid . "'";
         $query = $this->db->query($sql);
         $result = $query->result_array();
-        return $result;
+        if (count($result) == 0) {
+            $theRights = 0;
+            return $theRights;
+        } else {
+            $theRights = $result[0][$rights];
+            return $theRights;
+        }
     }
 
     //通过token获取指定用户是否有指定的权限
