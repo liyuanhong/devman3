@@ -115,9 +115,9 @@ if(array_key_exists("info",$params)){
         <button type="button" class="btn btn-block btn-primary btn-sm" style="width:145px;" onclick="searchByInfo()">查询</button>
       </div>
       <div class="input-group input-group-sm" style="margin-left: 10px;padding-top: 15px;">
-        <input type="text" class="form-control" style="width: 310px;">
+        <input type="text" class="form-control" style="width: 310px;" id="keyword" value="<?php echo $params["keyword"];?>">
             <span class="input-group-btn" style="display: block;float: left;">
-              <button type="button" class="btn btn-info btn-flat">关键字搜索</button>
+              <button type="button" class="btn btn-info btn-flat" onclick="searchByKeyword()">关键字搜索</button>
             </span> 
       </div>
       <div style="margin-left: 10px;padding-top: 15px;">单项搜索：

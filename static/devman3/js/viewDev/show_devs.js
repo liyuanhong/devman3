@@ -70,5 +70,16 @@ function searchByInfo(){
     getAnPage("index.php/welcome/showDevs",params);
 }
 
+//通过关键字搜索的按钮
+function searchByKeyword(){
+    var searchType = "keyword";
+	var keyword = $("#keyword").val();
+    var page = 1;
+    var params = getParams();
+    params["keyword"] = keyword;
+    params["searchType"] = searchType;
+    params["page"] = page;
 
+    getAnPage("index.php/welcome/showDevs",params);
+}
 

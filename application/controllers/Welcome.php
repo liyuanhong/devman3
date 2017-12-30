@@ -89,6 +89,7 @@ class Welcome extends CI_Controller{
         $info["status"] = $status;
         $info["category"] = $category;
         $info["check_dev"] = $check_dev;
+        $keyword = get("keyword","");
 
 
 	    //用于控制要显示的设备信息列
@@ -108,6 +109,7 @@ class Welcome extends CI_Controller{
         $this->params['info'] = $info;
 	    $this->params['devs'] = $devs;
         $this->params['devDataTotal'] = $searchResult["total"];
+        $this->params['keyword'] = $keyword;
 	    $this->params['page'] = $page;
 	    $this->params['rowCount'] = $rowCount;
 	    $arr = array();
@@ -186,8 +188,16 @@ class Welcome extends CI_Controller{
             $devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
         }else if($searchType == "info"){
             $devs = $this->SearchDev_Mod->searchDevsByInfo($info,$rowCount,$page);
+        }else if($searchType == "keyword"){
+            $keyword = get("keyword","");
+            $devs = $this->SearchDev_Mod->searchDevsByKeyword($keyword,$rowCount,$page);
+        }else if($searchType == "scope"){
+            $devs = $this->SearchDev_Mod->searchDevsByScope($info,$rowCount,$page);
         }else{
-            $devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
+            $baseon = get("baseon","device_name");
+            $rule = get("rule","等于");
+            $scope = get("scope","");
+            $devs = $this->SearchDev_Mod->searchDevsByScope($baseon,$rule,$scope,$rowCount,$page);
         }
         return $devs;
     }

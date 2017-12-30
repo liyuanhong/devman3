@@ -88,7 +88,7 @@ class SearchDev_Mod extends CI_Model{
                     if($ind == 0){
                         if($infoKey[$j] == "version"){
                             $sql = $sql." where ";
-                            $sql = $sql." and ".$infoKey[$j]." like '%".$filter[$infoKey[$j]]."%'";
+                            $sql = $sql.$infoKey[$j]." like '%".$filter[$infoKey[$j]]."%'";
                             $ind++;
                         }else{
                             $sql = $sql." where ";
@@ -117,12 +117,49 @@ class SearchDev_Mod extends CI_Model{
         $result["total"] = $total;
 
         return $result;
-        //print_r(json_encode($info));
-        //print_r($info);
-        //print_r($infoKey);
-        //print_r(json_encode($infoKey));
-//        print_r($sql);
-//        exit;
+    }
+
+    //通过关键字来搜索设备
+    public function searchDevsByKeyword($keyword,$rowCount,$page){
+        $info = array("id","device_name","model","theNum","plateform","brand","version","owner","status","borrower");
+        array_push($info,"comments","category","check_dev","add_time","borrow_time");
+
+        $startInd = ($page - 1) * $rowCount;
+        $sql = "select " ;
+        for($i = 0;$i < count($info);$i++){
+            if($i != count($info) - 1){
+                $sql = $sql."devices.".$info[$i].",";
+            }else{
+                $sql = $sql.$info[$i].",";
+            }
+        }
+        $searchdeInfo = array("device_name","model","theNum","plateform","brand","version","owner","borrower","comments");
+        $sql = $sql." dev_imgs.path FROM devices LEFT JOIN dev_imgs ON devices.id = dev_imgs.device_id where ";
+        $ind = 0;
+
+        for($j = 0;$j < count($searchdeInfo);$j++){
+            if($ind == 0){
+                $sql = $sql.$searchdeInfo[$j]." like '%".$keyword."%'";
+                $ind++;
+            }else{
+                $sql = $sql." or ".$searchdeInfo[$j]." like '%".$keyword."%'";
+            }
+        }
+        $sql1 = $sql." GROUP BY devices.id ORDER BY devices.add_time DESC limit ".$startInd.",".$rowCount;
+        $sql2 = $sql." GROUP BY devices.id ORDER BY devices.add_time";
+        $query = $this->db->query($sql1)->result();
+        $query2 = $this->db->query($sql2)->result();
+        $total = count($query2);
+
+        $result = array();
+        $result["devs"] = $query;
+        $result["total"] = $total;
+
+        return $result;
+    }
+
+    public function searchDevsByScope($baseon,$rule,$scope,$rowCount,$page){
+        exit;
     }
 }
 
