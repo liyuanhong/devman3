@@ -268,29 +268,57 @@ function redirectParamsPage(){
 function changePage(){
 	$("#pageButtonContent").find("a").click(function(){
 		var curPage = parseInt($("#pageButtonContent").find(".active").find("a")[0].text);
+		var curUrl = window.location.href;
+		var hasPage = hasPageParam(curUrl);
 		var page = this.text;
 		var pageUrl = getPageUrl() + "&page=" + 1;
 		if(page == "<<"){
 			if(curPage == 1){
-				pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=1";
+				//pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=1";
+				pageUrl = replaceUrlPageParam(curUrl,curPage);
 			}else{
 				page = curPage - 1;
-				pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+				//pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+                pageUrl = replaceUrlPageParam(curUrl,page);
 			}
 			window.location.href = pageUrl;
 		}else if(page == ">>"){
 			if(curPage == 1){
-				pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=2";
+				//pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=2";
+                pageUrl = replaceUrlPageParam(curUrl,curPage);
 			}else{
 				page = curPage + 1;
-				pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+				//pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+                pageUrl = replaceUrlPageParam(curUrl,page);
 			}
 			window.location.href = pageUrl;
 		}else{
-			pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+			//pageUrl = getPageUrl("index.php/welcome/showDevs") + "&page=" + page;
+            pageUrl = replaceUrlPageParam(curUrl,page);
 			window.location.href = pageUrl;
 		}
 	});
+}
+//检查url 中是否有page参数
+function hasPageParam(str){
+	var index = str.search(/page=[0-9]*/);
+	if(index == -1){
+		return false;
+	}else{
+		return true;
+	}
+}
+//替换url中的page参数
+function replaceUrlPageParam(theUrl,page){
+    var index = theUrl.search(/page=[0-9]*/);
+    var pageUrl = theUrl;
+    if(index == -1){
+        pageUrl = pageUrl + "&page=" + page;
+        console.log("bbb");
+    }else{
+        pageUrl = pageUrl.replace(/page=[0-9]*/,"page=" + page);
+    }
+    return pageUrl;
 }
 
 //给翻页按钮添加事件

@@ -17,5 +17,21 @@ class SearchDev_Ctr extends CI_Controller{
         $devs = json_encode($result);
         echo $devs;
     }
+
+    //通过设备的信息搜索设备
+    function getDevsByDevInfo(){
+        $platefrom = get("platefrom","all");
+        $brand = get("brand","all");
+        $version = get("version","all");
+        $status = get("status","all");
+        $category = get("category","all");
+        $check_dev = get("check_dev","all");
+
+        $info = array($platefrom,$brand,$version,$status,$category,$check_dev);
+
+        $result = $this->SearchDev_Mod->searchDevsByInfo($info);
+        $devs = json_encode($result);
+        echo $devs;
+    }
 	
 }

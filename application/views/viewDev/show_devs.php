@@ -15,6 +15,20 @@ $page = $params['page'];
 //每页显示的行数
 $rowCount = $params['rowCount'];
 $totalPage = intval($devDataTotal / $rowCount) + 1;
+//获取设备的属性
+$attrs = $params['attrs'];
+//获取历史查询的info信息
+if(array_key_exists("info",$params)){
+    $info = $params["info"];
+}else{
+    $info = array();
+    $info["plateform"] = "all";
+    $info["brand"] = "all";
+    $info["version"] = "all";
+    $info["status"] = "all";
+    $info["category"] = "all";
+    $info["check_dev"] = "all";
+}
 
 ?>
 
@@ -50,43 +64,55 @@ $totalPage = intval($devDataTotal / $rowCount) + 1;
     </div>
     <div id="show_devs_phones_control" style="width: 84%;height: 200px;background:transparent;float:right;display:inline;">
       <div class="col-md-3 col-sm-4 search-item">平台：
-        <select class="form-control" style="width:100px;height:30px;display: inline;">
-            <option>android</option>
-            <option>ios</option>
+        <select class="form-control" style="width:100px;height:30px;display: inline;" id="plateform">
+            <option>all</option>
+            <?php for($i = 0;$i < count($attrs["type_platform"]);$i++) {?>
+                <option <?php if($info['plateform'] == $attrs['type_platform'][$i]){echo 'selected = "selected"';}?>><?php echo $attrs["type_platform"][$i]; ?></option>
+            <?php }?>
         </select>
       </div>
       <div class="col-md-3 col-sm-4 search-item">品牌：
-        <select class="form-control" style="width:100px;height:30px;display: inline;">
-            <option>华为</option>
-            <option>小米</option>
+        <select class="form-control" style="width:100px;height:30px;display: inline;" id="brand">
+            <option>all</option>
+            <?php for($i = 0;$i < count($attrs["type_brand"]);$i++) {?>
+            <option <?php if($info['brand'] == $attrs['type_brand'][$i]){echo 'selected = "selected"';}?>><?php echo $attrs["type_brand"][$i]; ?></option>
+            <?php }?>
         </select>
       </div>
       <div class="col-md-3 col-sm-4 search-item">系统：
-        <select class="form-control" style="width:100px;height:30px;display: inline;">
-            <option>5.0</option>
-            <option>4.4.4</option>
+        <select class="form-control" style="width:100px;height:30px;display: inline;" id="sys_version">
+            <option>all</option>
+            <?php for($i = 0;$i < count($attrs["type_system"]);$i++) {?>
+                <option <?php if($info['version'] == $attrs['type_system'][$i]){echo 'selected = "selected"';}?>><?php echo $attrs["type_system"][$i]; ?></option>
+            <?php }?>
         </select>
       </div>
       <div class="col-md-3 col-sm-4 search-item">状态：
-        <select class="form-control" style="width:100px;height:30px;display: inline;">
-            <option>5.0</option>
-            <option>4.4.4</option>
+        <select class="form-control" style="width:100px;height:30px;display: inline;" id="status">
+            <option>all</option>
+            <?php for($i = 0;$i < count($attrs["type_status"]);$i++) {?>
+                <option <?php if($info['status'] == $attrs['type_status'][$i]){echo 'selected = "selected"';}?> ><?php echo $attrs["type_status"][$i]; ?></option>
+            <?php }?>
         </select>
       </div>
       <div class="col-md-3 col-sm-4 search-item">分类：
-        <select class="form-control" style="width:100px;height:30px;display: inline;">
-            <option>5.0</option>
-            <option>4.4.4</option>
+        <select class="form-control" style="width:100px;height:30px;display: inline;" id="category">
+            <option>all</option>
+            <?php for($i = 0;$i < count($attrs["type_category"]);$i++) {?>
+                <option <?php if($info['category'] == $attrs['type_category'][$i]){echo 'selected = "selected"';}?>><?php echo $attrs["type_category"][$i]; ?></option>
+            <?php }?>
         </select>
       </div>
       <div class="col-md-3 col-sm-4 search-item">盘点：
-        <select class="form-control" style="width:100px;height:30px;display: inline;">
-            <option>5.0</option>
-            <option>4.4.4</option>
+        <select class="form-control" style="width:100px;height:30px;display: inline;" id="check_dev">
+            <option>all</option>
+            <?php for($i = 0;$i < count($attrs["type_check"]);$i++) {?>
+                <option <?php if($info['check_dev'] == $attrs['type_check'][$i]){echo 'selected = "selected"';}?>><?php echo $attrs["type_check"][$i]; ?></option>
+            <?php }?>
         </select>
       </div>
       <div class="col-md-3 col-sm-4 search-item">
-        <button type="button" class="btn btn-block btn-primary btn-sm" style="width:145px;">查询</button>
+        <button type="button" class="btn btn-block btn-primary btn-sm" style="width:145px;" onclick="searchByInfo()">查询</button>
       </div>
       <div class="input-group input-group-sm" style="margin-left: 10px;padding-top: 15px;">
         <input type="text" class="form-control" style="width: 310px;">

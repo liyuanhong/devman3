@@ -21,7 +21,7 @@ function getParams(){
 	var params = new Array();
 	params["showColumn"] = showColumnStr;
 	params["token"] = $.cookie('token')
-	params["rowCount"] = $.cookie('rouCount');
+	params["rowCount"] = $.cookie('rowCount');
 	return params;
 }
 
