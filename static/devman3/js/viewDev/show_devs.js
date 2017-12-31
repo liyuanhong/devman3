@@ -83,3 +83,42 @@ function searchByKeyword(){
     getAnPage("index.php/welcome/showDevs",params);
 }
 
+//修改单项搜索的提示
+function changePlaceholder(){
+	var my_rule = $("#my_rule").val();
+	var testField = $("#my_scope");
+	if(my_rule == "等于"){
+        testField.attr("placeholder","搜索词");
+	}else if(my_rule == "包含"){
+        testField.attr("placeholder","词|词|词");
+	}else if(my_rule == "介于"){
+        testField.attr("placeholder","数字1|数字2");
+    }else if(my_rule == "大于"){
+        testField.attr("placeholder","大于范围数值");
+    }else if(my_rule == "小于"){
+        testField.attr("placeholder","小于范围数值");
+    }else if(my_rule == "不等于"){
+        testField.attr("placeholder","搜索词");
+    }else if(my_rule == "不包含"){
+        testField.attr("placeholder","搜索词");
+    }
+}
+
+//通过搜索范围来查询
+function searchByScope(){
+    var searchType = "scope";
+	var my_rule = $("#my_rule").val();
+	var my_baseon = $("#my_baseon").val();
+	var my_scope = $("#my_scope").val();
+    var page = 1;
+
+    var params = getParams();
+    params["baseon"] = my_baseon;
+    params["rule"] = my_rule;
+    params["scope"] = my_scope;
+    params["searchType"] = searchType;
+    params["page"] = page;
+
+    getAnPage("index.php/welcome/showDevs",params);
+}
+

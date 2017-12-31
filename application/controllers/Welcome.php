@@ -90,6 +90,9 @@ class Welcome extends CI_Controller{
         $info["category"] = $category;
         $info["check_dev"] = $check_dev;
         $keyword = get("keyword","");
+        $baseon = get("baseon","device_name");
+        $rule = get("rule","等于");
+        $scope = get("scope","");
 
 
 	    //用于控制要显示的设备信息列
@@ -110,10 +113,16 @@ class Welcome extends CI_Controller{
 	    $this->params['devs'] = $devs;
         $this->params['devDataTotal'] = $searchResult["total"];
         $this->params['keyword'] = $keyword;
+        $this->params['baseon'] = $baseon;
+        $this->params['rule'] = $rule;
+        $this->params['scope'] = $scope;
 	    $this->params['page'] = $page;
 	    $this->params['rowCount'] = $rowCount;
 	    $arr = array();
 	    $arr['params'] = $this->params;
+
+//	    echo(json_encode($arr));
+//	    exit;
 
         writeLog($this,$this->userInfo[0]['login_name'],"访问了查看设备页面！","loginName",1);
         $this->Statistic_Mod->insertStatisticInfo($this->userInfo,SHOW_DEV_PAGE);
@@ -192,12 +201,28 @@ class Welcome extends CI_Controller{
             $keyword = get("keyword","");
             $devs = $this->SearchDev_Mod->searchDevsByKeyword($keyword,$rowCount,$page);
         }else if($searchType == "scope"){
-            $devs = $this->SearchDev_Mod->searchDevsByScope($info,$rowCount,$page);
-        }else{
             $baseon = get("baseon","device_name");
             $rule = get("rule","等于");
             $scope = get("scope","");
+            if($baseon == "设备名"){
+                $baseon = "device_name";
+            }else if($baseon == "型号"){
+                $baseon = "model";
+            }else if($baseon == "编号"){
+                $baseon = "theNum";
+            }else if($baseon == "平台"){
+                $baseon = "plateform";
+            }else if($baseon == "版本"){
+                $baseon = "version";
+            }else if($baseon == "签借人"){
+                $baseon = "borrower";
+            }else if($baseon == "所属"){
+                $baseon = "owner";
+            }
+
             $devs = $this->SearchDev_Mod->searchDevsByScope($baseon,$rule,$scope,$rowCount,$page);
+        }else{
+            $devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
         }
         return $devs;
     }

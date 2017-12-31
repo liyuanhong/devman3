@@ -29,6 +29,30 @@ if(array_key_exists("info",$params)){
     $info["category"] = "all";
     $info["check_dev"] = "all";
 }
+//获取历史查询的关键字搜索词
+if(array_key_exists("keyword",$params)){
+    $keyword = $params["keyword"];
+}else{
+    $keyword = "";
+}
+//获取历史查询的关键字搜索词
+if(array_key_exists("baseon",$params)){
+    $baseon = $params["baseon"];
+}else{
+    $baseon = "设备名";
+}
+//获取历史查询的关键字搜索词
+if(array_key_exists("rule",$params)){
+    $rule = $params["rule"];
+}else{
+    $rule = "等于";
+}
+//获取历史查询的关键字搜索词
+if(array_key_exists("scope",$params)){
+    $scope = $params["scope"];
+}else{
+    $scope = "";
+}
 
 ?>
 
@@ -115,32 +139,32 @@ if(array_key_exists("info",$params)){
         <button type="button" class="btn btn-block btn-primary btn-sm" style="width:145px;" onclick="searchByInfo()">查询</button>
       </div>
       <div class="input-group input-group-sm" style="margin-left: 10px;padding-top: 15px;">
-        <input type="text" class="form-control" style="width: 310px;" id="keyword" value="<?php echo $params["keyword"];?>">
+        <input type="text" class="form-control" style="width: 310px;" id="keyword" value="<?php echo $keyword;?>">
             <span class="input-group-btn" style="display: block;float: left;">
               <button type="button" class="btn btn-info btn-flat" onclick="searchByKeyword()">关键字搜索</button>
             </span> 
       </div>
       <div style="margin-left: 10px;padding-top: 15px;">单项搜索：
-        <select class="form-control" style="width:100px;height:30px;display: inline;">
-            <option>设备名</option>
-            <option>型号</option>
-            <option>编号</option>
-            <option>平台</option>
-            <option>版本</option>
-            <option>签借人</option>
-            <option>所属</option>
+        <select class="form-control" style="width:100px;height:30px;display: inline;" id="my_baseon" value="<?php echo $baseon; ?>" >
+            <option <?php if($baseon == "设备名"){echo 'selected = "selected"';} ?>>设备名</option>
+            <option <?php if($baseon == "型号"){echo 'selected = "selected"';} ?>>型号</option>
+            <option <?php if($baseon == "编号"){echo 'selected = "selected"';} ?>>编号</option>
+            <option <?php if($baseon == "平台"){echo 'selected = "selected"';} ?>>平台</option>
+            <option <?php if($baseon == "版本"){echo 'selected = "selected"';} ?>>版本</option>
+            <option <?php if($baseon == "签借人"){echo 'selected = "selected"';} ?>>签借人</option>
+            <option <?php if($baseon == "所属"){echo 'selected = "selected"';} ?>>所属</option>
         </select>
-        <select class="form-control" style="width:100px;height:30px;display: inline;">
-            <option>等于</option>
-            <option>包含</option>
-            <option>介于</option>
-            <option>大于</option>
-            <option>小于</option>
-            <option>不等于</option>
-            <option>不包含</option>
+        <select class="form-control" style="width:100px;height:30px;display: inline;" id="my_rule" onchange="changePlaceholder()" value="<?php echo $rule; ?>">
+            <option <?php if($rule == "等于"){echo 'selected = "selected"';} ?>>等于</option>
+            <option <?php if($rule == "包含"){echo 'selected = "selected"';} ?>>包含</option>
+            <option <?php if($rule == "介于"){echo 'selected = "selected"';} ?>>介于</option>
+            <option <?php if($rule == "大于"){echo 'selected = "selected"';} ?>>大于</option>
+            <option <?php if($rule == "小于"){echo 'selected = "selected"';} ?>>小于</option>
+            <option <?php if($rule == "不等于"){echo 'selected = "selected"';} ?>>不等于</option>
+            <option <?php if($rule == "不包含"){echo 'selected = "selected"';} ?>>不包含</option>
         </select>
-        <input class="form-control select_style" placeholder="搜索词" style="width:200px;display:inline;height: 30px;">
-        <button type="button" class="btn btn-primary btn-sm" style="width:60px;margin-bottom: 4px;">搜索</button>
+        <input class="form-control select_style" placeholder="搜索词" style="width:200px;display:inline;height: 30px;" id="my_scope" value="<?php echo $scope; ?>">
+        <button type="button" class="btn btn-primary btn-sm" style="width:60px;margin-bottom: 4px;" onclick="searchByScope()">搜索</button>
       </div>
     </div>
   </div>
@@ -230,14 +254,14 @@ if(array_key_exists("info",$params)){
                                 <input type="checkbox" id="checkBut8" value="borrow_time" class="flat-red" style="position: absolute; opacity: 0;">
                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                 </div>借出时间</label>
-                        </td><td>
+                        </td><td style="display: none;">
                             <label class="" onclick="dealColumnClick(this)">
                                 <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
                                 <input type="checkbox" id="checkBut9" value="status" class="flat-red" style="position: absolute; opacity: 0;">
                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                 </div>状态</label>
                         </td></tr>
-            	    	        <tr><td>
+            	    	        <tr><td style="display: none;">
             	    	    	        <label class="" onclick="dealColumnClick(this)">
                                 <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
                                 <input type="checkbox" id="checkBut10" value="comments" class="flat-red" style="position: absolute; opacity: 0;">

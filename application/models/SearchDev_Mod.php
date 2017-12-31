@@ -158,8 +158,65 @@ class SearchDev_Mod extends CI_Model{
         return $result;
     }
 
+    //通过某项特征的范围来查询设备
     public function searchDevsByScope($baseon,$rule,$scope,$rowCount,$page){
-        exit;
+        $info = array("id","device_name","model","theNum","plateform","brand","version","owner","status","borrower");
+        array_push($info,"comments","category","check_dev","add_time","borrow_time");
+
+        $startInd = ($page - 1) * $rowCount;
+        $sql = "select " ;
+        for($i = 0;$i < count($info);$i++){
+            if($i != count($info) - 1){
+                $sql = $sql."devices.".$info[$i].",";
+            }else{
+                $sql = $sql.$info[$i].",";
+            }
+        }
+        $sql = $sql." dev_imgs.path FROM devices LEFT JOIN dev_imgs ON devices.id = dev_imgs.device_id where ";
+        if($rule == "等于"){
+            $sql = $sql.$baseon."='".$scope."' ";
+        }else if($rule == "包含"){
+            $theScope = explode("|",$scope);
+            $ind = 0;
+            for($j = 0;$j < count($theScope);$j++){
+                if($ind == 0){
+                    $sql = $sql.$baseon." like '%".$theScope[$j]."%' ";
+                    $ind++;
+                }else{
+                    $sql = $sql." or ".$baseon." like '%".$theScope[$j]."%' ";
+                }
+            }
+        }else if($rule == "介于"){
+            $theScope = explode("|",$scope);
+            $sql = $sql.$baseon." > ".$theScope[0]." and ".$baseon." < ".$theScope[1]." ";
+        }else if($rule == "大于"){
+            $sql = $sql.$baseon." > '".$scope."' ";
+        }else if($rule == "小于"){
+            $sql = $sql.$baseon." < '".$scope."' ";
+        }else if($rule == "不等于"){
+            $sql = $sql.$baseon." != '".$scope."' ";
+        }else if($rule == "不包含"){
+            $theScope = explode("-",$scope);
+            $ind = 0;
+            for($j = 0;$j < count($theScope);$j++){
+                if($ind == 0){
+                    $sql = $sql.$baseon." not like '%".$theScope[$j]."%' ";
+                }else{
+                    $sql = $sql." or ".$baseon." not like '%".$theScope[$j]."%' ";
+                }
+            }
+        }
+        $sql1 = $sql." GROUP BY devices.id ORDER BY devices.add_time DESC limit ".$startInd.",".$rowCount;
+        $sql2 = $sql." GROUP BY devices.id ORDER BY devices.add_time";
+        $query = $this->db->query($sql1)->result();
+        $query2 = $this->db->query($sql2)->result();
+        $total = count($query2);
+
+        $result = array();
+        $result["devs"] = $query;
+        $result["total"] = $total;
+
+        return $result;
     }
 }
 
