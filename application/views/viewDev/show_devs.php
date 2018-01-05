@@ -254,14 +254,14 @@ if(array_key_exists("scope",$params)){
                                 <input type="checkbox" id="checkBut8" value="borrow_time" class="flat-red" style="position: absolute; opacity: 0;">
                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                 </div>借出时间</label>
-                        </td><td style="display: none;">
+                        </td><td style="_display: none;">
                             <label class="" onclick="dealColumnClick(this)">
                                 <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
                                 <input type="checkbox" id="checkBut9" value="status" class="flat-red" style="position: absolute; opacity: 0;">
                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                 </div>状态</label>
                         </td></tr>
-            	    	        <tr><td style="display: none;">
+            	    	        <tr><td style="_display: none;">
             	    	    	        <label class="" onclick="dealColumnClick(this)">
                                 <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
                                 <input type="checkbox" id="checkBut10" value="comments" class="flat-red" style="position: absolute; opacity: 0;">

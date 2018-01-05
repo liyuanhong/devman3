@@ -45,14 +45,16 @@
             <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>图片对比</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li <?php echo ctrLeftArrowShow($item,"myPage");?>>
           <a href="#"><i class="fa fa-chevron-circle-right"></i> <span>用户中心</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
-          <ul class="treeview-menu">
-            <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>我的页面</a></li>
+          <ul class="treeview-menu" <?php echo ctrLeftItemExpand($item,"myPage");?>>
+            <li <?php echo ctrLeftItemShow($item,"myPage");?> id="myPage"><a href="#"><i class="fa fa-circle-o"></i>我的页面</a></li>
+              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>编辑资料</a></li>
+              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>用户管理</a></li>
           </ul>
         </li>
         </li>

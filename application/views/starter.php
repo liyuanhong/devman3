@@ -39,14 +39,26 @@ $arr['params'] = $params;
 $this->load->view('header',$arr);?>
 <?php $this->load->view('aside',$arr);?>
   <div>
-    <?php 
+    <?php
+    $theCtr = getIndexOfUrl($this,1);
     $thePage = getIndexOfUrl($this,2);
-    //查看设备页面
-    if($thePage == '' || $thePage == "showDevs"){
-        $this->load->view('viewDev/show_devs',$arr);
+    if($theCtr == "Welcome" || $theCtr == "welcome" || $theCtr == ""){
+        //查看设备页面
+        if($thePage == '' || $thePage == "showDevs"){
+            $this->load->view('viewDev/show_devs',$arr);
+        }else{
+            echo "没有页面！";
+        }
+    }else if($theCtr == "UserCenter" || $theCtr == "usercenter" || $theCtr == "Usercenter"){
+        if($thePage == "mypage" || $thePage == "myPage"){
+            $this->load->view('userCenter/myPage',$arr);
+        }else{
+            $this->load->view('userCenter/myPage',$arr);
+        }
     }else{
-        echo "没有页面！";
+        echo "哈哈哈";
     }
+
     ?>
   </div>
 <?php $this->load->view('footer');?>

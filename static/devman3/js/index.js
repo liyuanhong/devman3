@@ -11,6 +11,8 @@ function changeMenu(){
 		if(id == "show_dev"){
 			var params = getParams();
 			getAnPage("index.php/welcome/showDevs",params);
+		}else if(id == "myPage"){
+            getAnPage("index.php/UserCenter/myPage",params);
 		}
 	});
 }
@@ -122,7 +124,7 @@ function getMapLength(map){
 function logout(){
 	var token = $.cookie('token');
 	$.ajax({
-		url:"http://" + host + path + "index.php/UserCenter/logoutReq",
+		url:"http://" + host + path + "index.php/UserCenter_Ctr/logoutReq",
 		type:"post",
 		data:{logout:true,token:token},
 		success:function(result){

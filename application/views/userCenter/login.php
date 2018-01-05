@@ -81,7 +81,7 @@ function submitInfo(){
 	}else{
 		password = md5(password);
 		$.ajax({
-			url:"http://" + host + path + "index.php/UserCenter/loginReq",
+			url:"http://" + host + path + "index.php/UserCenter_Ctr/loginReq",
 			type:"post",
 			data:{loginName:loginName,password:password},
 			success:function(result){

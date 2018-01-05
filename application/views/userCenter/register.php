@@ -25,7 +25,7 @@
   <div class="register-box-body">
     <p class="login-box-msg">注册一个普通用户</p>
 
-    <form action="<?php echo  'http://'.ROOT_URL ?>index.php/UserCenter/registerAnUser" method="post" onsubmit="return check()">
+    <form action="<?php echo  'http://'.ROOT_URL ?>index.php/UserCenter_Ctr/registerAnUser" method="post" onsubmit="return check()">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="登陆名" name="loginName" id="loginName">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
