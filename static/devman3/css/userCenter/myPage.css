@@ -1,0 +1,10 @@
+#head_portrait:hover{
+    cursor:pointer;
+    color:gray;
+}
+
+
+.fa-edit:hover{
+    cursor:pointer;
+    color:gray;
+}
