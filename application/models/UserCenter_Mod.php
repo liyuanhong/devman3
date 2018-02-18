@@ -63,12 +63,12 @@ class UserCenter_Mod extends CI_Model{
 
     //通过token获取用户信息，如果没有获取到，自动去anymous的用户信息
     function getUserInfoByTokenDefaultAnymous($token){
-        $sql = "select id,user_name,login_name,role,icon,icon_url from users where token='".$token."'";
+        $sql = "select id,user_name,login_name,login_time,role,icon,icon_url,role_name,email,work_num,qq,mobile,registe_time,comments from users where token='".$token."'";
         $query = $this->db->query($sql);
         $result = $query->result_array();
         $con = count($result);
         if($con == 0){
-            $sql = "select id,user_name,login_name,role,icon,icon_url from users where login_name='anymous'";
+            $sql = "select id,user_name,login_name,login_time,role,icon,icon_url,role_name,email,work_num,qq,mobile,registe_time,comments from users where login_name='anymous'";
             $query = $this->db->query($sql);
             $result = $query->result_array();
             return $result;

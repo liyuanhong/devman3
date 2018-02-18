@@ -117,6 +117,8 @@ define('LOGIN_PAGE','login_page');
 define('HOME_PAGE','home_page');
 define('SHOW_DEV_PAGE','show_dev_page');
 
+define('USERCENTER_MY_PAGE','usercenter_my_page');
+
 
 //用户管理权限
 

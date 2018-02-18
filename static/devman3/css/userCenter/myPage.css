@@ -2,9 +2,48 @@
     cursor:pointer;
     color:gray;
 }
-
-
 .fa-edit:hover{
+    cursor:pointer;
+    color:gray;
+}
+#user_info{
+    list-style:none;
+    float:left;
+    padding-left: 10px;
+}
+
+#user_info li{
+    float:left;
+}
+#user_info span{
+    margin: 0 5px;
+    font-weight: bold;
+}
+#modify_head_potrate_panel{
+    width: 85%;
+    height:100%;
+    background-color: black;
+    position: absolute;
+    z-index: 100;
+    display: none;
+    opacity: 0.6;
+}
+#modify_info_panel{
+    width: 85%;
+    height:100%;
+    background-color: black;
+    position: absolute;
+    z-index: 100;
+    display: none;
+    opacity: 0.6;
+}
+.closer_icon{
+    float: right;
+    margin: 0px 15px;
+    font-size: 15px;
+    padding: 10px;
+}
+.closer_icon:hover{
     cursor:pointer;
     color:gray;
 }

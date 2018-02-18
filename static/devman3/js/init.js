@@ -264,7 +264,7 @@ function redirectParamsPage(){
 	}
 }
 
-//页面按钮点击的方法
+//切换页面按钮点击的方法
 function changePage(){
 	$("#pageButtonContent").find("a").click(function(){
 		var curPage = parseInt($("#pageButtonContent").find(".active").find("a")[0].text);

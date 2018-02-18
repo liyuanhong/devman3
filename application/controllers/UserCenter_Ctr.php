@@ -108,4 +108,12 @@ class UserCenter_Ctr extends CI_Controller{
             return true;
         }
     }
+
+    //通过token获取用户信息
+    function getUserInfoByToken(){
+        $token = get("token","null");
+        $result = $this->UserCenter_Mod->getUserInfoByTokenDefaultAnymous($token);
+
+        echo json_encode($result);
+    }
 }

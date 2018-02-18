@@ -12,6 +12,7 @@ function changeMenu(){
 			var params = getParams();
 			getAnPage("index.php/welcome/showDevs",params);
 		}else if(id == "myPage"){
+            var params = getParams();
             getAnPage("index.php/UserCenter/myPage",params);
 		}
 	});

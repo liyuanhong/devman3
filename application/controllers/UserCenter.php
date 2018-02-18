@@ -43,23 +43,21 @@ class UserCenter extends CI_Controller{
     //访问我的页面
     public function myPage(){
         //用于控制要显示的设备信息列
-        $columnCtr = get('showColumn','abcdefgh');
-        $rowCount = get("rowCount",50);
-        if(is_numeric($rowCount)){}else{$rowCount = 50;}
         $page = get("page",1);
         if(is_numeric($page)){}else{$page = 1;}
-        $this->params['pageName'] = HOME_PAGE;
+        $this->params['pageName'] = USERCENTER_MY_PAGE;
         //获取是否有该页面的操作权限
         $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE);
-        $this->params['columnCtr'] = $columnCtr;
-        $this->params['attrs'] = $this->DevAttrs_Mod->getMobileAttrs();
         $this->params['page'] = $page;
-        $this->params['rowCount'] = $rowCount;
+        $this->params['userInfo'] = $this->UserCenter_Mod->getUserInfoByTokenDefaultAnymous($this->token);
         $arr = array();
         $arr['params'] = $this->params;
 
+//        echo json_encode($this->params);
+//		exit;
+
         //写入日志
-        writeLog($this,$this->userInfo[0]['login_name'],"访问了首页！","loginName",1);
+        writeLog($this,$this->userInfo[0]['login_name'],"访问了我的页面！","loginName",1);
         //进行页面访问统计
         $this->Statistic_Mod->insertStatisticInfo($this->userInfo,HOME_PAGE);
         $this->load->view('starter',$arr);
