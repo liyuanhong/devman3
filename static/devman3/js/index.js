@@ -14,6 +14,9 @@ function changeMenu(){
 		}else if(id == "mypage"){
             var params = getParams();
             getAnPage("usercenter/mypage",params);
+		}else if(id == "editprofile"){
+			var params = getParams();
+			getAnPage("usercenter/editprofile",params);
 		}
 	});
 }

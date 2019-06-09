@@ -1,6 +1,6 @@
 #head_portrait:hover{
-    cursor:pointer;
-    color:gray;
+    _cursor:pointer;
+    _color:gray;
 }
 .fa-edit:hover{
     cursor:pointer;

@@ -112,12 +112,15 @@ define('RIGHTS_DEV','rights_dev');
 
 
 //访问页面
-define('REGISTER_PAGE','register_page');
-define('LOGIN_PAGE','login_page');
 define('HOME_PAGE','home_page');
 define('SHOW_DEV_PAGE','show_dev_page');
 
+
+
+define('REGISTER_PAGE','register_page');
+define('LOGIN_PAGE','login_page');
 define('USERCENTER_MY_PAGE','usercenter_my_page');
+define('USERCENTER_EDIT_PAGE','usercenter_edit_page');
 
 
 //用户管理权限

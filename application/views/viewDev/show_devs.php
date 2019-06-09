@@ -57,22 +57,22 @@ if(array_key_exists("scope",$params)){
 ?>
 
 <?php if(strpos($params["userAgent"],"Mobile") === false){?>
-<link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/devman3/css/viewDev/show_devs.css">
+<link rel="stylesheet" href="<?php echo  base_url(); ?>static/devman3/css/viewDev/show_devs.css">
 <?php }else{?>
 <!-- 如果是手机用户，则返回手机端的css -->
-<link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/devman3/css/viewDev/show_devs_mobile.css">
+<link rel="stylesheet" href="<?php echo  base_url(); ?>static/devman3/css/viewDev/show_devs_mobile.css">
 <?php }?>
 
-<link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/bower_components/select2/dist/css/select2.min.css">
-<script src="<?php echo  'http://'.ROOT_URL ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="<?php echo  'http://'.ROOT_URL ?>static/devman3/js/viewDev/show_devs.js"></script>
+<link rel="stylesheet" href="<?php echo  base_url(); ?>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo  base_url(); ?>static/bower_components/select2/dist/css/select2.min.css">
+<script src="<?php echo  base_url(); ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="<?php echo  base_url(); ?>static/devman3/js/viewDev/show_devs.js"></script>
 
 
 
 
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="<?php echo  base_url(); ?>static/plugins/iCheck/all.css">
 
 <div id="show_devs_containt_view" class="content-wrapper">
   <div id="show_devs_top_control">
@@ -139,7 +139,7 @@ if(array_key_exists("scope",$params)){
         <button type="button" class="btn btn-block btn-primary btn-sm" style="width:145px;" onclick="searchByInfo()">查询</button>
       </div>
       <div class="input-group input-group-sm" style="margin-left: 10px;padding-top: 15px;">
-        <input type="text" class="form-control" style="width: 310px;" id="keyword" value="<?php echo $keyword;?>">
+        <input type="text" class="form-control" style="width: 250px;" id="keyword" value="<?php echo $keyword;?>">
             <span class="input-group-btn" style="display: block;float: left;">
               <button type="button" class="btn btn-info btn-flat" onclick="searchByKeyword()">关键字搜索</button>
             </span> 
@@ -380,8 +380,8 @@ if(array_key_exists("scope",$params)){
         </div>
     </div>
 </div>
-<script src="<?php echo  'http://'.ROOT_URL ?>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo  'http://'.ROOT_URL ?>static/plugins/iCheck/icheck.min.js"></script>
+<script src="<?php echo  base_url(); ?>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo  base_url(); ?>static/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('#example1').DataTable({

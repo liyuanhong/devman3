@@ -1,6 +1,7 @@
   <?php 
   //控制左侧选项卡显示状态的变量
-  $item = getIndexOfUrl($this,2);
+  $item1 = getIndexOfUrl($this,1);
+  $item2 = getIndexOfUrl($this,2);
   $isLogin = $params['isLogin'];
   
   
@@ -11,14 +12,14 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Optionally, you can add icons to the links -->
-        <li <?php echo ctrLeftArrowShow($item,"showdevs");?>>
+        <li <?php echo ctrLeftArrowShow($item1,"welcome");?>>
           <a href="#"><i class="fa fa-chevron-circle-right"></i> <span>设备查询</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
-          <ul class="treeview-menu" <?php echo ctrLeftItemExpand($item,"showdevs");?>>
-            <li <?php echo ctrLeftItemShow($item,"showdevs");?> id="show_dev"><a href="#"><i class="fa fa-circle-o"></i>查看设备</a></li>
+          <ul class="treeview-menu" <?php echo ctrLeftItemExpand($item1,"welcome");?>>
+            <li <?php echo ctrLeftItemShow($item2,"showdevs");?> id="show_dev"><a href="#"><i class="fa fa-circle-o"></i>查看设备</a></li>
             <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>反馈信息</a></li>
           </ul>
         </li>
@@ -45,15 +46,15 @@
             <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>图片对比</a></li>
           </ul>
         </li>
-        <li <?php echo ctrLeftArrowShow($item,"myPage");?>>
+        <li <?php echo ctrLeftArrowShow($item1,"usercenter");?>>
           <a href="#"><i class="fa fa-chevron-circle-right"></i> <span>用户中心</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
-          <ul class="treeview-menu" <?php echo ctrLeftItemExpand($item,"mypage");?>>
-            <li <?php echo ctrLeftItemShow($item,"mypage");?> id="mypage"><a href="#"><i class="fa fa-circle-o"></i>我的页面</a></li>
-              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>编辑资料</a></li>
+          <ul class="treeview-menu" <?php echo ctrLeftItemExpand($item1,"usercenter");?>>
+              <li <?php echo ctrLeftItemShow($item2,"mypage");?> id="mypage"><a href="#"><i class="fa fa-circle-o"></i>我的页面</a></li>
+              <li <?php echo ctrLeftItemShow($item2,"editprofile");?> id="editprofile"><a href="#"><i class="fa fa-circle-o"></i>编辑资料</a></li>
               <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>用户管理</a></li>
           </ul>
         </li>

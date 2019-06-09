@@ -49,18 +49,21 @@ $isLogin = $params['isLogin'];
     if($theCtr == "welcome"){
         //查看设备页面
         if($thePage == "showdevs"){
-            $this->load->view('viewDev/show_devs',$arr);
+            $this->load->view('viewdev/show_devs',$arr);
         }else{
             echo "没有页面！";
         }
     //}else if($theCtr == "UserCenter" || $theCtr == "usercenter" || $theCtr == "Usercenter"){
     }else if($theCtr == "usercenter"){
-        if($thePage == "myPage"){
+        if($thePage == "mypage"){
             checkLogin($isLogin,$baseUrl);
-            $this->load->view('userCenter/myPage',$arr);
+            $this->load->view('usercenter/myPage',$arr);
+        }else if($thePage == "editprofile"){
+            checkLogin($isLogin,$baseUrl);
+            $this->load->view('usercenter/editPage',$arr);
         }else{
             checkLogin($isLogin,$baseUrl);
-            $this->load->view('userCenter/myPage',$arr);
+            $this->load->view('usercenter/myPage',$arr);
         }
     }else{
         echo "哈哈哈";
