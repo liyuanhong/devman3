@@ -78,7 +78,7 @@ if(array_key_exists("scope",$params)){
   <div id="show_devs_top_control">
     <div id="classification">
         	<label>类型:</label>
-        	<select class="form-control" id="classification_ctrl" style="width:100px;height:30px;display: inline;margin-left: 10px;" onchange="switchDevType()">
+        	<select class="form-control" id="classification_ctrl" style="width:120px;height:30px;display: inline;margin-left: 10px;" onchange="switchDevType()">
             <option value="1">手机平板</option>
             <option value="2">电脑</option>
             <option value="3">显示器</option>
@@ -86,7 +86,7 @@ if(array_key_exists("scope",$params)){
             <option value="5">桌椅</option>
         </select>
     </div>
-    <div id="show_devs_phones_control" style="width: 84%;height: 200px;background:transparent;float:right;display:inline;">
+    <div id="show_devs_phones_control" style="width: 88%;height: 200px;background:transparent;float:right;display:inline;">
       <div class="col-md-3 col-sm-4 search-item">平台：
         <select class="form-control" style="width:100px;height:30px;display: inline;" id="plateform">
             <option>all</option>

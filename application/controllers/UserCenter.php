@@ -18,6 +18,7 @@ class UserCenter extends CI_Controller{
         $this->load->model('Logs_Mod');
         $this->load->model('Statistic_Mod');
         $this->load->model('DevAttrs_Mod');
+        $this->load->helper('url');
 
 
         $this->params = array();
@@ -41,6 +42,11 @@ class UserCenter extends CI_Controller{
     }
 
     //访问我的页面
+    public function index(){
+        redirect("/usercenter/mypage");
+    }
+
+    //访问我的页面
     public function myPage(){
         //用于控制要显示的设备信息列
         $page = get("page",1);
@@ -61,6 +67,28 @@ class UserCenter extends CI_Controller{
         //进行页面访问统计
         $this->Statistic_Mod->insertStatisticInfo($this->userInfo,HOME_PAGE);
         $this->load->view('starter',$arr);
+        //echo base_url();
 
+    }
+
+    //注册页面
+    public function registAnUser(){
+        $arr = array();
+        $arr['params'] = $this->params;
+        writeLog($this,$this->userInfo[0]['login_name'],"访问了注册页面！","loginName",1);
+        $this->Statistic_Mod->insertStatisticInfo($this->userInfo,REGISTER_PAGE);
+        $this->load->view('userCenter/register',$arr);
+    }
+    //登陆页面
+    public function login(){
+        $arr = array();
+        $arr['params'] = $this->params;
+        writeLog($this,$this->userInfo[0]['login_name'],"访问了登录页面！","loginName",1);
+        $this->Statistic_Mod->insertStatisticInfo($this->userInfo,LOGIN_PAGE);
+        $this->load->view('userCenter/login',$arr);
+    }
+    //注册后的跳转页面
+    public function jumpToLogin(){
+        $this->load->view('userCenter/jumpToLogin');
     }
 }

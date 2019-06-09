@@ -18,7 +18,7 @@
 <script>
 	//倒计时
 	var times = 2;
-	var address = "http://" + host + path + "index.php/welcome/login"
+	var address = getRootUrl()+ "usercenter/login"
 	setInterval("timer()",1000);
 	function timer(){
 		if(times == 0){

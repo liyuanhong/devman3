@@ -29,7 +29,7 @@ function confirmColumn(){
 function setRowCount(){
 	$("#dataCtr").on("change",function(){
       var rowCount = $(this).val();
-      $.cookie('rowCount', rowCount,{path:cookiePath,expires:7});
+      $.cookie('rowCount', rowCount,{path:getRootDir(),expires:7});
     })
 }
 
@@ -39,7 +39,7 @@ function initRowCount(){
 	if(typeof(rowCount) == "undefined"){
 		rowCount = 50;
 		$("#dataCtr").val(50);
-		$.cookie('rowCount', rowCount,{path:cookiePath,expires:7});
+		$.cookie('rowCount', rowCount,{path:getRootDir(),expires:7});
 	}else{
 		$("#dataCtr").val(rowCount);
 	}
@@ -67,7 +67,7 @@ function searchByInfo(){
     params["page"] = page;
 
     //var params = {"platefrom":plateform,"brand":brand,"version":version,"status":status,"category":category,"check_dev":check_dev,"searchType":searchType};
-    getAnPage("index.php/welcome/showDevs",params);
+    getAnPage("welcome/showdevs",params);
 }
 
 //通过关键字搜索的按钮
@@ -80,7 +80,7 @@ function searchByKeyword(){
     params["searchType"] = searchType;
     params["page"] = page;
 
-    getAnPage("index.php/welcome/showDevs",params);
+    getAnPage("welcome/showdevs",params);
 }
 
 //修改单项搜索的提示
@@ -119,6 +119,6 @@ function searchByScope(){
     params["searchType"] = searchType;
     params["page"] = page;
 
-    getAnPage("index.php/welcome/showDevs",params);
+    getAnPage("welcome/showdevs",params);
 }
 

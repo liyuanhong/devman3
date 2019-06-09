@@ -8,17 +8,18 @@ class UserCenter_Ctr extends CI_Controller{
         parent::__construct();
         $this->load->model('UserCenter_Mod');
         $this->load->model('Logs_Mod');
+        $this->load->helper('url');
     }
     
     //注册一个新用户
     public function registerAnUser(){
-        $loginName = $_POST["loginName"];
-        $userName = $_POST["userName"];
+        $loginName = $_POST["loginname"];
+        $userName = $_POST["username"];
         $email = $_POST["email"];
         $password = $_POST["password"];
         $result = Array();
         
-        $password = md5($password);
+        //$password = md5($password);
         $users = $this->UserCenter_Mod->getLoginNames();
         $isExist = in_array($loginName,$users);
         if($isExist){
@@ -37,7 +38,11 @@ class UserCenter_Ctr extends CI_Controller{
                 //             echo json_encode($result);
                 
                 writeLog($this,$loginName,"成功注册了一个用户！","loginName",0);
-                header("location: http://".ROOT_URL."index.php/welcome/jumpToLogin");
+                $result = Array();
+                $result["status"] = 200;
+                $result["message"] = "注册成功！";
+                echo json_encode($result);
+                //header(base_url()."usercenter/jumptologin");
             }
         }
     }

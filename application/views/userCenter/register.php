@@ -6,17 +6,27 @@
   <title>AdminLTE 2 | Registration Page</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <script src="<?php echo  'http://'.ROOT_URL ?>static/bower_components/jquery/dist/jquery.min.js"></script>
-  <link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/plugins/iCheck/square/blue.css">
-  <link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="<?php echo  'http://'.ROOT_URL ?>static/dist/css/AdminLTE.min.css">
+  <script src="<?php echo  base_url(); ?>static/bower_components/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="<?php echo  base_url(); ?>static/plugins/iCheck/square/blue.css">
+  <link rel="stylesheet" href="<?php echo  base_url(); ?>static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo  base_url(); ?>static/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo  base_url(); ?>static/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?php echo  base_url(); ?>static/dist/css/AdminLTE.min.css">
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
+    <link rel="stylesheet" href="<?php echo  base_url(); ?>static/devman3/css/google/google_fonts.css">
 </head>
-<body class="hold-transition register-page"  style="background-color: #d5e2fe;">
+
+<?php
+$arr = array();
+$arr['params'] = $params;
+$baseUrl = $params['base_url'];
+$siteUrl = $params['site_url'];
+
+?>
+
+<body class="hold-transition register-page"  style="background-color: #d5e2fe;" id="syno-nsc-ext-gen3" base_url="<?php echo $baseUrl ;?>" site_url="<?php echo $siteUrl ;?>">
 <div class="register-box">
   <div class="register-logo">
     <a href="../../index2.html"><b>注册</b></a>
@@ -25,7 +35,7 @@
   <div class="register-box-body">
     <p class="login-box-msg">注册一个普通用户</p>
 
-    <form action="<?php echo  'http://'.ROOT_URL ?>index.php/UserCenter_Ctr/registerAnUser" method="post" onsubmit="return check()">
+    <form action="<?php echo  base_url() ?>welcome/showdevs" method="post" onsubmit="return check()">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="登陆名" name="loginName" id="loginName">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -53,7 +63,7 @@
               <input type="checkbox" id="protocol"> 我同意 <a href="#">用户使用协议</a>
             </label>
           </div>
-          <a href="<?php echo  'http://'.ROOT_URL?>" class="text-center">回到首页</a>
+          <a href="<?php echo  base_url(); ?>" class="text-center">回到首页</a>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
@@ -67,9 +77,13 @@
   <!-- /.form-box -->
 </div>
 
-<script src="<?php echo  'http://'.ROOT_URL ?>static/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="<?php echo  'http://'.ROOT_URL ?>static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?php echo  'http://'.ROOT_URL ?>static/plugins/iCheck/icheck.min.js"></script>
+<script src="<?php echo  base_url(); ?>static/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="<?php echo  base_url(); ?>static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?php echo  base_url(); ?>static/plugins/iCheck/icheck.min.js"></script>
+<script src="<?php echo  base_url(); ?>static/jquery_cookie/jquery.cookie.js"></script>
+<script src="<?php echo  base_url(); ?>static/plugins/encrypted/md5.js"></script>
+<script src="<?php echo  base_url(); ?>static/devman3/js/init.js"></script>
+<script src="<?php echo  base_url(); ?>static/devman3/js/index.js"></script>
 <script>
 $(function () {
 $('input').iCheck({
@@ -104,8 +118,28 @@ function check(){
 	}else if(password != confirmPassword){
 		alert("输入的密码不一致");
 		return false;
-	}
-	return true;
+	}else{
+        password = md5(password);
+        $.ajax({
+            url:getRootUrl() + "UserCenter_Ctr/registerAnUser",
+            type:"post",
+            data:{loginname:loginName,username:username,password:password,email:email},
+            success:function(result){
+                var obj = JSON.parse(result);
+                var status = obj.status;
+                var token = obj.token;
+                if(status == 200){
+                    $.cookie('token', token,{path:getRootDir(),expires:1});
+                    var gotoUrl = getRootUrl() + "welcome/showdevs";
+                    window.location.href=gotoUrl;
+                }else{
+                    alert("注册失败！");
+                    return false;
+                }
+            }
+        });
+        return false;
+    }
 }
 </script>
 </body>

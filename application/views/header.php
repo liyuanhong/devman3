@@ -1,8 +1,7 @@
   <?php 
 $isLogin = $params['isLogin'];
-
 ?>
-  <script src="<?php echo  'http://'.ROOT_URL ?>static/devman3/js/header.js"></script>
+  <script src="<?php echo  base_url(); ?>static/devman3/js/header.js"></script>
   <header class="main-header">
     <a href="javascript:void(0);"class="logo" onclick="backToHomePage()">
       <span class="logo-mini"><b>V</b>3</span>
@@ -19,9 +18,9 @@ $isLogin = $params['isLogin'];
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php if($isLogin == 0){echo  'http://'.ROOT_URL.'static/dist/img/user2-160x160-2.jpg';}else{echo 'http://'.ROOT_URL.'photo/'.$params['userInfo'][0]['icon'];} ?>" class="user-image" alt="img">
+              <img src="<?php if($isLogin == 0){echo  base_url().'static/dist/img/user2-160x160-2.jpg';}else{ if($params['userInfo'][0]['icon'] == ""){echo  base_url().'photo/default160.jpg';}else{echo  base_url().'photo/'.$params['userInfo'][0]['icon'];}} ?>" class="user-image" alt="img">
               <?php if($isLogin){?>
-              <span class="hidden-xs"><?php echo $params['userInfo'][0]['user_name'];?>~</span>
+              <span class="hidden-xs"><?php echo $params['userInfo'][0]['user_name'];?></span>
               <?php }else{?>
               <span class="hidden-xs">Hi~,快来登录吧~</span>
               <?php }?>
@@ -29,7 +28,7 @@ $isLogin = $params['isLogin'];
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                  <div style="width:100%;height: 90px;"><img src="<?php if($isLogin == 0){echo  'http://'.ROOT_URL.'static/dist/img/user2-160x160-2.jpg';}else{ echo 'http://'.ROOT_URL.'photo/'.$params['userInfo'][0]['icon'];} ?>" class="img-circle" alt="img" style="width: 90px;height: 90px;"></div>
+                  <div style="width:100%;height: 90px;"><img src="<?php if($isLogin == 0){echo  base_url().'static/dist/img/user2-160x160-2.jpg';}else{ if($params['userInfo'][0]['icon'] == ""){echo  base_url().'photo/default160.jpg';}else{echo  base_url().'photo/'.$params['userInfo'][0]['icon'];}} ?>" class="img-circle" alt="img" style="width: 90px;height: 90px;"></div>
                 <?php if($isLogin){?>
                 <p>你好：<?php echo $params['userInfo'][0]['user_name'];?>~</p>
                 <?php }else{?>

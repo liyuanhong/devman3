@@ -1,3 +1,35 @@
+//获取网站的根url（）
+function getRootUrl(){
+	var base_url = $("#syno-nsc-ext-gen3").attr("base_url");
+	var site_url = $("#syno-nsc-ext-gen3").attr("site_url");
+
+	if(base_url.charAt(base_url.length - 1) != "/"){
+		base_url = base_url + '/';
+	}else{
+		//base_url = base_url.substr(0,base_url.length - 1);
+	}
+	if(site_url.charAt(site_url.length - 1) != '/'){
+		site_url = site_url + '/';
+	}else{
+		//site_url = site_url.substr(0,site_url.length - 1);
+	}
+
+	var root_url = base_url;
+	return root_url;
+}
+
+//获取网站的根路径，去掉域名后的路径
+function getRootDir(){
+	var domain = document.domain;
+	domain = "http://" + domain;
+	var base_url = $("#syno-nsc-ext-gen3").attr("base_url");
+	var rootdir = base_url.substr(domain.length,base_url.length - 1);
+	if(rootdir.charAt(rootdir.length - 1) == "/"){
+		rootdir = rootdir.substr(0,rootdir.length - 1);
+	}
+	return rootdir;
+}
+
 /**
  * 初始化设置设备列表默认列的显示信息，控制按钮的显示
  * 传给服务端的时候只用一个字段来表示，对应关系如下：
@@ -10,7 +42,7 @@ function initDefaultDevColumn(){
 	if(typeof(devColumn) == "undefined"){
 		//do_someThing代表申请操作列
 		var temp = new Array("model","theNum","plateform","version","borrower","applyFor","owner","borrow_time");
-		$.cookie('devColumn', temp,{path:cookiePath,expires:7});
+		$.cookie('devColumn', temp,{path:getRootDir(),expires:7});
 		$("#checkBut1").parent(".icheckbox_flat-green").attr("class","icheckbox_flat-green checked");
 		$("#checkBut1").parent(".icheckbox_flat-green").attr("aria-checked",true);
 		$("#checkBut1").attr("checked","checked");
@@ -99,9 +131,19 @@ function initDefaultDevColumn(){
 	}
 }
 
+//获取要请求url的参数
+function getParams(){
+	var showColumnStr = getColFromCookie();
+	var params = new Array();
+	params["showColumn"] = showColumnStr;
+	params["token"] = $.cookie('token')
+	params["rowCount"] = $.cookie('rowCount');
+	return params;
+}
+
 //清除列显示的cookie
 function clearDefaultDevColumn(){
-	$.removeCookie('devColumn',{path:cookiePath});
+	$.removeCookie('devColumn',{path:getRootDir()});
 }
  
 //获取设备列表默认的列显示信息
@@ -228,10 +270,10 @@ function operateDevColumn(col){
 	var ind = devColumn.indexOf(col);
 	if(ind != -1){
 		devColumn.splice(ind,1);
-		$.cookie('devColumn', devColumn,{path:cookiePath,expires:7});
+		$.cookie('devColumn', devColumn,{path:getRootDir(),expires:7});
 	}else{
 		devColumn.push(col);
-		$.cookie('devColumn', devColumn,{path:cookiePath,expires:7});
+		$.cookie('devColumn', devColumn,{path:getRootDir(),expires:7});
 	}
 }
 
@@ -240,7 +282,7 @@ function initLeftMenuShow(){
 	var isLeftItemOpen = $.cookie('isLeftItemOpen');
 	if(typeof(isLeftItemOpen)  == "undefined"){
 		isLeftItemOpen = true;
-		$.cookie('isLeftItemOpen', isLeftItemOpen,{path:cookiePath,expires:7});
+		$.cookie('isLeftItemOpen', isLeftItemOpen,{path:getRootDir(),expires:7});
 		$("#syno-nsc-ext-gen3").attr("class","skin-blue sidebar-mini ext-webkit ext-chrome ext-mac");
 		$("#show_devs_containt_view").css("margin-left","230px");
 	}else{
@@ -254,13 +296,10 @@ function initLeftMenuShow(){
 
 //如果访问系统以没有带参数的网址，则自动跳转带参数的网址
 function redirectParamsPage(){
-	var host = window.location.host;
 	var curUrl = window.location.href;
-	var openedUrl = "http://" + host + path;
-	var openedUrl1 = "http://" + host + cookiePath;
-	if(curUrl == openedUrl || curUrl == openedUrl1){
+	if(curUrl.indexOf('?') == -1){
 		var params = getParams();
-		gotoPage("",params);
+		getAnPage("welcome/showdevs",params);
 	}
 }
 

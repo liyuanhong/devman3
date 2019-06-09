@@ -20,6 +20,7 @@ class Welcome extends CI_Controller{
         $this->load->model('Logs_Mod');
         $this->load->model('Statistic_Mod');
         $this->load->model('DevAttrs_Mod');
+        $this->load->helper('url');
 
 
         $this->params = array();
@@ -45,6 +46,7 @@ class Welcome extends CI_Controller{
     #加载首页
 	public function index()
 	{
+	    /*
 		//用于控制要显示的设备信息列
 		$columnCtr = get('showColumn','abcdefgh');
 		$rowCount = get("rowCount",50);
@@ -72,6 +74,10 @@ class Welcome extends CI_Controller{
 		$this->load->view('starter',$arr);
 //		echo json_encode($arr);
 //		exit;
+	    */
+	    //CI框架的辅助函数，根据配置文件返回你站点的根 URL
+	    //$redirUrl = base_url()."/welcome/showdevs";
+	    redirect("/welcome/showdevs");
 	}
 	
 	#显示查看设备页面（与首页同为同一个页面）
@@ -121,8 +127,8 @@ class Welcome extends CI_Controller{
 	    $arr = array();
 	    $arr['params'] = $this->params;
 
-//	    echo(json_encode($arr));
-//	    exit;
+	    //echo(json_encode($arr));
+	    //exit;
 
         writeLog($this,$this->userInfo[0]['login_name'],"访问了查看设备页面！","loginName",1);
         $this->Statistic_Mod->insertStatisticInfo($this->userInfo,SHOW_DEV_PAGE);
@@ -131,23 +137,6 @@ class Welcome extends CI_Controller{
 
 //		echo json_encode($arr);
 //		exit;
-	}
-	
-	//注册页面
-	public function registAnUser(){
-        writeLog($this,$this->userInfo[0]['login_name'],"访问了注册页面！","loginName",1);
-        $this->Statistic_Mod->insertStatisticInfo($this->userInfo,REGISTER_PAGE);
-	    $this->load->view('userCenter/register');
-	}
-	//登陆页面
-	public function login(){
-        writeLog($this,$this->userInfo[0]['login_name'],"访问了登录页面！","loginName",1);
-        $this->Statistic_Mod->insertStatisticInfo($this->userInfo,LOGIN_PAGE);
-	    $this->load->view('userCenter/login');
-	}
-	//注册后的跳转页面
-	public function jumpToLogin(){
-	    $this->load->view('userCenter/jumpToLogin');
 	}
 
 	//通过传输的参数来查询设备

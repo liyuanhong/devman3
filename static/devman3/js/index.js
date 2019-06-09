@@ -10,23 +10,14 @@ function changeMenu(){
 		var id = $(this).attr("id");
 		if(id == "show_dev"){
 			var params = getParams();
-			getAnPage("index.php/welcome/showDevs",params);
-		}else if(id == "myPage"){
+			getAnPage("welcome/showdevs",params);
+		}else if(id == "mypage"){
             var params = getParams();
-            getAnPage("index.php/UserCenter/myPage",params);
+            getAnPage("usercenter/mypage",params);
 		}
 	});
 }
 
-//获取要请求url的参数
-function getParams(){
-	var showColumnStr = getColFromCookie();
-	var params = new Array();
-	params["showColumn"] = showColumnStr;
-	params["token"] = $.cookie('token')
-	params["rowCount"] = $.cookie('rowCount');
-	return params;
-}
 
 //跳转到指定页面
 function gotoPage(pageUrl){
@@ -39,14 +30,14 @@ function getPageUrl(pageUrl){
 	//var showColumnStr = getSelectColCheckButAsStr();
 	var devColumn = getColFromCookie();
 	if(typeof(devColumn) == "undefined"){
-		devColumn = "abcdefgh"
+		devColumn = "abcdefgh";
 	}else{
 		
 	}
 	var params = getParams();
 	
 	//url变量定义在parqms.js文件里面
-	var app_url = url + pageUrl;
+	var app_url = getRootUrl() + pageUrl;
 	if(getMapLength(params) == 0){
 		return app_url;
 	}else{
@@ -69,7 +60,7 @@ function getPageUrl(pageUrl){
 //以get方式请求新的页面
 function getAnPage(pageUrl,params){
 	//url变量定义在parqms.js文件里面
-	var app_url = url + pageUrl;
+	var app_url = getRootUrl() + pageUrl
 	if(getMapLength(params) == 0){
 		window.location.href=app_url;
 	}else{
@@ -84,7 +75,7 @@ function getAnPage(pageUrl,params){
 			i++;
 		}
 		app_url = app_url + paramStr;
-		window.location.href=app_url;
+		window.location.href = app_url;
 	}
 }
 
@@ -125,7 +116,7 @@ function getMapLength(map){
 function logout(){
 	var token = $.cookie('token');
 	$.ajax({
-		url:"http://" + host + path + "index.php/UserCenter_Ctr/logoutReq",
+		url:getRootUrl() + "UserCenter_Ctr/logoutReq",
 		type:"post",
 		data:{logout:true,token:token},
 		success:function(result){
@@ -133,8 +124,8 @@ function logout(){
 			var status = obj.status;
 			var token = obj.token;
         		if(status == 200){
-        			$.removeCookie('token',{path:cookiePath});
-        			gotoPage("index.php/welcome/showDevs");
+        			$.removeCookie('token',{path:getRootDir()});
+        			gotoPage("welcome/showdevs");
 	        	}else{
 		        	alert("后端处理退出登陆失败：" + result);
 		        	

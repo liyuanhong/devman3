@@ -9,4 +9,12 @@ function isUserLogin($info){
     }
 }
 
+function checkLogin($isLogin,$base_url){
+    if($isLogin){
+
+    }else{
+        header("Location: ".$base_url."usercenter/login");
+    }
+}
+
 ?>
