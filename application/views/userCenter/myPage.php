@@ -18,7 +18,7 @@ $userInfo = $params["userInfo"];
         <div style="width: 90%;height: 200px;margin-left: 5%;_background-color: snow;padding-top: 50px;">
             <div style="padding: 1px;width: 124px;height: 124px;border-style: solid;border-width: 1px;display: inline;float: left;border-color: #9d9d9d;">
 <!--                <i class="fa fa-fw fa-edit" style="position: absolute;margin-top: 100px;margin-left: 95px;font-size: 25px;" onclick="showHeadPortraitPanel()"></i>-->
-                <img id="head_portrait"src="<?php if($params['userInfo'][0]['icon'] == ""){echo  base_url().'photo/default160.jpg';}else{echo  base_url().'photo/'.$params['userInfo'][0]['icon'];}?>" style="width: 120px;height: 120px;_background-color: #9d9d9d;">
+                <img id="head_portrait" src="<?php if($params['userInfo'][0]['icon'] == ""){echo  base_url().'photo/default160.jpg';}else{echo  base_url()."photo/headpic/".$params['userInfo'][0]['icon'];}?>" style="height: 120px;width:120px;_background-color: #9d9d9d;">
             </div>
             <div style="float: left;padding-top: 5px;padding-left: 10px;width: 80%;">
                 <label style="font-size: 18px;"><?php echo $userInfo[0]["user_name"]; ?></label>

@@ -63,7 +63,7 @@ class UserCenter_Mod extends CI_Model{
 
     //通过token获取用户信息，如果没有获取到，自动去anymous的用户信息
     function getUserInfoByTokenDefaultAnymous($token){
-        $sql = "select id,user_name,login_name,login_time,role,icon,icon_url,role_name,email,work_num,qq,mobile,registe_time,comments from users where token='".$token."'";
+        $sql = "select id,user_name,login_name,login_time,role,age,gender,icon,icon_url,role_name,email,work_num,qq,mobile,registe_time,comments from users where token='".$token."'";
         $query = $this->db->query($sql);
         $result = $query->result_array();
         $con = count($result);
@@ -90,6 +90,27 @@ class UserCenter_Mod extends CI_Model{
         $sql = "update users set token='0' where token='".$token."'";
         $query = $this->db->query($sql);
     }
-    
+
+    //获取用户头像
+    function getUserHeader($token){
+        $sql = "select icon from users where token='".$token."'";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result;
+    }
+
+    //修改用户头像
+    function changeHeaderPic($picPath,$fileName,$token){
+        $sql = "update users set icon='".$fileName."',icon_url='".$picPath."' where token='".$token."'";
+        $query = $this->db->query($sql);
+    }
+
+    //修改用户信息(type为修改的字段，value为值)
+    function modifyUserInfo($type,$value,$token){
+        $sql = "update users set $type="."'"."$value"."'"." where token='".$token."'";
+        $query = $this->db->query($sql);
+    }
+
+
 
 }

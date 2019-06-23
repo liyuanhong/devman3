@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require dirname(__FILE__)."/../libraries/Util.php";
 require dirname(__FILE__)."/../libraries/Logs.php";
+require dirname(__FILE__)."/../libraries/fileupload/UploadHandler.php";
 
 class UserCenter_Ctr extends CI_Controller{
     public function __construct(){
@@ -9,6 +10,7 @@ class UserCenter_Ctr extends CI_Controller{
         $this->load->model('UserCenter_Mod');
         $this->load->model('Logs_Mod');
         $this->load->helper('url');
+        $this->load->helper('path');
     }
     
     //注册一个新用户
@@ -119,6 +121,46 @@ class UserCenter_Ctr extends CI_Controller{
         $token = get("token","null");
         $result = $this->UserCenter_Mod->getUserInfoByTokenDefaultAnymous($token);
 
+        echo json_encode($result);
+    }
+
+    //上传用户头像
+    function uploadHeadPic(){
+        $token = $_GET["token"];
+        //$upload_handler = new UploadHandler($upload_dir = '/photo/headpic/');
+        $result = $this->UserCenter_Mod->getUserHeader($token);
+        $delIcon = $result[0]["icon"];
+        if($delIcon == null || $delIcon == ""){
+
+        }else{
+            $img = set_realpath(".")."photo/headpic/".$delIcon;
+            $thumImg = set_realpath(".")."photo/headpic/thumbnail/".$delIcon;
+            $img = strtr($img,"\\","/");
+            $thumImg = strtr($thumImg,"\\","/");
+            unlink($img);
+            unlink($thumImg);
+        }
+        $upload_handler = new UploadHandler(null,true,null, '/photo/headpic/');
+        $fileName = $upload_handler->theRes["files"][0]->name;
+        $filePath = "photo/headpic/";
+        $this->UserCenter_Mod->changeHeaderPic($filePath,$fileName,$token);
+    }
+
+    //修改用户信息
+    function modifyUserInfo(){
+        $token = $_POST["token"];
+        $type =$_POST["type"];
+        $value = $_POST["value"];
+        $result = Array();
+        try{
+            $this->UserCenter_Mod->modifyUserInfo($type,$value,$token);
+            $result["status"] = 200;
+            $result["message"] = "修改用户信息成功";
+        }catch (Exception $e){
+            //echo 'Message: ' .$e->getMessage();
+            $result["status"] = 4004;
+            $result["message"] = "修改用户信息失败";
+        }
         echo json_encode($result);
     }
 }

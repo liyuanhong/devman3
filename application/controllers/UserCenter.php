@@ -84,8 +84,8 @@ class UserCenter extends CI_Controller{
         $arr = array();
         $arr['params'] = $this->params;
 
-        //echo json_encode($this->params);
-        //exit;
+//        echo json_encode($this->params);
+//        exit;
 
         //写入日志
         writeLog($this,$this->userInfo[0]['login_name'],"访问了编辑资料页面！","loginName",1);

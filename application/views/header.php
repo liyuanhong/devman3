@@ -18,7 +18,7 @@ $isLogin = $params['isLogin'];
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php if($isLogin == 0){echo  base_url().'static/dist/img/user2-160x160-2.jpg';}else{ if($params['userInfo'][0]['icon'] == ""){echo  base_url().'photo/default160.jpg';}else{echo  base_url().'photo/'.$params['userInfo'][0]['icon'];}} ?>" class="user-image" alt="img">
+              <img id="head_image1" src="<?php if($isLogin == 0){echo  base_url().'static/dist/img/user2-160x160-2.jpg';}else{ if($params['userInfo'][0]['icon'] == ""){echo  base_url().'photo/default160.jpg';}else{echo  base_url()."photo/headpic/thumbnail/".$params['userInfo'][0]['icon'];}} ?>" class="user-image" alt="img">
               <?php if($isLogin){?>
               <span class="hidden-xs"><?php echo $params['userInfo'][0]['user_name'];?></span>
               <?php }else{?>
@@ -28,7 +28,7 @@ $isLogin = $params['isLogin'];
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                  <div style="width:100%;height: 90px;"><img src="<?php if($isLogin == 0){echo  base_url().'static/dist/img/user2-160x160-2.jpg';}else{ if($params['userInfo'][0]['icon'] == ""){echo  base_url().'photo/default160.jpg';}else{echo  base_url().'photo/'.$params['userInfo'][0]['icon'];}} ?>" class="img-circle" alt="img" style="width: 90px;height: 90px;"></div>
+                  <div style="width:100%;height: 90px;"><img id="head_image2" src="<?php if($isLogin == 0){echo  base_url().'static/dist/img/user2-160x160-2.jpg';}else{ if($params['userInfo'][0]['icon'] == ""){echo  base_url().'photo/default160.jpg';}else{echo  base_url()."photo/headpic/thumbnail/".$params['userInfo'][0]['icon'];}} ?>" class="img-circle" alt="img" style="width: 90px;height: 90px;"></div>
                 <?php if($isLogin){?>
                 <p>你好：<?php echo $params['userInfo'][0]['user_name'];?>~</p>
                 <?php }else{?>
