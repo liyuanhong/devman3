@@ -14,16 +14,18 @@
 </style>
 
 <?php if(count($defInfo) == 0): ?>
+<script src="<?php echo  'http://'.ROOT_URL ?>static/devman3/js/viewDev/dev_details.js"></script>
 <div class="content-wrapper" style="_background-color: #FFCCCC;">
     <div style="width:100%;_background: #00c0ef;padding-top:200px;">
         <div style="margin:auto;width:200px;">
             <h3 style="margin-top:0px;display: inline;">没有选择任何设备</h3>
-            <button type="button" class="btn btn-block btn-success" style="width:auto;margin:auto;margin-top:30px;">返回首页</button>
+            <button type="button" class="btn btn-block btn-success" style="width:auto;margin:auto;margin-top:30px;" onclick="jumpToIndex()">返回首页</button>
         </div>
     </div>
 </div>
 <?php else: ?>
 <div class="content-wrapper" style="_background-color: #FFCCCC;">
+    <?php if(count($defInfo[0]["imgs"]) != 0): ?>
     <div style="width:50%;margin:auto;_background: yellow;">
         <div class="box-body" style="_background: lightblue;">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -51,7 +53,8 @@
             </div>
         </div>
     </div>
-    <div style="width:100%;margin:auto;_background: yellow;">
+    <?php endif; ?>
+    <div style="width:100%;margin:auto;_background: yellow;padding-top:50px;">
         <table style="width:70%;margin:auto;">
             <tbody>
                 <tr>

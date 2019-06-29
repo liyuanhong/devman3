@@ -122,3 +122,12 @@ function searchByScope(){
     getAnPage("welcome/showdevs",params);
 }
 
+/*
+*点击图片跳转到设备详情页面
+ */
+function jumToDevdetail(e){
+    var devid = $(e).parent().attr("devid");
+    var params = getParams();
+    params["id"] = devid;
+    getAnPage("welcome/devdetails",params);
+}

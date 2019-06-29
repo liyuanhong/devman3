@@ -305,10 +305,10 @@ if(array_key_exists("scope",$params)){
                 </thead>
                 <tbody>
                 <?php foreach($devs as $dev){?>
-                <tr role="row" class="odd">
+                <tr role="row" class="odd" devid="<?php echo $dev->id; ?>">
                   <td><?php echo $rowNumber++;?></td>
-                  <td style="padding:1px;"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.HOST.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
-                  <td class="sorting_1"><?php echo $dev->device_name;?></td>
+                  <td style="padding:1px;cursor:pointer;" onclick="jumToDevdetail(this)"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.HOST.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
+                  <td style="cursor:pointer;"onclick="jumToDevdetail(this)" class="sorting_1"><?php echo $dev->device_name;?></td>
                   <?php if(hasArrValue($columnCtr,"a")){echo '
                   <td>'.$dev->model.'</td>
                   ';}if(hasArrValue($columnCtr,"b")){echo '
