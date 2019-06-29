@@ -80,7 +80,7 @@ class Welcome extends CI_Controller{
 	    redirect("/welcome/showdevs");
 	}
 	
-	#显示查看设备页面（与首页同为同一个页面）
+	//显示查看设备页面（与首页同为同一个页面）
 	public function showDevs(){
         $plateform = get("plateform","all");
         $brand = get("brand","all");
@@ -99,7 +99,6 @@ class Welcome extends CI_Controller{
         $baseon = get("baseon","device_name");
         $rule = get("rule","等于");
         $scope = get("scope","");
-
 
 	    //用于控制要显示的设备信息列
 	    $columnCtr = get('showColumn','abcdefgh');
@@ -127,8 +126,8 @@ class Welcome extends CI_Controller{
 	    $arr = array();
 	    $arr['params'] = $this->params;
 
-	    //echo(json_encode($arr));
-	    //exit;
+//	    echo(json_encode($arr));
+//	    exit;
 
         writeLog($this,$this->userInfo[0]['login_name'],"访问了查看设备页面！","loginName",1);
         $this->Statistic_Mod->insertStatisticInfo($this->userInfo,SHOW_DEV_PAGE);
@@ -138,6 +137,24 @@ class Welcome extends CI_Controller{
 //		echo json_encode($arr);
 //		exit;
 	}
+
+	//显示设备详情页面
+    function devDetails(){
+        $id = get("id","0");
+        $defInfo = $this->SearchDev_Mod->getDevInfoById($id);
+        $this->params['defInfo'] = $defInfo;
+        if(count($defInfo) == 0){
+
+        }else{
+            $devImages = $this->SearchDev_Mod->getDevImagesById($id);
+            $this->params['defInfo'][0]['imgs'] = $devImages;
+        }
+        $arr = array();
+        $arr['params'] = $this->params;
+//        echo json_encode($arr);
+//		exit;
+        $this->load->view('starter',$arr);
+    }
 
 	//通过传输的参数来查询设备
 	private function searchDevsByParams($rowCount,$page){

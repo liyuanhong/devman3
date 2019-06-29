@@ -20,7 +20,7 @@
           </a>
           <ul class="treeview-menu" <?php echo ctrLeftItemExpand($item1,"welcome");?>>
             <li <?php echo ctrLeftItemShow($item2,"showdevs");?> id="show_dev"><a href="#"><i class="fa fa-circle-o"></i>查看设备</a></li>
-            <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>反馈信息</a></li>
+            <li <?php echo ctrLeftItemShow($item2,"devdetails");?> id="dev_details"><a href="#"><i class="fa fa-circle-o"></i>设备详情</a></li>
           </ul>
         </li>
         <li class="treeview">

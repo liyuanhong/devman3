@@ -140,6 +140,19 @@ function getParams(){
 	params["rowCount"] = $.cookie('rowCount');
 	return params;
 }
+//获取指定要请求url的参数
+function getTheParams(param){
+	var showColumnStr = getColFromCookie();
+	var params = new Array();
+	if(param == "showColumnStr"){
+		params[param] = showColumnStr;
+	}else if(param == "token"){
+		params[param] = $.cookie("token")
+	}else if(param == "rowCount"){
+		params[param] = $.cookie("rowCount");
+	}
+	return params;
+}
 
 //清除列显示的cookie
 function clearDefaultDevColumn(){

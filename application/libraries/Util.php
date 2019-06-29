@@ -87,13 +87,17 @@ function hasArrValue($arr,$val){
 function get($param,$defaultVal){
     if(hasThisGetParam($param)){
         $val = $_GET[$param];
-        return $val;
+        if($val == "undefined" or $val == ""){
+            return $defaultVal;
+        }else{
+            return $val;
+        }
     }else{
         return $defaultVal;
     }
 }
 
-//通过get方式获取某个参数,如果没有该参数，则返回默认值
+//通过post方式获取某个参数,如果没有该参数，则返回默认值
 function post($param,$defaultVal){
     if(hasThisPOSTParam($param)){
         $val = $_POST[$param];

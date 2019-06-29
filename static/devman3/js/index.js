@@ -11,6 +11,9 @@ function changeMenu(){
 		if(id == "show_dev"){
 			var params = getParams();
 			getAnPage("welcome/showdevs",params);
+		}else if(id == "dev_details"){
+			var params = getTheParams("token");
+			getAnPage("welcome/devdetails",params);
 		}else if(id == "mypage"){
             var params = getParams();
             getAnPage("usercenter/mypage",params);

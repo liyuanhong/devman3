@@ -50,6 +50,8 @@ $isLogin = $params['isLogin'];
         //查看设备页面
         if($thePage == "showdevs"){
             $this->load->view('viewdev/show_devs',$arr);
+        }else if($thePage == "devdetails"){
+            $this->load->view('viewdev/dev_details',$arr);
         }else{
             echo "没有页面！";
         }

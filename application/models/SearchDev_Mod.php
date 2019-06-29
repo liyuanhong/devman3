@@ -37,6 +37,29 @@ class SearchDev_Mod extends CI_Model{
     public function getDevsByDevInfo($devInfo){
 
     }
+
+    //通过id设备id来查询设备信息
+    public function getDevInfoById($id){
+        $info = array("id","device_name","model","theNum","plateform","brand","version","owner","status","borrower");
+        array_push($info,"comments","category","check_dev","add_time","borrow_time");
+        $sql = "select " ;
+        for($i = 0;$i < count($info);$i++){
+            if($i != count($info) - 1){
+                $sql = $sql."devices.".$info[$i].",";
+            }else{
+                $sql = $sql.$info[$i]."";
+            }
+        }
+        $sql = $sql." FROM devices  where id = ".$id;
+        $query = $this->db->query($sql)->result_array();
+        return $query;
+    }
+
+    public function getDevImagesById($id){
+        $sql = "select path from dev_imgs where device_id = ".$id;
+        $query = $this->db->query($sql)->result_array();
+        return $query;
+    }
     
     //根据表名，获取表中的数据条数
     public function getDataConFromTable($table){
