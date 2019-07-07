@@ -140,9 +140,6 @@ function applyForDev(e){
     var token = $.cookie('token');
     var devid = $(e).attr("tag");
     if(val == 0){
-        $(e).text("取消申请");
-        $(e).attr("val",1);
-        $(e).attr("class","btn btn-block btn-warning btn-sm");
         $.ajax({
             url:getRootUrl() + "searchdev_ctr/applyForDev",
             type:"get",
@@ -151,16 +148,32 @@ function applyForDev(e){
                 var obj = JSON.parse(result);
                 var status = obj.status;
                 var token = obj.token;
-                if(status == 200){
-                    alert("修改成功");
+                if(obj["status"] == 200){
+                    $(e).text("取消申请");
+                    $(e).attr("val",1);
+                    $(e).attr("class","btn btn-block btn-warning btn-sm");
                 }else{
-                    alert("后端处理退出登陆失败：" + result);
+                    alert(obj["message"]);
                 }
             }
         });
     }else if(val == 1){
-        $(e).text("申 请");
-        $(e).attr("val",0);
-        $(e).attr("class","btn btn-block btn-success btn-sm");
+        $.ajax({
+            url:getRootUrl() + "searchdev_ctr/cancleApplyDev",
+            type:"get",
+            data:{"devid":devid,"token":token},
+            success:function(result){
+                var obj = JSON.parse(result);
+                var status = obj.status;
+                var token = obj.token;
+                if(obj["status"] == 200){
+                    $(e).text("申 请");
+                    $(e).attr("val",0);
+                    $(e).attr("class","btn btn-block btn-success btn-sm");
+                }else{
+                    alert(obj["message"]);
+                }
+            }
+        });
     }
 }
