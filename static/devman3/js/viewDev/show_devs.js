@@ -131,3 +131,36 @@ function jumToDevdetail(e){
     params["id"] = devid;
     getAnPage("welcome/devdetails",params);
 }
+
+/*
+*申请设备
+ */
+function applyForDev(e){
+    var val = $(e).attr("val");
+    var token = $.cookie('token');
+    var devid = $(e).attr("tag");
+    if(val == 0){
+        $(e).text("取消申请");
+        $(e).attr("val",1);
+        $(e).attr("class","btn btn-block btn-warning btn-sm");
+        $.ajax({
+            url:getRootUrl() + "searchdev_ctr/applyForDev",
+            type:"get",
+            data:{"devid":devid,"token":token},
+            success:function(result){
+                var obj = JSON.parse(result);
+                var status = obj.status;
+                var token = obj.token;
+                if(status == 200){
+                    alert("修改成功");
+                }else{
+                    alert("后端处理退出登陆失败：" + result);
+                }
+            }
+        });
+    }else if(val == 1){
+        $(e).text("申 请");
+        $(e).attr("val",0);
+        $(e).attr("class","btn btn-block btn-success btn-sm");
+    }
+}

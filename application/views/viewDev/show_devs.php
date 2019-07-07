@@ -68,11 +68,8 @@ if(array_key_exists("scope",$params)){
 <script src="<?php echo  base_url(); ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="<?php echo  base_url(); ?>static/devman3/js/viewDev/show_devs.js"></script>
 
-
-
-
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="<?php echo  base_url(); ?>static/plugins/iCheck/all.css">
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" href="<?php echo  base_url(); ?>static/plugins/iCheck/all.css">
 
 <div id="show_devs_containt_view" class="content-wrapper">
   <div id="show_devs_top_control">
@@ -274,7 +271,7 @@ if(array_key_exists("scope",$params)){
           <!-- 表格列控制end -->
              </div>
     </div>
-            </div>
+    </div>
 <!-- 设备表格区域start -->
         <div class="row" style="margin-left: 0px;margin-right: 0px;">
           <div class="col-sm-12">
@@ -320,7 +317,7 @@ if(array_key_exists("scope",$params)){
                   ';}if(hasArrValue($columnCtr,"e")){echo '
                   <td>'.$dev->borrower.'</td>
                   ';}if(hasArrValue($columnCtr,"f")){echo '
-                  <td></td>
+                  <td><button tag="'.$dev->id.'" type="button" class="btn btn-block btn-success btn-sm" style="width:70px;margin:auto;" val="0" onclick="applyForDev(this)">申 请</button></td>
                   ';}if(hasArrValue($columnCtr,"g")){echo '
                   <td>'.$dev->owner.'</td>
                   ';}if(hasArrValue($columnCtr,"h")){echo '

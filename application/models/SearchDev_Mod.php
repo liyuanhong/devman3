@@ -241,5 +241,11 @@ class SearchDev_Mod extends CI_Model{
 
         return $result;
     }
+
+    //向设备申请表中插入一条数据
+    function insertApplyInfo($device_id,$uid,$status,$from,$to,$fromname,$toname){
+        $sql = "insert into dev_status (device_id,uid,status,`from`,`to`,fromname,toname) values (".$device_id.",".$uid.",".$status.",".$from.",".$to.",".$fromname.",".$toname.")";
+        $this->db->query($sql);
+    }
 }
 

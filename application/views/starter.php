@@ -56,6 +56,10 @@ $isLogin = $params['isLogin'];
             echo "没有页面！";
         }
     //}else if($theCtr == "UserCenter" || $theCtr == "usercenter" || $theCtr == "Usercenter"){
+    }else if($theCtr == "managedev"){
+        if($thePage == "devlist"){
+            $this->load->view('managedev/devlist',$arr);
+        }
     }else if($theCtr == "usercenter"){
         if($thePage == "mypage"){
             checkLogin($isLogin,$baseUrl);

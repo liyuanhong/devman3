@@ -4,15 +4,16 @@ require dirname(__FILE__)."/../libraries/Util.php";
 require dirname(__FILE__)."/../libraries/UserCenter_Util.php";
 require dirname(__FILE__)."/../libraries/Logs.php";
 
-class Welcome extends CI_Controller{
+class ManageDev extends CI_Controller{
     public $token;
     public $params;
     public $base_url;
     public $site_url;
     public $userInfo;
     public $isLogin;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('SearchDev_Mod');
         $this->load->model('UserCenter_Mod');
@@ -22,7 +23,6 @@ class Welcome extends CI_Controller{
         $this->load->model('DevAttrs_Mod');
         $this->load->helper('url');
 
-
         $this->params = array();
         $header = getallheaders();
         $this->userAgent = $header["User-Agent"];
@@ -30,58 +30,19 @@ class Welcome extends CI_Controller{
         $this->base_url = $this->config->base_url();
         $this->site_url = $this->config->site_url();
         $this->userInfo = $this->UserCenter_Mod->getUserInfoByTokenDefaultAnymous($this->token);
-//        $this->devDataTotal = $this->SearchDev_Mod->getDataConFromTable(DEVICES_TABLE_NAME)[0]["total"];
         $this->isLogin = isUserLogin($this->UserCenter_Mod->getUserInfoByToken($this->token));
+
         $this->params['userAgent'] = $this->userAgent;
         $this->params['base_url'] = $this->base_url;
         $this->params['site_url'] = $this->site_url;
         $this->params['userInfo'] = $this->userInfo;
         $this->params['isLogin'] = $this->isLogin;
-//        $this->params['devDataTotal'] = $this->devDataTotal;
 
 //		echo json_encode(params);
 //		exit;
     }
-    
-    #加载首页
-	public function index()
-	{
-	    /*
-		//用于控制要显示的设备信息列
-		$columnCtr = get('showColumn','abcdefgh');
-		$rowCount = get("rowCount",50);
-		if(is_numeric($rowCount)){}else{$rowCount = 50;}
-		$page = get("page",1);
-		if(is_numeric($page)){}else{$page = 1;}
-        $searchResult = self::searchDevsByParams($rowCount,$page);
-        $devs = $searchResult["devs"];
-        $this->params['pageName'] = HOME_PAGE;
-        //获取是否有该页面的操作权限
-        $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE);
-		$this->params['columnCtr'] = $columnCtr;
-        $this->params['attrs'] = $this->DevAttrs_Mod->getMobileAttrs();
-		$this->params['devs'] = $devs;
-        $this->params['devDataTotal'] = $searchResult["total"];
-		$this->params['page'] = $page;
-		$this->params['rowCount'] = $rowCount;
-		$arr = array();
-		$arr['params'] = $this->params;
 
-		//写入日志
-        writeLog($this,$this->userInfo[0]['login_name'],"访问了首页！","loginName",1);
-        //进行页面访问统计
-        $this->Statistic_Mod->insertStatisticInfo($this->userInfo,HOME_PAGE);
-		$this->load->view('starter',$arr);
-//		echo json_encode($arr);
-//		exit;
-	    */
-	    //CI框架的辅助函数，根据配置文件返回你站点的根 URL
-	    //$redirUrl = base_url()."/welcome/showdevs";
-	    redirect("/welcome/showdevs");
-	}
-	
-	//显示查看设备页面（与首页同为同一个页面）
-	public function showDevs(){
+    public function devList(){
         $plateform = get("plateform","all");
         $brand = get("brand","all");
         $version = get("version","all");
@@ -95,18 +56,19 @@ class Welcome extends CI_Controller{
         $info["status"] = $status;
         $info["category"] = $category;
         $info["check_dev"] = $check_dev;
+
         $keyword = get("keyword","");
         $baseon = get("baseon","device_name");
         $rule = get("rule","等于");
         $scope = get("scope","");
 
-	    //用于控制要显示的设备信息列
-	    $columnCtr = get('showColumn','abcdefgh');
-	    $rowCount = get("rowCount",50);
-	    if(is_numeric($rowCount)){}else{$rowCount = 50;}
-	    $page = get("page",1);
-	    if(is_numeric($page)){}else{$page = 1;}
-	    //$devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
+        //用于控制要显示的设备信息列
+        $columnCtr = get('showColumn','abcdefgh');
+        $rowCount = get("rowCount",50);
+        if(is_numeric($rowCount)){}else{$rowCount = 50;}
+        $page = get("page",1);
+        if(is_numeric($page)){}else{$page = 1;}
+        //$devs = $this->SearchDev_Mod->getAllDevs($rowCount,$page);
         $searchResult = self::searchDevsByParams($rowCount,$page);
         $devs = $searchResult["devs"];
         $this->params['pageName'] = SHOW_DEV_PAGE;
@@ -115,46 +77,43 @@ class Welcome extends CI_Controller{
         $this->params['columnCtr'] = $columnCtr;
         $this->params['attrs'] = $this->DevAttrs_Mod->getMobileAttrs();
         $this->params['info'] = $info;
-	    $this->params['devs'] = $devs;
+        $this->params['devs'] = $devs;
         $this->params['devDataTotal'] = $searchResult["total"];
         $this->params['keyword'] = $keyword;
         $this->params['baseon'] = $baseon;
         $this->params['rule'] = $rule;
         $this->params['scope'] = $scope;
-	    $this->params['page'] = $page;
-	    $this->params['rowCount'] = $rowCount;
-	    $arr = array();
-	    $arr['params'] = $this->params;
-
-//	    echo(json_encode($arr));
-//	    exit;
-
-        writeLog($this,$this->userInfo[0]['login_name'],"访问了查看设备页面！","loginName",1);
-        $this->Statistic_Mod->insertStatisticInfo($this->userInfo,SHOW_DEV_PAGE);
-
-	    $this->load->view('starter',$arr);
-	}
-
-	//显示设备详情页面
-    function devDetails(){
-        $id = get("id","0");
-        $defInfo = $this->SearchDev_Mod->getDevInfoById($id);
-        $this->params['defInfo'] = $defInfo;
-        if(count($defInfo) == 0){
-
-        }else{
-            $devImages = $this->SearchDev_Mod->getDevImagesById($id);
-            $this->params['defInfo'][0]['imgs'] = $devImages;
-        }
+        $this->params['page'] = $page;
+        $this->params['rowCount'] = $rowCount;
         $arr = array();
         $arr['params'] = $this->params;
-//        echo json_encode($arr);
-//		exit;
+
         $this->load->view('starter',$arr);
+
     }
 
-	//通过传输的参数来查询设备
-	private function searchDevsByParams($rowCount,$page){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //通过传输的参数来查询设备
+    private function searchDevsByParams($rowCount,$page){
         $rowCount = get("rowCount",50);
         $plateform = get("plateform","all");
         $brand = get("brand","all");

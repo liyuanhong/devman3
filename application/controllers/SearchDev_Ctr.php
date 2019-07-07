@@ -7,6 +7,8 @@ class SearchDev_Ctr extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('SearchDev_Mod');
+        $this->load->model('UserCenter_Mod');
+        $this->load->model('SearchDev_Mod');
     }
     
     //获取要查询的设备信息
@@ -33,5 +35,26 @@ class SearchDev_Ctr extends CI_Controller{
         $devs = json_encode($result);
         echo $devs;
     }
-	
+
+    //申请设备
+    function applyForDev(){
+        $token = get('token','notoken');
+        $dev_id = get("devid","0");
+        $result = Array();
+        try{
+            $userInfo = $this->UserCenter_Mod->getUserInfoByToken($token);
+            $uid = $userInfo[0]["id"];
+            $userName = $userInfo[0]["user_name"];
+
+            $this->SearchDev_Mod->insertApplyInfo($dev_id,$uid,1,0,0,'null','null');
+
+            $result["status"] = 200;
+            $result["message"] = "设备申请成功";
+        }catch(Exception $e){
+            echo 'Message: ' .$e->getMessage();
+            $result["status"] = 4003;
+            $result["message"] = "设备申请失败";
+        }
+        echo json_encode($result);
+    }
 }

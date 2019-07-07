@@ -3,8 +3,7 @@
   $item1 = getIndexOfUrl($this,1);
   $item2 = getIndexOfUrl($this,2);
   $isLogin = $params['isLogin'];
-  
-  
+
   ?>
   
   <aside class="main-sidebar">
@@ -23,16 +22,18 @@
             <li <?php echo ctrLeftItemShow($item2,"devdetails");?> id="dev_details"><a href="#"><i class="fa fa-circle-o"></i>设备详情</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview" <?php echo ctrLeftArrowShow($item1,"managedev");?>>
           <a href="#"><i class="fa fa-chevron-circle-right"></i> <span>设备管理</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
-          <ul class="treeview-menu">
-            <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>编辑设备</a></li>
-            <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>添加设备</a></li>
-            <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>盘点设备</a></li>
+          <ul class="treeview-menu" <?php echo ctrLeftItemExpand($item1,"managedev");?>>
+              <li id="devlist" <?php echo ctrLeftItemShow($item2,"devlist");?> ><a href="#"><i class="fa fa-circle-o"></i>设备列表</a></li>
+              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>编辑设备</a></li>
+              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>添加设备</a></li>
+              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>盘点设备</a></li>
+              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>确认设备</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -56,6 +57,8 @@
               <li <?php echo ctrLeftItemShow($item2,"mypage");?> id="mypage"><a href="#"><i class="fa fa-circle-o"></i>我的页面</a></li>
               <li <?php echo ctrLeftItemShow($item2,"editprofile");?> id="editprofile"><a href="#"><i class="fa fa-circle-o"></i>编辑资料</a></li>
               <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>用户管理</a></li>
+              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>我的设备</a></li>
+              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>设备操作</a></li>
           </ul>
         </li>
         </li>
