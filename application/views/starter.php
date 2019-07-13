@@ -58,7 +58,11 @@ $isLogin = $params['isLogin'];
     //}else if($theCtr == "UserCenter" || $theCtr == "usercenter" || $theCtr == "Usercenter"){
     }else if($theCtr == "managedev"){
         if($thePage == "devlist"){
+            checkLogin($isLogin,$baseUrl);
             $this->load->view('managedev/devlist',$arr);
+        }else if($thePage == "editdev"){
+            checkLogin($isLogin,$baseUrl);
+            $this->load->view('managedev/editdev',$arr);
         }
     }else if($theCtr == "usercenter"){
         if($thePage == "mypage"){

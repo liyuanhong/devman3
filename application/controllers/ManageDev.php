@@ -42,6 +42,7 @@ class ManageDev extends CI_Controller{
 //		exit;
     }
 
+    //进入设备管理页面
     public function devList(){
         $plateform = get("plateform","all");
         $brand = get("brand","all");
@@ -88,12 +89,29 @@ class ManageDev extends CI_Controller{
         $arr = array();
         $arr['params'] = $this->params;
 
+//        echo json_encode($arr);
+//        exit;
         $this->load->view('starter',$arr);
-
     }
 
 
+    //进入设备编辑页面
+    public function editdev(){
+        $id = get("id","0");
+        $defInfo = $this->SearchDev_Mod->getDevInfoById($id);
+        $this->params['defInfo'] = $defInfo;
+        if(count($defInfo) == 0){
 
+        }else{
+            $devImages = $this->SearchDev_Mod->getDevImagesById($id);
+            $this->params['defInfo'][0]['imgs'] = $devImages;
+        }
+        $arr = array();
+        $arr['params'] = $this->params;
+//        echo json_encode($arr);
+//		exit;
+        $this->load->view('starter',$arr);
+    }
 
 
 

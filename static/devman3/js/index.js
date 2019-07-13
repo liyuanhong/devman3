@@ -17,6 +17,9 @@ function changeMenu(){
 		}else if(id == "devlist"){
 			var params = getParams();
 			getAnPage("managedev/devlist",params);
+		}else if(id == "editdev"){
+			var params = getTheParams("token");
+			getAnPage("managedev/editdev",params);
 		}else if(id == "mypage"){
             var params = getParams();
             getAnPage("usercenter/mypage",params);

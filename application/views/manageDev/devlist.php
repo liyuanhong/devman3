@@ -56,16 +56,16 @@ if(array_key_exists("scope",$params)){
 ?>
 
 <?php if(strpos($params["userAgent"],"Mobile") === false){?>
-    <link rel="stylesheet" href="<?php echo  base_url(); ?>static/devman3/css/viewDev/show_devs.css">
+    <link rel="stylesheet" href="<?php echo  base_url(); ?>static/devman3/css/manageDev/show_devs.css">
 <?php }else{?>
     <!-- 如果是手机用户，则返回手机端的css -->
-    <link rel="stylesheet" href="<?php echo  base_url(); ?>static/devman3/css/viewDev/show_devs_mobile.css">
+    <link rel="stylesheet" href="<?php echo  base_url(); ?>static/devman3/css/manageDev/show_devs_mobile.css">
 <?php }?>
 
 <link rel="stylesheet" href="<?php echo  base_url(); ?>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo  base_url(); ?>static/bower_components/select2/dist/css/select2.min.css">
 <script src="<?php echo  base_url(); ?>static/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="<?php echo  base_url(); ?>static/devman3/js/viewDev/show_devs.js"></script>
+<script src="<?php echo  base_url(); ?>static/devman3/js/manageDev/devlist.js"></script>
 
 <!-- iCheck for checkboxes and radio inputs -->
 <link rel="stylesheet" href="<?php echo  base_url(); ?>static/plugins/iCheck/all.css">
@@ -243,7 +243,7 @@ if(array_key_exists("scope",$params)){
                                 <div class="icheckbox_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
                                 <input type="checkbox" id="checkBut6" value="applyFor" class="flat-red" style="position: absolute; opacity: 0;">
                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                </div>申请</label>
+                                </div>操作</label>
                         </td></tr>
                                 <tr><td>
                                         <label class=""  onclick="dealColumnClick(this)">
@@ -298,7 +298,7 @@ if(array_key_exists("scope",$params)){
                           ';}if(hasArrValue($columnCtr,"e")){echo '
                           <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">签借人</th>
                           ';}if(hasArrValue($columnCtr,"f")){echo '
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">申请</th>
+                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">操作</th>
                           ';}if(hasArrValue($columnCtr,"g")){echo '
                           <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">所属</th>
                           ';}if(hasArrValue($columnCtr,"h")){echo '
@@ -310,8 +310,8 @@ if(array_key_exists("scope",$params)){
                         <?php foreach($devs as $dev){?>
                             <tr role="row" class="odd" devid="<?php echo $dev->id; ?>">
                                 <td><?php echo $rowNumber++;?></td>
-                                <td style="padding:1px;cursor:pointer;" onclick="jumToDevdetail(this)"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.HOST.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
-                                <td style="cursor:pointer;"onclick="jumToDevdetail(this)" class="sorting_1"><?php echo $dev->device_name;?></td>
+                                <td style="padding:1px;cursor:pointer;" onclick="jumToEditdev(this)"><div style="height:63px;width:63px;"><img style="height: 63px;" src="<?php echo 'http://'.HOST.'/devman3/files/thumbnail/'.trim($dev->path);?>"/></div></td>
+                                <td style="cursor:pointer;" onclick="jumToEditdev(this)" class="sorting_1"><?php echo $dev->device_name;?></td>
                                 <?php if(hasArrValue($columnCtr,"a")){echo '
                                   <td>'.$dev->model.'</td>
                                   ';}if(hasArrValue($columnCtr,"b")){echo '
@@ -323,7 +323,7 @@ if(array_key_exists("scope",$params)){
                                   ';}if(hasArrValue($columnCtr,"e")){echo '
                                   <td>'.$dev->borrower.'</td>
                                   ';}if(hasArrValue($columnCtr,"f")){echo '
-                                  <td><button type="button" class="btn btn-block btn-danger btn-sm" style="width:60px;margin:auto;">删 除</button></td>
+                                  <td><button type="button" class="btn btn-block btn-success btn-sm" style="width:70px;margin:auto;" onclick="jumToEditdev1(this)">管理设备</button></td>
                                   ';}if(hasArrValue($columnCtr,"g")){echo '
                                   <td>'.$dev->owner.'</td>
                                   ';}if(hasArrValue($columnCtr,"h")){echo '
