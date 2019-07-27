@@ -55,6 +55,7 @@ class SearchDev_Mod extends CI_Model{
         return $query;
     }
 
+    //通过设备id，查询设备的所有图片
     public function getDevImagesById($id){
         $sql = "select path from dev_imgs where device_id = ".$id;
         $query = $this->db->query($sql)->result_array();
@@ -246,6 +247,13 @@ class SearchDev_Mod extends CI_Model{
     function getDevStatus($dev_id){
         $sql = "select status from devices where id = ".dev_id;
         $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    //通过设备的id，查询设备图片
+    function getDevImgsById($dev_id){
+        $sql = "select path from dev_imgs where device_id = $dev_id";
+        $query = $this->db->query($sql)->result_array();
         return $query;
     }
 }

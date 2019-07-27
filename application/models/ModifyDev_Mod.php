@@ -23,4 +23,36 @@ class ModifyDev_Mod extends CI_Model{
         $sql = "delete from dev_status where uid = ".$uid." and status = ".$status;
         $this->db->query($sql);
     }
+
+    //修改设备信息
+    function modifyDevInfo($dev_id,$type,$info){
+        $sql = "update devices set ".$type." = '".$info."' where id = ".$dev_id;
+        $this->db->query($sql);
+    }
+
+    //通过设备id，给设备添加一张图片
+    function addPicById($dev_id,$path){
+        $sql = "insert into dev_imgs (device_id,path) values ($dev_id,'$path')";
+        $this->db->query($sql);
+    }
+
+    //通过设备id，删除设备对应的设备图片
+    function delDevImgsById($dev_id){
+        $sql = "delete from dev_imgs where device_id = ".$dev_id;
+        $this->db->query($sql);
+    }
+
+    //通过图片名字，删除设备图片
+    function delDevImgsByImg($path){
+        $sql = "delete from dev_imgs where path = '".$path."'";
+        $this->db->query($sql);
+    }
+
+    //删除设备id对应的设备
+    function delDevById($dev_id){
+        $sql = "delete from devices where id = ".$dev_id;
+        $this->db->query($sql);
+    }
+
+
 }

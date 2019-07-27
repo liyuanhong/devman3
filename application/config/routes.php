@@ -55,4 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['searchdev_ctr'] = 'searchdev_ctr';
 $route['usercenter'] = 'usercenter';
 $route['managedev'] = 'managedev';
+$route['managedev_ctr'] = 'managedev_ctr';
 

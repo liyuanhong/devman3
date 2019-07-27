@@ -25,29 +25,31 @@ function uploadHeadPic(){
 }
 
 //修改用户资料
-function modifyUserInfo(e){
-    if($(e).parent().prev().attr("disabled") == undefined){
+function modifyUserInfo(e) {
+    if ($(e).parent().prev().attr("disabled") == undefined) {
         type = $(e).attr("tag").split("-")[1];
         value = $(e).parent().prev().val()
-        $(e).parent().prev().attr("disabled","disabled")
+        $(e).parent().prev().attr("disabled", "disabled")
+        $(e).text("编辑");
         var token = $.cookie('token');
         $.ajax({
-            url:getRootUrl() + "UserCenter_Ctr/modifyUserInfo",
-            type:"post",
-            data:{"type":type,"value":value,"token":token},
-            success:function(result){
+            url: getRootUrl() + "UserCenter_Ctr/modifyUserInfo",
+            type: "post",
+            data: {"type": type, "value": value, "token": token},
+            success: function (result) {
                 var obj = JSON.parse(result);
                 var status = obj.status;
                 var token = obj.token;
-                if(status == 200){
+                if (status == 200) {
                     alert("修改成功");
-                }else{
+                } else {
                     alert("后端处理退出登陆失败：" + result);
 
                 }
             }
         });
-    }else{
+    } else {
         $(e).parent().prev().removeAttr("disabled");
+        $(e).text("提交");
     }
 }

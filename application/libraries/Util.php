@@ -101,7 +101,11 @@ function get($param,$defaultVal){
 function post($param,$defaultVal){
     if(hasThisPOSTParam($param)){
         $val = $_POST[$param];
-        return $val;
+        if($val == "undefined" or $val == ""){
+            return $defaultVal;
+        }else{
+            return $val;
+        }
     }else{
         return $defaultVal;
     }

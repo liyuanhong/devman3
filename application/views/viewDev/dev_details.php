@@ -37,7 +37,8 @@
                 <div class="carousel-inner">
                     <?php for($i = 0;$i < count($defInfo[0]["imgs"]);$i++): ?>
                     <div <?php if($i == 0){echo 'class="item active"';}else{echo 'class="item"';}?>>
-                        <img style="height:550px;margin:auto;" src="<?php echo  base_url()."files/".str_replace(" ","",$defInfo[0]["imgs"][$i]["path"]); ?>" alt="">
+<!--                        <img style="height:550px;margin:auto;" src="--><?php //echo  base_url()."files/".str_replace(" ","",$defInfo[0]["imgs"][$i]["path"]); ?><!--" alt="">-->
+                        <img style="height:550px;margin:auto;" src="<?php echo  base_url()."files/".$defInfo[0]["imgs"][$i]["path"]; ?>" alt="">
 
                         <div class="carousel-caption">
                         </div>

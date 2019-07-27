@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require dirname(__FILE__)."/../libraries/Util.php";
 require dirname(__FILE__)."/../libraries/Logs.php";
 require dirname(__FILE__)."/../libraries/fileupload/UploadHandler.php";
+require dirname(__FILE__)."/../libraries/UserCenter_Util.php";
 
 class UserCenter_Ctr extends CI_Controller{
     public function __construct(){
@@ -130,6 +131,15 @@ class UserCenter_Ctr extends CI_Controller{
         //$upload_handler = new UploadHandler($upload_dir = '/photo/headpic/');
         $result = $this->UserCenter_Mod->getUserHeader($token);
         $delIcon = $result[0]["icon"];
+
+        $isLogin = isUserLogin($this->UserCenter_Mod->getUserInfoByToken($token));
+        if(!$isLogin){
+            $result["status"] = "4003";
+            $result["message"] = "请登录后再试！";
+            echo json_encode($result);
+            return;
+        }
+
         if($delIcon == null || $delIcon == ""){
 
         }else{
@@ -152,6 +162,15 @@ class UserCenter_Ctr extends CI_Controller{
         $type =$_POST["type"];
         $value = $_POST["value"];
         $result = Array();
+
+        $isLogin = isUserLogin($this->UserCenter_Mod->getUserInfoByToken($token));
+        if(!$isLogin){
+            $result["status"] = "4003";
+            $result["message"] = "请登录后再试！";
+            echo json_encode($result);
+            return;
+        }
+
         try{
             $this->UserCenter_Mod->modifyUserInfo($type,$value,$token);
             $result["status"] = 200;

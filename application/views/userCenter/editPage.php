@@ -28,6 +28,7 @@ $userInfo = $params["userInfo"];
     <div style="_background-color: hotpink;width:70%;padding-bottom: 30px;">
         <ul style="margin-left: 125px;list-style:none;" id="user_info">
             <li style="height:150px;">
+                <!--      修改头像 start          -->
                 <div>
                     <h4>修改头像：</h4>
                     <div style="width:110px;height:110px;_background: yellowgreen;border: 1px;border-color: lightgray;border-style: solid;float:left;padding: 5px;">
@@ -48,6 +49,7 @@ $userInfo = $params["userInfo"];
                         <br>
                     </div>
                 </div>
+                <!--      修改头像 end          -->
             </li>
             <li>
                 <div>
