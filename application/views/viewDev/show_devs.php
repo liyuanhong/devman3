@@ -74,13 +74,11 @@ if(array_key_exists("scope",$params)){
 <div id="show_devs_containt_view" class="content-wrapper">
   <div id="show_devs_top_control">
     <div id="classification">
-        	<label>类型:</label>
-        	<select class="form-control" id="classification_ctrl" style="width:120px;height:30px;display: inline;margin-left: 10px;" onchange="switchDevType()">
-            <option value="1">手机平板</option>
-            <option value="2">电脑</option>
-            <option value="3">显示器</option>
-            <option value="4">办公用品</option>
-            <option value="5">桌椅</option>
+        <label>类型:</label>
+        <select class="form-control" id="classification_ctrl" style="width:120px;height:30px;display: inline;margin-left: 10px;" onchange="switchDevType()">
+            <?php for($i = 0;$i < count($params["dev_type"]);$i++): ?>
+                <option value="<?=$params["dev_type"][$i]["type_id"]?>"><?=$params["dev_type"][$i]["type_detail"]?></option>
+            <?php endfor;?>
         </select>
     </div>
     <div id="show_devs_phones_control" style="width: 88%;height: 200px;background:transparent;float:right;display:inline;">

@@ -113,7 +113,8 @@ class Welcome extends CI_Controller{
         //获取是否有该页面的操作权限
         $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE);
         $this->params['columnCtr'] = $columnCtr;
-        $this->params['attrs'] = $this->DevAttrs_Mod->getMobileAttrs();
+        $this->params["dev_type"] = $this->DevAttrs_Mod->getAllDevType();
+        $this->params['attrs'] = $this->DevAttrs_Mod->getMobileAttrs(1);
         $this->params['info'] = $info;
 	    $this->params['devs'] = $devs;
         $this->params['devDataTotal'] = $searchResult["total"];

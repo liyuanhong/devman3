@@ -31,7 +31,7 @@
           <ul class="treeview-menu" <?php echo ctrLeftItemExpand($item1,"managedev");?>>
               <li id="devlist" <?php echo ctrLeftItemShow($item2,"devlist");?> ><a href="#"><i class="fa fa-circle-o"></i>设备列表</a></li>
               <li id="editdev" <?php echo ctrLeftItemShow($item2,"editdev");?> ><a href="#"><i class="fa fa-circle-o"></i>编辑设备</a></li>
-              <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>添加设备</a></li>
+              <li id="adddev" <?php echo ctrLeftItemShow($item2,"adddev");?> ><a href="#"><i class="fa fa-circle-o"></i>添加设备</a></li>
               <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>盘点设备</a></li>
               <li class="menu"><a href="#"><i class="fa fa-circle-o"></i>确认设备</a></li>
           </ul>

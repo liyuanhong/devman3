@@ -20,6 +20,9 @@ function changeMenu(){
 		}else if(id == "editdev"){
 			var params = getTheParams("token");
 			getAnPage("managedev/editdev",params);
+		}else if(id == "adddev"){
+			var params = getTheParams("token");
+			getAnPage("managedev/adddev",params);
 		}else if(id == "mypage"){
             var params = getParams();
             getAnPage("usercenter/mypage",params);

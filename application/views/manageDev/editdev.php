@@ -76,7 +76,7 @@ $defInfo = $params["defInfo"];
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td>id="comments"
                             <label style="float:left;margin-left:5px;">所有者：</label>
                             <div class="input-group input-group-sm" style="width:200px;">
                                 <input id="owner" type="text" class="form-control" value="<?php echo $defInfo[0]["owner"]; ?>" disabled="true">
@@ -95,7 +95,7 @@ $defInfo = $params["defInfo"];
                         <td colspan="3">
                             <label style="float:left;margin-left:5px;">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述：</label>
                             <div class="input-group input-group-sm">
-                                <textarea id="comments" style="width:700px;display: inline;" class="form-control" rows="3" placeholder="请输入个人描述" disabled="true"><?php echo $defInfo[0]["comments"]; ?></textarea>
+                                <textarea style="width:700px;display: inline;" class="form-control" rows="3" placeholder="请输入个人描述" disabled="true"><?php echo $defInfo[0]["comments"]; ?></textarea>
                                 <span class="input-group-btn"><button type="button" class="btn btn-info btn-flat" tag="modify-comments" onclick="editDev(this)">编辑</button></span>
                             </div>
                         </td>

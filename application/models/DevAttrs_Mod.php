@@ -13,7 +13,7 @@ class DevAttrs_Mod extends CI_Model{
     }
 
     //获取手机指定属性信息
-    public function getMobileAttrs(){
+    public function getMobileAttrs($type){
         //指定要获取的信息
         $info = array("type_platform","type_brand","type_system","type_status","type_category");
         array_push($info,"type_check");
@@ -22,7 +22,7 @@ class DevAttrs_Mod extends CI_Model{
         $attrs = array();
         for($i = 0;$i < count($info);$i++){
             if(in_array($info[$i],$special_info)){
-                $sql = "select distinct ".$info[$i].",comment from dev_attrs where type_id=1";
+                $sql = "select distinct ".$info[$i].",comment from dev_attrs where type_id=$type";
                 $query = $this->db->query($sql);
                 $result = $query->result_array();
                 $res = array();
@@ -32,7 +32,7 @@ class DevAttrs_Mod extends CI_Model{
                     }
                 }
             }else{
-                $sql = "select distinct ".$info[$i]." from dev_attrs where type_id=1";
+                $sql = "select distinct ".$info[$i]." from dev_attrs where type_id=$type";
                 $query = $this->db->query($sql);
                 $result = $query->result_array();
                 $res = array();
@@ -47,5 +47,11 @@ class DevAttrs_Mod extends CI_Model{
         return $attrs;
     }
 
+    //获取所有指定的设备类型
+    function getAllDevType(){
+        $sql = "select distinct type_id,type_detail from dev_attrs";
+        $query = $this->db->query($sql)->result_array();
+        return $query;
+    }
 
 }

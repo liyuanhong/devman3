@@ -76,9 +76,11 @@ class ManageDev extends CI_Controller{
         //获取是否有该页面的操作权限
         $this->params['rights'] = $this->Rights_Mod->getRightsByUid($this->userInfo,SHOW_DEV_PAGE,RIGHTS_PAGE);
         $this->params['columnCtr'] = $columnCtr;
-        $this->params['attrs'] = $this->DevAttrs_Mod->getMobileAttrs();
+        $this->params["dev_type"] = $this->DevAttrs_Mod->getAllDevType();
+        $this->params['attrs'] = $this->DevAttrs_Mod->getMobileAttrs(1);
         $this->params['info'] = $info;
         $this->params['devs'] = $devs;
+
         $this->params['devDataTotal'] = $searchResult["total"];
         $this->params['keyword'] = $keyword;
         $this->params['baseon'] = $baseon;
@@ -113,7 +115,16 @@ class ManageDev extends CI_Controller{
         $this->load->view('starter',$arr);
     }
 
-
+    //进入添加设备页面
+    public function adddev(){
+        $arr = array();
+        $this->params["dev_type"] = $this->DevAttrs_Mod->getAllDevType();
+        $this->params['attrs'] = $this->DevAttrs_Mod->getMobileAttrs(1);
+        $arr['params'] = $this->params;
+//        echo json_encode($arr);
+//		exit;
+        $this->load->view('starter',$arr);
+    }
 
 
 

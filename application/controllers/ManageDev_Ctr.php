@@ -145,4 +145,43 @@ class ManageDev_Ctr extends CI_Controller
             echo json_encode($result);
         }
     }
+
+    public function addDev(){
+        $token = post("token",null);
+        $device_name = post("device_name","");
+        $model = post("model","");
+        $plateform = post("plateform","");
+        $brand = post("brand","");
+        $version = post("version","");
+        $owner = post("owner","");
+        $comments = post("comments","");
+        $dev_type = post("dev_type","");
+
+        $isLogin = isUserLogin($this->UserCenter_Mod->getUserInfoByToken($token));
+        if(!$isLogin){
+            $result["status"] = "4003";
+            $result["message"] = "请登录后再试！";
+            echo json_encode($result);
+            return;
+        }
+
+        try{
+            if($dev_type == 1){
+                $id = $this->ModifyDev_Mod->adddev($device_name,$model,$plateform,$brand,$version,$owner,$comments)[0];
+                $result["status"] = "200";
+                $result["id"] = $id;
+                $result["message"] = "添加设备成功,请前往编辑设备页面添加图片";
+                echo json_encode($result);
+            }else{
+                $result["status"] = "4003";
+                $result["message"] = "设备类型不存在";
+                echo json_encode($result);
+            }
+        }catch(Exception $e){
+            echo 'Message: ' .$e->getMessage();
+            $result["status"] = "4003";
+            $result["message"] = "添加设备失败";
+            echo json_encode($result);
+        }
+    }
 }

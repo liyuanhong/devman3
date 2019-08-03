@@ -54,5 +54,13 @@ class ModifyDev_Mod extends CI_Model{
         $this->db->query($sql);
     }
 
+    //添加设备
+    function adddev($device_name,$model,$plateform,$brand,$version,$owner,$comments){
+        $sql = "insert into devices (device_name,model,plateform,brand,version,owner,comments) values ('$device_name','$model','$plateform','$brand','$version','$owner','$comments')";
+        $this->db->query($sql);
+        $sql = "SELECT LAST_INSERT_ID() as id";
+        $query = $this->db->query($sql)->result_array();
+        return $query;
+    }
 
 }
