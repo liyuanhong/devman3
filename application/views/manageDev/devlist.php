@@ -321,7 +321,10 @@ if(array_key_exists("scope",$params)){
                                   ';}if(hasArrValue($columnCtr,"e")){echo '
                                   <td>'.$dev->borrower.'</td>
                                   ';}if(hasArrValue($columnCtr,"f")){echo '
-                                  <td><button type="button" class="btn btn-block btn-success btn-sm" style="width:70px;margin:auto;" onclick="jumToEditdev1(this)">管理设备</button></td>
+                                  <td>
+                                  <button type="button" class="btn btn-block btn-success btn-xs" style="width:70px;margin:auto;" onclick="jumToEditdev1(this)">管理设备</button>
+                                  <button type="button" class="btn btn-block btn-danger btn-xs" style="width:50px;margin:auto;margin-top:3px;" onclick="delDev(this)">删除</button>
+                                  </td>
                                   ';}if(hasArrValue($columnCtr,"g")){echo '
                                   <td>'.$dev->owner.'</td>
                                   ';}if(hasArrValue($columnCtr,"h")){echo '
@@ -382,3 +385,45 @@ if(array_key_exists("scope",$params)){
         </div>
     </div>
 </div>
+<script src="<?php echo  base_url(); ?>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo  base_url(); ?>static/plugins/iCheck/icheck.min.js"></script>
+<script>
+    $(function () {
+        $('#example1').DataTable({
+            'paging'      : false,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : false,
+            'autoWidth'   : false
+        })
+    })
+    //控制页面加载后设备列表图片不显示排序图标
+    $(function(){
+        $("th.noafter").removeClass("sorting");
+        $("th.noafter").removeClass("after");
+        $("th.noafter").removeClass("sorting_asc");
+    })
+
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+    })
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+        checkboxClass: 'icheckbox_minimal-red',
+        radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass   : 'iradio_flat-green'
+    })
+    setRowCount();  //show_devs.js
+    initRowCount();  //show_devs.js
+</script>

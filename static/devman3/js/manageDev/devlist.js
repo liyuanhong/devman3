@@ -137,3 +137,29 @@ function jumToEditdev1(e){
     params["id"] = devid;
     getAnPage("managedev/editdev",params);
 }
+
+/*
+删除设备
+ */
+function delDev(e){
+    var dev_id = $(e).parent().parent().attr("devid");
+    var token = $.cookie('token');
+
+    if(confirm("确认删除设备吗？")){
+        $.ajax({
+            url:getRootUrl() + "ManageDev_Ctr/delDevById",
+            type:"get",
+            data:{"token":token,"dev_id":dev_id},
+            success:function(result){
+                var obj = JSON.parse(result);
+                var status = obj.status;
+                if(status == 200){
+                    alert(obj.message);
+                    window.location.reload();
+                }else{
+                    alert(obj.message);
+                }
+            }
+        });
+    }
+}

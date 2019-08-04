@@ -22,7 +22,7 @@
             <li <?php echo ctrLeftItemShow($item2,"devdetails");?> id="dev_details"><a href="#"><i class="fa fa-circle-o"></i>设备详情</a></li>
           </ul>
         </li>
-        <li class="treeview" <?php echo ctrLeftArrowShow($item1,"managedev");?>>
+        <li <?php echo ctrLeftArrowShow($item1,"managedev");?>>
           <a href="#"><i class="fa fa-chevron-circle-right"></i> <span>设备管理</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
